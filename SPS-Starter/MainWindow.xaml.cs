@@ -24,5 +24,13 @@ namespace SPS_Starter
         {
             InitializeComponent();
         }
+
+        public void ProjekteLesen()
+        {
+            Projekte_Logo_Lesen();
+            Projekte_TiaPortal_Lesen();
+            Projekte_TwinCAT_Lesen();
+        }
+
     }
 }
