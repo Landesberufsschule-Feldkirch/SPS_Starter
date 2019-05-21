@@ -181,7 +181,7 @@ namespace SPS_Starter
                 RadioButton rdo = new RadioButton();
                 rdo.GroupName = "TwinCAT";
                 rdo.VerticalAlignment = VerticalAlignment.Top;
-                rdo.Checked += new RoutedEventHandler(Logo8_radioButton_Checked);
+                rdo.Checked += new RoutedEventHandler(TwinCAT_radioButton_Checked);
                 rdo.FontSize = 14;
 
                 // nur PLC und sonst nichts
@@ -248,8 +248,8 @@ namespace SPS_Starter
 
             try
             {
-                DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Yellow, "Ordner " + Projekt_TiaPortal_Ziel + " löschen");
-                if (System.IO.Directory.Exists(Projekt_TiaPortal_Ziel)) System.IO.Directory.Delete(Projekt_TiaPortal_Ziel, true);
+                DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Yellow, "Ordner " + Projekt_TwinCAT_Ziel + " löschen");
+                if (System.IO.Directory.Exists(Projekt_TwinCAT_Ziel)) System.IO.Directory.Delete(Projekt_TwinCAT_Ziel, true);
             }
             catch (Exception exp)
             {
@@ -258,8 +258,8 @@ namespace SPS_Starter
 
             try
             {
-                DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Yellow, "Ordner " + Projekt_TiaPortal_Ziel + " erstellen");
-                System.IO.Directory.CreateDirectory(Projekt_TiaPortal_Ziel);
+                DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Yellow, "Ordner " + Projekt_TwinCAT_Ziel + " erstellen");
+                System.IO.Directory.CreateDirectory(Projekt_TwinCAT_Ziel);
             }
             catch (Exception exp)
             {
@@ -269,7 +269,7 @@ namespace SPS_Starter
             try
             {
                 DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Yellow, "Alle Dateien kopieren");
-                Copy(sourceDirectory, Projekt_TiaPortal_Ziel);
+                Copy(sourceDirectory, Projekt_TwinCAT_Ziel);
             }
             catch (Exception exp)
             {
@@ -280,8 +280,8 @@ namespace SPS_Starter
             {
                 DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.LawnGreen, "Projekt mit TwinCAT V3 öffnen");
                 Process proc = new Process();
-                proc.StartInfo.FileName = Projekt_TiaPortal_Ziel + "\\start.cmd";
-                proc.StartInfo.WorkingDirectory = Projekt_TiaPortal_Ziel;
+                proc.StartInfo.FileName = Projekt_TwinCAT_Ziel + "\\start.cmd";
+                proc.StartInfo.WorkingDirectory = Projekt_TwinCAT_Ziel;
                 proc.Start();
             }
             catch (Exception exp)
