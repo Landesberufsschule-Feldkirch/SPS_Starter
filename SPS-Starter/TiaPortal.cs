@@ -162,7 +162,7 @@ namespace SPS_Starter
 
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_TiaPortal_Quelle);
 
-            DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Green, "Projekt starten");
+            DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Green, "TiaPortal Projekt starten");
             Projekt_TiaPortal_Name = rb.Name;
 
             string LeereHtmlSeite = "<!doctype html>   </html >";

@@ -116,7 +116,7 @@ namespace SPS_Starter
 
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_Logo8_Quelle);
 
-            DarstellungAendernListe(Button_Logo8_Liste, true, Colors.Green, "Projekt starten");
+            DarstellungAendernListe(Button_Logo8_Liste, true, Colors.Green, "Logo Projekt starten");
             Projekt_Logo8_Name = rb.Name;
 
             string HtmlSeite = "";
@@ -147,6 +147,14 @@ namespace SPS_Starter
         private void Logo8_ProjektStarten(object sender, RoutedEventArgs e)
         {
 
+            Button someButton = sender as Button;
+   
+               if( someButton.Content == "Logo Projekt starten")
+                {
+                    someButton.Content = "uups";
+
+                }
+         
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_Logo8_Quelle);
             string sourceDirectory = ParentDirectory.FullName + "\\" + Projekt_Logo8_Name;
 

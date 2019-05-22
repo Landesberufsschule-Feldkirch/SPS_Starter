@@ -197,7 +197,7 @@ namespace SPS_Starter
 
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_TwinCAT_Quelle);
 
-            DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Green, "Projekt starten");
+            DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Green, "TwinCAT Projekt starten");
             Projekt_TwinCAT_Name = rb.Name;
 
             string HtmlSeite = "";

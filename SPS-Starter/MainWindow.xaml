@@ -59,7 +59,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_Logo8_PLC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_Logo8_PLC" Content="Projekt starten" Grid.Column="3" Grid.Row="1" Click="Button_Starten_Logo8_PLC_Click" ></Button>
+                                <Button x:Name="Button_Starten_Logo8_PLC" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="Logo8_ProjektStarten" ></Button>
                                 <WebBrowser x:Name="Web_Logo8_PLC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -82,7 +82,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_Logo8_PLC_Bugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_Logo8_PLC_Bugs" Content="Projekt starten" Grid.Column="3" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_Logo8_PLC_Bugs" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="Logo8_ProjektStarten"></Button>
                                 <WebBrowser x:Name="Web_Logo8_PLC_Bugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -129,7 +129,7 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <StackPanel x:Name="StackPanel_TiaPortal_PLC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC" Content="Projekt starten" Grid.Column="3" Grid.Row="1" Click="Button_Starten_TiaPortal_PLC_Click" ></Button>
+                                <Button x:Name="Button_Starten_TiaPortal_PLC" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1" Click="TiaPortal_ProjektStarten" ></Button>
                                 <WebBrowser x:Name="Web_TiaPortal_PLC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -152,7 +152,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TiaPortal_PLC_HMI" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_HMI" Content="Projekt starten" Grid.Column="3" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_TiaPortal_PLC_HMI" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Click="TiaPortal_ProjektStarten"></Button>
                                 <WebBrowser x:Name="Web_TiaPortal_PLC_HMI" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -176,7 +176,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TiaPortal_PLC_FIO" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_FIO" Content="Projekt starten" Grid.Column="4" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_TiaPortal_PLC_FIO" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1"  Click="TiaPortal_ProjektStarten"></Button>
                                 <WebBrowser x:Name="Web_TiaPortal_PLC_FIO" Grid.Column="4" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -200,7 +200,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TiaPortal_PLC_DT" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_DT" Content="Projekt starten" Grid.Column="4" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_TiaPortal_PLC_DT" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Click="TiaPortal_ProjektStarten" ></Button>
                                 <WebBrowser x:Name="Web_TiaPortal_PLC_DT" Grid.Column="4" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -223,7 +223,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TiaPortal_PLC_Bugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_Bugs" Content="Projekt starten" Grid.Column="3" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_TiaPortal_PLC_Bugs" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Click="TiaPortal_ProjektStarten"></Button>
                                 <WebBrowser x:Name="Web_TiaPortal_PLC_Bugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -276,7 +276,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TwinCAT_PLC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC" Content="Projekt starten" Grid.Column="3" Grid.Row="1" Click="Button_Starten_TwinCAT_PLC_Click" ></Button>
+                                <Button x:Name="Button_Starten_TwinCAT_PLC" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="TwinCAT_ProjektStarten" ></Button>
                                 <WebBrowser x:Name="Web_TwinCAT_PLC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -299,7 +299,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TwinCAT_PLC_VISU" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC_VISU" Content="Projekt starten" Grid.Column="3" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_TwinCAT_PLC_VISU" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="TwinCAT_ProjektStarten"></Button>
                                 <WebBrowser x:Name="Web_TwinCAT_PLC_VISU" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -322,7 +322,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TwinCAT_PLC_NC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC_NC" Content="Projekt starten" Grid.Column="3" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_TwinCAT_PLC_NC" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="TwinCAT_ProjektStarten"></Button>
                                 <WebBrowser x:Name="Web_TwinCAT_PLC_NC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -345,7 +345,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TwinCAT_PLC_DT" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC_DT" Content="Projekt starten" Grid.Column="3" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_TwinCAT_PLC_DT" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="TwinCAT_ProjektStarten" ></Button>
                                 <WebBrowser x:Name="Web_TwinCAT_PLC_DT" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -368,7 +368,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_TwinCAT_PLC_Bugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC_Bugs" Content="Projekt starten" Grid.Column="3" Grid.Row="1" ></Button>
+                                <Button x:Name="Button_Starten_TwinCAT_PLC_Bugs" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="TwinCAT_ProjektStarten"></Button>
                                 <WebBrowser x:Name="Web_TwinCAT_PLC_Bugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
