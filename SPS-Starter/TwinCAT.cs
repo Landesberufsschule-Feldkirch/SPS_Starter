@@ -241,61 +241,6 @@ namespace SPS_Starter
             }
         }
 
-        private void TwinCAT_ProjektStarten(object sender, RoutedEventArgs e)
-        {
-            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_TwinCAT_Quelle);
-            string sourceDirectory = ParentDirectory.FullName + "\\" + Projekt_TwinCAT_Name;
-
-            try
-            {
-                DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Yellow, "Ordner " + Projekt_TwinCAT_Ziel + " löschen");
-                if (System.IO.Directory.Exists(Projekt_TwinCAT_Ziel)) System.IO.Directory.Delete(Projekt_TwinCAT_Ziel, true);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception 2 caught.", exp);
-            }
-
-            try
-            {
-                DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Yellow, "Ordner " + Projekt_TwinCAT_Ziel + " erstellen");
-                System.IO.Directory.CreateDirectory(Projekt_TwinCAT_Ziel);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception 3 caught.", exp);
-            }
-
-            try
-            {
-                DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Yellow, "Alle Dateien kopieren");
-                Copy(sourceDirectory, Projekt_TwinCAT_Ziel);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception 4 caught.", exp);
-            }
-
-            try
-            {
-                DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.LawnGreen, "Projekt mit TwinCAT V3 öffnen");
-                Process proc = new Process();
-                proc.StartInfo.FileName = Projekt_TwinCAT_Ziel + "\\start.cmd";
-                proc.StartInfo.WorkingDirectory = Projekt_TwinCAT_Ziel;
-                proc.Start();
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception 5 caught.", exp);
-            }
-
-        }
-
-
-
-
-        private void Button_Starten_TwinCAT_PLC_Click(object sender, RoutedEventArgs e) { }
-
         private void Checkbox_TwinCAT_AS_Checked(object sender, RoutedEventArgs e)
         {
             if (Anzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();

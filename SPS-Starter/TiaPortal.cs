@@ -211,58 +211,6 @@ namespace SPS_Starter
 
         }
 
-        private void TiaPortal_ProjektStarten(object sender, RoutedEventArgs e)
-        {
-            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo("Projekte");
-            string sourceDirectory = ParentDirectory.FullName + "\\" + Projekt_TiaPortal_Name;
-
-            try
-            {
-                DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Yellow, "Ordner " + Projekt_TiaPortal_Ziel + " löschen");
-                if (System.IO.Directory.Exists(Projekt_TiaPortal_Ziel)) System.IO.Directory.Delete(Projekt_TiaPortal_Ziel, true);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception 2 caught.", exp);
-            }
-
-            try
-            {
-                DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Yellow, "Ordner " + Projekt_TiaPortal_Ziel + " erstellen");
-                System.IO.Directory.CreateDirectory(Projekt_TiaPortal_Ziel);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception 3 caught.", exp);
-            }
-
-            try
-            {
-                DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Yellow, "Alle Dateien kopieren");
-                Copy(sourceDirectory, Projekt_TiaPortal_Ziel);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception 4 caught.", exp);
-            }
-
-            try
-            {
-                DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.LawnGreen, "Projekt mit TIA Portal V14 öffnen");
-                Process proc = new Process();
-                proc.StartInfo.FileName = Projekt_TiaPortal_Ziel + "\\start.cmd";
-                proc.StartInfo.WorkingDirectory = Projekt_TiaPortal_Ziel;
-                proc.Start();
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception 5 caught.", exp);
-            }
-
-        }
-
-        private void Button_Starten_TiaPortal_PLC_Click(object sender, RoutedEventArgs e) { }
-
         private void Checkbox_TiaPortal_FUP_Checked(object sender, RoutedEventArgs e)
         {
             if (Anzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();

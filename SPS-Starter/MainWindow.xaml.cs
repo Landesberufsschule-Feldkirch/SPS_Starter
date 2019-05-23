@@ -145,5 +145,93 @@ namespace SPS_Starter
             }
         }
 
+        private void ProjektStarten(object sender, RoutedEventArgs e)
+        {
+            string ProjektOeffnenMit = "";
+            string ProjektOrdnerQuelle = "";
+            string ProjektOrdnerZiel = "";
+            string ProjektName = "";
+            List<Button> Button_Liste = new List<Button>();
+
+            Button StartKnopf = sender as Button;
+
+            if (StartKnopf.Content == "Logo Projekt starten")
+            {
+                ProjektOrdnerQuelle = ProjektOrdner_Logo8_Quelle;
+                ProjektOrdnerZiel = Projekt_Logo8_Ziel;
+                Button_Liste = Button_Logo8_Liste;
+                ProjektName = Projekt_Logo8_Name;
+                ProjektOeffnenMit = "Projekt mit Logo8! öffnen";
+            }
+            else if (StartKnopf.Content == "TiaPortal Projekt starten")
+            {
+                ProjektOrdnerQuelle = ProjektOrdner_TiaPortal_Quelle;
+                ProjektOrdnerZiel = Projekt_TiaPortal_Ziel;
+                Button_Liste = Button_TiaPortal_Liste;
+                ProjektName = Projekt_TiaPortal_Name;
+                ProjektOeffnenMit = "Projekt mit TiaPortal öffnen";
+            }
+            else if (StartKnopf.Content == "TwinCAT Projekt starten")
+            {
+                ProjektOrdnerQuelle = ProjektOrdner_TwinCAT_Quelle;
+                ProjektOrdnerZiel = Projekt_TwinCAT_Ziel;
+                Button_Liste = Button_TwinCAT_Liste;
+                ProjektName = Projekt_TwinCAT_Name;
+                ProjektOeffnenMit = "Projekt mit TwinCAT öffnen";
+            }
+            else
+            {
+                MessageBox.Show("Unbekannter Knopf: " + StartKnopf.Content);
+            }
+
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdnerQuelle);
+            string sourceDirectory = ParentDirectory.FullName + "\\" + ProjektName;
+
+            try
+            {
+                DarstellungAendernListe(Button_Liste, true, Colors.Yellow, "Ordner " + ProjektOrdnerZiel + " löschen");
+                if (System.IO.Directory.Exists(ProjektOrdnerZiel)) System.IO.Directory.Delete(ProjektOrdnerZiel, true);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("{0} Exception 2 caught.", exp);
+            }
+
+            try
+            {
+                DarstellungAendernListe(Button_Liste, true, Colors.Yellow, "Ordner " + ProjektOrdnerZiel + " erstellen");
+                System.IO.Directory.CreateDirectory(ProjektOrdnerZiel);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("{0} Exception 3 caught.", exp);
+            }
+
+            try
+            {
+                DarstellungAendernListe(Button_Liste, true, Colors.Yellow, "Alle Dateien kopieren");
+                Copy(sourceDirectory, ProjektOrdnerZiel);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("{0} Exception 4 caught.", exp);
+            }
+
+            try
+            {
+                DarstellungAendernListe(Button_Liste, true, Colors.LawnGreen, ProjektOeffnenMit);
+                Process proc = new Process();
+                proc.StartInfo.FileName = ProjektOrdnerZiel + "\\start.cmd";
+                proc.StartInfo.WorkingDirectory = ProjektOrdnerZiel;
+                proc.Start();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("{0} Exception 5 caught.", exp);
+            }
+
+
+        }
+
     }
 }
