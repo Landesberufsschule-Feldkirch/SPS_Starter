@@ -1,25 +1,12 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Diagnostics;
-using System.Windows.Threading;
-
 
 namespace SPS_Starter
 {
-
     public partial class MainWindow
     {
         public void Projekte_Logo8_Lesen()
@@ -40,26 +27,20 @@ namespace SPS_Starter
             foreach (System.IO.DirectoryInfo d in ParentDirectory.GetDirectories())
             {
                 string OrdnerName = d.Name;
-                string Sprache = "";
+                string ProgrammierSprache = "";
                 int StartBezeichnung = 0;
                 bool Anzeigen = false;
 
                 if (OrdnerName.Contains("FUP"))
                 {
-                    if (Checkbox_Logo8_FUP.IsChecked.Value)
-                    {
-                        Anzeigen = true;
-                    }
-                    Sprache = "FUP";
+                    if (Checkbox_Logo8_FUP.IsChecked.Value) Anzeigen = true;
+                    ProgrammierSprache = "FUP";
                     StartBezeichnung = 4 + OrdnerName.IndexOf("FUP");
                 }
                 if (OrdnerName.Contains("KOP"))
                 {
-                    if (Checkbox_Logo8_KOP.IsChecked.Value)
-                    {
-                        Anzeigen = true;
-                    }
-                    Sprache = "KOP";
+                    if (Checkbox_Logo8_KOP.IsChecked.Value) Anzeigen = true;
+                    ProgrammierSprache = "KOP";
                     StartBezeichnung = 4 + OrdnerName.IndexOf("KOP");
                 }
 
@@ -68,13 +49,13 @@ namespace SPS_Starter
                     if (d.Name.Contains("PLC"))
                     {
                         // nur PLC und sonst nichts
-                        Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), Sprache, OrdnerName);
+                        Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
                         TupleList_Logo8_PLC.Add(TplEintrag);
                     }
                     else
                     {
                         // Es gibt momentan noch keine Gruppe bei den Bugs
-                        Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), Sprache, OrdnerName);
+                        Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
                         TupleList_Logo8_BUG.Add(TplEintrag);
                     }
                 }
@@ -96,62 +77,43 @@ namespace SPS_Starter
         {
             foreach (Tuple<string, string, string> Projekt in Projekte)
             {
-                RadioButton rdo = new RadioButton();
-                rdo.GroupName = "Logo8!";
-                rdo.VerticalAlignment = VerticalAlignment.Top;
+                RadioButton rdo = new RadioButton
+                {
+                    GroupName = "Logo8!",
+                    Name = Projekt.Item3,
+                    FontSize = 14,
+                    Content = Projekt.Item1 + " (" + Projekt.Item2 + ")",
+                    VerticalAlignment = VerticalAlignment.Top
+                };
                 rdo.Checked += new RoutedEventHandler(Logo8_radioButton_Checked);
-                rdo.FontSize = 14;
-
-                // nur PLC und sonst nichts
-                rdo.Content = Projekt.Item1 + " (" + Projekt.Item2 + ")";
-                rdo.Name = Projekt.Item3;
                 StackPanel.Children.Add(rdo);
             }
         }
 
-
         private void Logo8_radioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
+            Projekt_Logo8_Name = rb.Name;
 
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_Logo8_Quelle);
 
             DarstellungAendernListe(Button_Logo8_Liste, true, Colors.Green, "Logo Projekt starten");
-            Projekt_Logo8_Name = rb.Name;
 
-            string HtmlSeite = "";
 
-            string DateiName = ParentDirectory.FullName + "\\" + rb.Name + "\\index.html";
-            if (File.Exists(DateiName))
-            {
-                HtmlSeite = System.IO.File.ReadAllText(DateiName);
-            }
-            else
-            {
-                HtmlSeite = LeereHtmlSeite;
-            }
+            string DateiName = ParentDirectory.FullName + "\\" + Projekt_Logo8_Name + "\\index.html";
+
+            if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
+            else HtmlSeite = LeereHtmlSeite;
 
             Web_Logo8_PLC.NavigateToString(LeereHtmlSeite);
             Web_Logo8_PLC_Bugs.NavigateToString(LeereHtmlSeite);
 
-            if (rb.Name.Contains("PLC"))
-            {
-                Web_Logo8_PLC.NavigateToString(HtmlSeite);
-            }
+            if (Projekt_Logo8_Name.Contains("PLC")) Web_Logo8_PLC.NavigateToString(HtmlSeite);
             else
             {
-                if (rb.Name.Contains("BUG")) Web_Logo8_PLC_Bugs.NavigateToString(HtmlSeite);
+                if (Projekt_Logo8_Name.Contains("BUG")) Web_Logo8_PLC_Bugs.NavigateToString(HtmlSeite);
             }
         }
-
-        private void Checkbox_Logo8_KOP_Checked(object sender, RoutedEventArgs e)
-        {
-            if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
-        }
-        private void Checkbox_Logo8_FUP_Checked(object sender, RoutedEventArgs e)
-        {
-            if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
-        }
-
+      
     }
 }

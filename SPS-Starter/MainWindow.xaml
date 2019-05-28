@@ -20,7 +20,7 @@
 
         <Label Content="V0.0 " Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" />
 
-        <TabControl Grid.Column="1"  Grid.Row="1">
+        <TabControl Grid.Column="1"  Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
 
             <TabItem Header="Logo8!">
                 <Grid Background="#FFE5E5E5">
@@ -37,8 +37,8 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="Checkbox_Logo8_FUP" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Logo8_FUP_Checked" Checked="Checkbox_Logo8_FUP_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_Logo8_KOP" Content="KOP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Logo8_KOP_Checked" Checked="Checkbox_Logo8_KOP_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_Logo8_FUP" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_Logo8_KOP" Content="KOP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
 
                     <TabControl x:Name="Tab_Logo8" Grid.Column="1" Grid.ColumnSpan="2"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14">
@@ -107,9 +107,9 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="Checkbox_TiaPortal_FUP" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TiaPortal_FUP_Checked" Checked="Checkbox_TiaPortal_FUP_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TiaPortal_KOP" Content="KOP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TiaPortal_KOP_Checked" Checked="Checkbox_TiaPortal_KOP_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TiaPortal_SCL" Content="SCL" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TiaPortal_SCL_Checked" Checked="Checkbox_TiaPortal_SCL_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TiaPortal_FUP" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TiaPortal_KOP" Content="KOP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TiaPortal_SCL" Content="SCL" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
 
                     <TabControl x:Name="Tab_TiaPortal" Grid.Column="1" Grid.ColumnSpan="4"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14">
@@ -250,12 +250,12 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="Checkbox_TwinCAT_AS" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TwinCAT_AS_Checked" Checked="Checkbox_TwinCAT_AS_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_AWL" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TwinCAT_AWL_Checked" Checked="Checkbox_TwinCAT_AWL_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_CFC" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TwinCAT_CFC_Checked" Checked="Checkbox_TwinCAT_CFC_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_FUP" Content="FUP" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TwinCAT_FUP_Checked" Checked="Checkbox_TwinCAT_FUP_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_KOP" Content="KOP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TwinCAT_KOP_Checked" Checked="Checkbox_TwinCAT_KOP_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_ST" Content="ST" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_TwinCAT_ST_Checked" Checked="Checkbox_TwinCAT_ST_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_AS" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_AWL" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_CFC" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_FUP" Content="FUP" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_KOP" Content="KOP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_ST" Content="ST" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
 
                     <TabControl x:Name="Tab_WinCAT" Grid.Column="1" Grid.ColumnSpan="6"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14">
