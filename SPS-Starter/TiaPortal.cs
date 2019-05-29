@@ -149,34 +149,57 @@ namespace SPS_Starter
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
             else HtmlSeite = "<!doctype html>   </html >";
 
-            Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
-            Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
-            Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
-            Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
-            Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+            if (Projekt_TiaPortal_Name.Contains("DT"))
+            {
+                Web_TiaPortal_PLC_DT.NavigateToString(HtmlSeite);
+                Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+                return;
+            }
+
+            if (Projekt_TiaPortal_Name.Contains("HMI"))
+            {
+                Web_TiaPortal_PLC_HMI.NavigateToString(HtmlSeite);
+                Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+                return;
+            }
+
+            if (Projekt_TiaPortal_Name.Contains("FIO"))
+            {
+                Web_TiaPortal_PLC_FIO.NavigateToString(HtmlSeite);
+                Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+                return;
+            }
+
+            if (Projekt_TiaPortal_Name.Contains("BUG"))
+            {
+                Web_TiaPortal_PLC_Bugs.NavigateToString(HtmlSeite);
+                Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
+                return;
+            }
 
             if (Projekt_TiaPortal_Name.Contains("PLC"))
             {
-                if (Projekt_TiaPortal_Name.Contains("DT")) Web_TiaPortal_PLC_DT.NavigateToString(HtmlSeite);
-                else
-                {
-                    if (Projekt_TiaPortal_Name.Contains("HMI")) Web_TiaPortal_PLC_HMI.NavigateToString(HtmlSeite);
-                    else
-                    {
-                        if (Projekt_TiaPortal_Name.Contains("FIO")) Web_TiaPortal_PLC_FIO.NavigateToString(HtmlSeite);
-                        else
-                        {
-                            Web_TiaPortal_PLC.NavigateToString(HtmlSeite);
-                        }
-                    }
-                }
+                Web_TiaPortal_PLC.NavigateToString(HtmlSeite);
+                Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
+                Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+                return;
             }
-            else
-            {
-                if (Projekt_TiaPortal_Name.Contains("BUG")) Web_TiaPortal_PLC_Bugs.NavigateToString(HtmlSeite);
-                //bei Bug gibt es keine Unterkategorien
-            }
-        }
 
+        }
     }
+
 }

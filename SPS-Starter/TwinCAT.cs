@@ -169,31 +169,57 @@ namespace SPS_Starter
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
             else HtmlSeite = "<!doctype html>   </html >";
 
-            Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
+
+            if (Projekt_TwinCAT_Name.Contains("DT"))
+            {
+                Web_TwinCAT_PLC_DT.NavigateToString(HtmlSeite);
+                Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_VISU.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_NC.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+                return;
+            }
+
+            if (Projekt_TwinCAT_Name.Contains("VISU"))
+            {
+                Web_TwinCAT_PLC_VISU.NavigateToString(HtmlSeite);
+                Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_NC.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_DT.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+                return;
+            }
+
+            if (Projekt_TwinCAT_Name.Contains("NC"))
+            {
+                Web_TwinCAT_PLC_NC.NavigateToString(HtmlSeite);
+                Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_VISU.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_DT.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+                return;
+            }
+
+            if (Projekt_TwinCAT_Name.Contains("BUG"))
+            {
+                Web_TwinCAT_PLC_Bugs.NavigateToString(HtmlSeite);
+                Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_VISU.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_NC.NavigateToString(LeereHtmlSeite);
+                Web_TwinCAT_PLC_DT.NavigateToString(LeereHtmlSeite);
+                return;
+            }
+
+
+            if (Projekt_TwinCAT_Name.Contains("PLC"))
+
+                Web_TwinCAT_PLC.NavigateToString(HtmlSeite);
             Web_TwinCAT_PLC_VISU.NavigateToString(LeereHtmlSeite);
             Web_TwinCAT_PLC_NC.NavigateToString(LeereHtmlSeite);
             Web_TwinCAT_PLC_DT.NavigateToString(LeereHtmlSeite);
             Web_TwinCAT_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-
-            if (Projekt_TwinCAT_Name.Contains("PLC"))
-            {
-                if (Projekt_TwinCAT_Name.Contains("DT")) Web_TwinCAT_PLC.NavigateToString(HtmlSeite);
-                else
-                {
-                    if (Projekt_TwinCAT_Name.Contains("VISU")) Web_TwinCAT_PLC_VISU.NavigateToString(HtmlSeite);
-                    else
-                    {
-                        if (Projekt_TwinCAT_Name.Contains("NC")) Web_TwinCAT_PLC_NC.NavigateToString(HtmlSeite);
-                        else Web_TwinCAT_PLC.NavigateToString(HtmlSeite);
-                    }
-                }
-            }
-            else
-            {
-                if (Projekt_TwinCAT_Name.Contains("BUG")) Web_TwinCAT_PLC_Bugs.NavigateToString(HtmlSeite);
-                //bei Bug gibt es keine Unterkategorien
-            }
+            return;
         }
-           
+
     }
 }

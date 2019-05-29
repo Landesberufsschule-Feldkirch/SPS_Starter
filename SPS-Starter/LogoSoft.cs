@@ -99,21 +99,25 @@ namespace SPS_Starter
 
             DarstellungAendernListe(Button_Logo8_Liste, true, Colors.Green, "Logo Projekt starten");
 
-
             string DateiName = ParentDirectory.FullName + "\\" + Projekt_Logo8_Name + "\\index.html";
 
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
             else HtmlSeite = LeereHtmlSeite;
 
-            Web_Logo8_PLC.NavigateToString(LeereHtmlSeite);
-            Web_Logo8_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-
-            if (Projekt_Logo8_Name.Contains("PLC")) Web_Logo8_PLC.NavigateToString(HtmlSeite);
-            else
+            if (Projekt_Logo8_Name.Contains("PLC"))
             {
-                if (Projekt_Logo8_Name.Contains("BUG")) Web_Logo8_PLC_Bugs.NavigateToString(HtmlSeite);
+                Web_Logo8_PLC.NavigateToString(HtmlSeite);
+                Web_Logo8_PLC_Bugs.NavigateToString(LeereHtmlSeite);
+                return;
             }
+            if (Projekt_Logo8_Name.Contains("BUG"))
+            {
+                Web_Logo8_PLC.NavigateToString(LeereHtmlSeite);
+                Web_Logo8_PLC_Bugs.NavigateToString(HtmlSeite);
+                return;
+            }
+
         }
-      
+
     }
 }
