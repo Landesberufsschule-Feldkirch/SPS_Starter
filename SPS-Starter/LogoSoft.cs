@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Text;
 
 namespace SPS_Starter
 {
@@ -12,16 +13,14 @@ namespace SPS_Starter
         public void Projekte_Logo8_Lesen()
         {
             // Zuerst die Listen löschen
-            StackPanel_Logo8_PLC.Children.Clear();
-            StackPanel_Logo8_PLC_Bugs.Children.Clear();
+            foreach (var LogoTuple in Coll_Tuple_Logo8)
+            {
+                LogoTuple.Item3.Children.Clear();
+            }
 
             Button_Logo8_Liste.Add(Button_Starten_Logo8_PLC);
             Button_Logo8_Liste.Add(Button_Starten_Logo8_PLC_Bugs);
-
-            // Name Komplett, kurz, Sprache, Anfang
-            List<Tuple<string, string, string>> TupleList_Logo8_PLC = new List<Tuple<string, string, string>>();
-            List<Tuple<string, string, string>> TupleList_Logo8_BUG = new List<Tuple<string, string, string>>();
-
+            
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_Logo8_Quelle);
 
             foreach (System.IO.DirectoryInfo d in ParentDirectory.GetDirectories())
@@ -31,46 +30,39 @@ namespace SPS_Starter
                 int StartBezeichnung = 0;
                 bool Anzeigen = false;
 
-                if (OrdnerName.Contains("FUP"))
+                foreach (var LogoTuple in Coll_Checked_Logo8)
                 {
-                    if (Checkbox_Logo8_FUP.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "FUP";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("FUP");
-                }
-                if (OrdnerName.Contains("KOP"))
-                {
-                    if (Checkbox_Logo8_KOP.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "KOP";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("KOP");
+                    if (OrdnerName.Contains(LogoTuple.Item1))
+                    {
+                        if (LogoTuple.Item2.IsChecked.Value) Anzeigen = true;
+                        ProgrammierSprache = LogoTuple.Item1;
+                        StartBezeichnung = LogoTuple.Item3 + OrdnerName.IndexOf(LogoTuple.Item1);
+                    }
                 }
 
                 if (Anzeigen)
                 {
-                    if (d.Name.Contains("PLC"))
+                    foreach (var LogoTuple in Coll_Tuple_Logo8)
                     {
-                        // nur PLC und sonst nichts
-                        Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
-                        TupleList_Logo8_PLC.Add(TplEintrag);
-                    }
-                    else
-                    {
-                        // Es gibt momentan noch keine Gruppe bei den Bugs
-                        Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
-                        TupleList_Logo8_BUG.Add(TplEintrag);
+                        if (d.Name.Contains(LogoTuple.Item1))
+                        {
+                            // nur PLC und sonst nichts
+                            Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
+                            LogoTuple.Item2.Add(TplEintrag);
+                        }
                     }
                 }
 
 
             } // Ende foreach
 
-            TupleList_Logo8_PLC.Sort();
-            TupleList_Logo8_BUG.Sort();
-
-            Logo8_TabMitInhaltFuellen(TupleList_Logo8_PLC, StackPanel_Logo8_PLC);
-            Logo8_TabMitInhaltFuellen(TupleList_Logo8_BUG, StackPanel_Logo8_PLC_Bugs);
+            foreach (var LogoTuple in Coll_Tuple_Logo8)
+            {
+                LogoTuple.Item2.Sort();
+                Logo8_TabMitInhaltFuellen(LogoTuple.Item2, LogoTuple.Item3);
+            }
 
             Anzeige_Logo8_Aktualisieren = true;
-
         }
 
         private void Logo8_TabMitInhaltFuellen(List<Tuple<string, string, string>> Projekte, System.Windows.Controls.StackPanel StackPanel)
@@ -99,23 +91,23 @@ namespace SPS_Starter
 
             DarstellungAendernListe(Button_Logo8_Liste, true, Colors.Green, "Logo Projekt starten");
 
-            string DateiName = ParentDirectory.FullName + "\\" + Projekt_Logo8_Name + "\\index.html";
+            string DateiName = $@"{ParentDirectory.FullName}\{Projekt_Logo8_Name}\index.html";
 
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
             else HtmlSeite = LeereHtmlSeite;
 
-            if (Projekt_Logo8_Name.Contains("PLC"))
+            byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(HtmlSeite);
+            MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+
+            byte[] dataLeereHtmlSeite = Encoding.UTF8.GetBytes(LeereHtmlSeite);
+            MemoryStream stmLeereHtmlSeite = new MemoryStream(dataLeereHtmlSeite, 0, dataLeereHtmlSeite.Length);
+
+            foreach (var LogoTuple in Coll_Html_Logo8)
             {
-                Web_Logo8_PLC.NavigateToString(HtmlSeite);
-                Web_Logo8_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-                return;
+                if (Projekt_Logo8_Name.Contains(LogoTuple.Item1)) LogoTuple.Item2.NavigateToStream(stmHtmlSeite);
+                else LogoTuple.Item2.NavigateToStream(stmLeereHtmlSeite);
             }
-            if (Projekt_Logo8_Name.Contains("BUG"))
-            {
-                Web_Logo8_PLC.NavigateToString(LeereHtmlSeite);
-                Web_Logo8_PLC_Bugs.NavigateToString(HtmlSeite);
-                return;
-            }
+
 
         }
 

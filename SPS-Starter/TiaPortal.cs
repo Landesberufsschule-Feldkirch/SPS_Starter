@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Text;
 
 namespace SPS_Starter
 {
@@ -42,23 +43,15 @@ namespace SPS_Starter
                 int StartBezeichnung = 0;
                 bool Anzeigen = false;
 
-                if (OrdnerName.Contains("FUP"))
+
+                foreach (var TiaPortalTuple in Coll_Checked_TiaPortal)
                 {
-                    if (Checkbox_TiaPortal_FUP.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "FUP";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("FUP");
-                }
-                if (OrdnerName.Contains("KOP"))
-                {
-                    if (Checkbox_TiaPortal_KOP.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "KOP";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("KOP");
-                }
-                if (OrdnerName.Contains("SCL"))
-                {
-                    if (Checkbox_TiaPortal_SCL.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "SCL";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("SCL");
+                    if (OrdnerName.Contains(TiaPortalTuple.Item1))
+                    {
+                        if (TiaPortalTuple.Item2.IsChecked.Value) Anzeigen = true;
+                        ProgrammierSprache = TiaPortalTuple.Item1;
+                        StartBezeichnung = TiaPortalTuple.Item3 + OrdnerName.IndexOf(TiaPortalTuple.Item1);
+                    }
                 }
 
                 if (Anzeigen)
@@ -144,59 +137,22 @@ namespace SPS_Starter
 
             DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Green, "TiaPortal Projekt starten");
 
-            string DateiName = ParentDirectory.FullName + "\\" + Projekt_TiaPortal_Name + "\\index.html";
+            string DateiName = $@"{ParentDirectory.FullName}\{Projekt_TiaPortal_Name}\index.html";
 
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
             else HtmlSeite = "<!doctype html>   </html >";
 
-            if (Projekt_TiaPortal_Name.Contains("DT"))
-            {
-                Web_TiaPortal_PLC_DT.NavigateToString(HtmlSeite);
-                Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-                return;
-            }
 
-            if (Projekt_TiaPortal_Name.Contains("HMI"))
-            {
-                Web_TiaPortal_PLC_HMI.NavigateToString(HtmlSeite);
-                Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-                return;
-            }
+            byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(HtmlSeite);
+            MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
-            if (Projekt_TiaPortal_Name.Contains("FIO"))
-            {
-                Web_TiaPortal_PLC_FIO.NavigateToString(HtmlSeite);
-                Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-                return;
-            }
+            byte[] dataLeereHtmlSeite = Encoding.UTF8.GetBytes(LeereHtmlSeite);
+            MemoryStream stmLeereHtmlSeite = new MemoryStream(dataLeereHtmlSeite, 0, dataLeereHtmlSeite.Length);
 
-            if (Projekt_TiaPortal_Name.Contains("BUG"))
+            foreach (var TiaPortalTuple in Coll_Html_TiaPortal)
             {
-                Web_TiaPortal_PLC_Bugs.NavigateToString(HtmlSeite);
-                Web_TiaPortal_PLC.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
-                return;
-            }
-
-            if (Projekt_TiaPortal_Name.Contains("PLC"))
-            {
-                Web_TiaPortal_PLC.NavigateToString(HtmlSeite);
-                Web_TiaPortal_PLC_FIO.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_HMI.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_DT.NavigateToString(LeereHtmlSeite);
-                Web_TiaPortal_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-                return;
+                if (Projekt_TiaPortal_Name.Contains(TiaPortalTuple.Item1)) TiaPortalTuple.Item2.NavigateToStream(stmHtmlSeite);
+                else TiaPortalTuple.Item2.NavigateToStream(stmLeereHtmlSeite);
             }
 
         }

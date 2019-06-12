@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Text;
 
 namespace SPS_Starter
 {
@@ -43,41 +44,15 @@ namespace SPS_Starter
                 int StartBezeichnung = 0;
                 bool Anzeigen = false;
 
-                if (OrdnerName.Contains("AS"))
+
+                foreach (var TwinCATTuple in Coll_Checked_TwinCAT)
                 {
-                    if (Checkbox_TwinCAT_AS.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "AS/SFC";
-                    StartBezeichnung = 3 + OrdnerName.IndexOf("AS");
-                }
-                if (OrdnerName.Contains("AWL"))
-                {
-                    if (Checkbox_TwinCAT_AWL.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "AWL/IL";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("AWL");
-                }
-                if (OrdnerName.Contains("CFC"))
-                {
-                    if (Checkbox_TwinCAT_CFC.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "CFC";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("CFC");
-                }
-                if (OrdnerName.Contains("FUP"))
-                {
-                    if (Checkbox_TwinCAT_FUP.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "FUP/FBD";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("FUP");
-                }
-                if (OrdnerName.Contains("KOP"))
-                {
-                    if (Checkbox_TwinCAT_KOP.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "KOP/LD";
-                    StartBezeichnung = 4 + OrdnerName.IndexOf("KOP");
-                }
-                if (OrdnerName.Contains("ST"))
-                {
-                    if (Checkbox_TwinCAT_ST.IsChecked.Value) Anzeigen = true;
-                    ProgrammierSprache = "ST";
-                    StartBezeichnung = 3 + OrdnerName.IndexOf("ST");
+                    if (OrdnerName.Contains(TwinCATTuple.Item1))
+                    {
+                        if (TwinCATTuple.Item2.IsChecked.Value) Anzeigen = true;
+                        ProgrammierSprache = TwinCATTuple.Item1;
+                        StartBezeichnung = TwinCATTuple.Item3 + OrdnerName.IndexOf(TwinCATTuple.Item1);
+                    }
                 }
 
                 if (Anzeigen)
@@ -164,61 +139,22 @@ namespace SPS_Starter
 
             DarstellungAendernListe(Button_TwinCAT_Liste, true, Colors.Green, "TwinCAT Projekt starten");
 
-            string DateiName = ParentDirectory.FullName + "\\" + Projekt_TwinCAT_Name + "\\index.html";
+            string DateiName = $@"{ParentDirectory.FullName}\{Projekt_TwinCAT_Name}\index.html";
 
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
             else HtmlSeite = "<!doctype html>   </html >";
 
+            byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(HtmlSeite);
+            MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
-            if (Projekt_TwinCAT_Name.Contains("DT"))
+            byte[] dataLeereHtmlSeite = Encoding.UTF8.GetBytes(LeereHtmlSeite);
+            MemoryStream stmLeereHtmlSeite = new MemoryStream(dataLeereHtmlSeite, 0, dataLeereHtmlSeite.Length);
+
+            foreach (var TwinCATTuple in Coll_Html_TwinCAT)
             {
-                Web_TwinCAT_PLC_DT.NavigateToString(HtmlSeite);
-                Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_VISU.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_NC.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-                return;
+                if (Projekt_TwinCAT_Name.Contains(TwinCATTuple.Item1)) TwinCATTuple.Item2.NavigateToStream(stmHtmlSeite);
+                else TwinCATTuple.Item2.NavigateToStream(stmLeereHtmlSeite);
             }
-
-            if (Projekt_TwinCAT_Name.Contains("VISU"))
-            {
-                Web_TwinCAT_PLC_VISU.NavigateToString(HtmlSeite);
-                Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_NC.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_DT.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-                return;
-            }
-
-            if (Projekt_TwinCAT_Name.Contains("NC"))
-            {
-                Web_TwinCAT_PLC_NC.NavigateToString(HtmlSeite);
-                Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_VISU.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_DT.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-                return;
-            }
-
-            if (Projekt_TwinCAT_Name.Contains("BUG"))
-            {
-                Web_TwinCAT_PLC_Bugs.NavigateToString(HtmlSeite);
-                Web_TwinCAT_PLC.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_VISU.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_NC.NavigateToString(LeereHtmlSeite);
-                Web_TwinCAT_PLC_DT.NavigateToString(LeereHtmlSeite);
-                return;
-            }
-
-
-            if (Projekt_TwinCAT_Name.Contains("PLC"))
-
-                Web_TwinCAT_PLC.NavigateToString(HtmlSeite);
-            Web_TwinCAT_PLC_VISU.NavigateToString(LeereHtmlSeite);
-            Web_TwinCAT_PLC_NC.NavigateToString(LeereHtmlSeite);
-            Web_TwinCAT_PLC_DT.NavigateToString(LeereHtmlSeite);
-            Web_TwinCAT_PLC_Bugs.NavigateToString(LeereHtmlSeite);
-            return;
         }
 
     }

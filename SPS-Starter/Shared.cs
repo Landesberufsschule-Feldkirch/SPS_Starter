@@ -36,7 +36,7 @@ namespace SPS_Starter
             // Copy each file into the new directory.
             foreach (FileInfo fi in source.GetFiles())
             {
-                Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+                Console.WriteLine($@"Copying {target.FullName}\{fi.Name}");
                 fi.CopyTo(System.IO.Path.Combine(target.FullName, fi.Name), true);
             }
 
@@ -90,7 +90,7 @@ namespace SPS_Starter
             }
 
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdnerQuelle);
-            string sourceDirectory = ParentDirectory.FullName + "\\" + ProjektName;
+            string sourceDirectory = $@"{ParentDirectory.FullName}\{ProjektName}";
 
             try
             {
@@ -99,7 +99,7 @@ namespace SPS_Starter
             }
             catch (Exception exp)
             {
-                Console.WriteLine("{0} Exception 2 caught.", exp);
+                Console.WriteLine($"{exp} Exception 2 caught.");
             }
 
             try
@@ -109,7 +109,7 @@ namespace SPS_Starter
             }
             catch (Exception exp)
             {
-                Console.WriteLine("{0} Exception 3 caught.", exp);
+                Console.WriteLine($"{exp} Exception 3 caught.");
             }
 
             try
@@ -119,7 +119,7 @@ namespace SPS_Starter
             }
             catch (Exception exp)
             {
-                Console.WriteLine("{0} Exception 4 caught.", exp);
+                Console.WriteLine($"{exp} Exception 4 caught.");
             }
 
             try
@@ -132,7 +132,7 @@ namespace SPS_Starter
             }
             catch (Exception exp)
             {
-                Console.WriteLine("{0} Exception 5 caught.", exp);
+                Console.WriteLine($"{exp} Exception 5 caught.");
             }
         }
 
