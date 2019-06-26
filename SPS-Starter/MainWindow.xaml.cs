@@ -10,6 +10,39 @@ using System.Xml.Linq;
 
 namespace SPS_Starter
 {
+    public class AlleEigenschaften
+    {
+        private string Kurzbezeichnung;
+        private WebBrowser BrowserBezeichnung;
+        private List<Tuple<string, string, string>> TupleListBezeichnung;
+        private StackPanel StackPanelBezeichnung;
+
+        public AlleEigenschaften(string Kurzbezeichnung, WebBrowser BrowserBezeichnung, List<Tuple<string, string, string>> TupleListBezeichnung, StackPanel StackPanelBezeichnung)
+        {
+            this.Kurzbezeichnung = Kurzbezeichnung;
+            this.BrowserBezeichnung = BrowserBezeichnung;
+            this.TupleListBezeichnung = TupleListBezeichnung;
+            this.StackPanelBezeichnung = StackPanelBezeichnung;
+        }
+
+        public string getKurzbezeichnung() { return this.Kurzbezeichnung; }
+        public WebBrowser getBrowserBezeichnung() { return this.BrowserBezeichnung; }
+    }
+
+    public class AlleSprachen
+    {
+        private string Kurzbezeichnung;
+        private int Laenge;
+        private CheckBox CheckBoxBezeichnung;
+
+        public AlleSprachen(string Kurzbezeichnung, int Laenge, CheckBox CheckBoxBezeichnung)
+        {
+            this.Kurzbezeichnung = Kurzbezeichnung;
+            this.Laenge = Laenge;
+            this.CheckBoxBezeichnung = CheckBoxBezeichnung;
+        }
+    }
+
     public static class ExtensionMethods
     {
         private static Action EmptyDelegate = delegate () { };
@@ -29,8 +62,18 @@ namespace SPS_Starter
 
     public partial class MainWindow : Window
     {
+        ObservableCollection<AlleEigenschaften> Eigenschaften_Logo8 = new ObservableCollection<AlleEigenschaften>();
+        ObservableCollection<AlleEigenschaften> Eigenschaften_TiaPortal = new ObservableCollection<AlleEigenschaften>();
+        ObservableCollection<AlleEigenschaften> Eigenschaften_TwinCAT = new ObservableCollection<AlleEigenschaften>();
 
-        ObservableCollection<Tuple<string, WebBrowser>> Coll_Html_Logo8 = new ObservableCollection<Tuple<string, WebBrowser>>();
+        ObservableCollection<AlleSprachen> Sprachen_Logo8 = new ObservableCollection<AlleSprachen>();
+        ObservableCollection<AlleSprachen> Sprachen_TiaPortal = new ObservableCollection<AlleSprachen>();
+        ObservableCollection<AlleSprachen> Sprachen_TwinCAT = new ObservableCollection<AlleSprachen>();
+
+
+
+
+        //ObservableCollection<Tuple<string, WebBrowser>> Coll_Html_Logo8 = new ObservableCollection<Tuple<string, WebBrowser>>();
         ObservableCollection<Tuple<string, WebBrowser>> Coll_Html_TiaPortal = new ObservableCollection<Tuple<string, WebBrowser>>();
         ObservableCollection<Tuple<string, WebBrowser>> Coll_Html_TwinCAT = new ObservableCollection<Tuple<string, WebBrowser>>();
 
@@ -78,8 +121,28 @@ namespace SPS_Starter
             ProjekteLesen();
 
             // es muss zuerst InitializeComponent() laufen --> sonst sind die Referenzen leer 
-            Coll_Html_Logo8.Add(new Tuple<string, WebBrowser>("PLC", Web_Logo8_PLC));
-            Coll_Html_Logo8.Add(new Tuple<string, WebBrowser>("BUG", Web_Logo8_PLC_Bugs));
+
+            Eigenschaften_Logo8.Add(new AlleEigenschaften("PLC", Web_Logo8_PLC, TupleList_Logo8_PLC, StackPanel_Logo8_PLC));
+            Eigenschaften_Logo8.Add(new AlleEigenschaften("BUG", Web_Logo8_PLC_Bugs, TupleList_Logo8_BUG, StackPanel_Logo8_PLC));
+
+            //Coll_Html_Logo8.Add(new Tuple<string, WebBrowser>("PLC", Web_Logo8_PLC));
+            //Coll_Html_Logo8.Add(new Tuple<string, WebBrowser>("BUG", Web_Logo8_PLC_Bugs));
+
+            Coll_Tuple_Logo8.Add(new Tuple<string, List<Tuple<string, string, string>>, StackPanel>("PLC", TupleList_Logo8_PLC, StackPanel_Logo8_PLC));
+            Coll_Tuple_Logo8.Add(new Tuple<string, List<Tuple<string, string, string>>, StackPanel>("BUG", TupleList_Logo8_BUG, StackPanel_Logo8_PLC_Bugs));
+
+
+
+
+            Sprachen_Logo8.Add(new AlleSprachen("FUP", 4, Checkbox_Logo8_FUP));
+            Sprachen_Logo8.Add(new AlleSprachen("KOP", 4, Checkbox_Logo8_KOP));
+
+            Coll_Checked_Logo8.Add(new Tuple<string, CheckBox, int>("FUP", Checkbox_Logo8_FUP, 4));
+            Coll_Checked_Logo8.Add(new Tuple<string, CheckBox, int>("KOP", Checkbox_Logo8_KOP, 4));
+
+
+
+
 
             Coll_Html_TiaPortal.Add(new Tuple<string, WebBrowser>("DT", Web_TiaPortal_PLC_DT));
             Coll_Html_TiaPortal.Add(new Tuple<string, WebBrowser>("HMI", Web_TiaPortal_PLC_HMI));
@@ -94,8 +157,7 @@ namespace SPS_Starter
             Coll_Html_TwinCAT.Add(new Tuple<string, WebBrowser>("PLC", Web_TwinCAT_PLC));
 
 
-            Coll_Checked_Logo8.Add(new Tuple<string, CheckBox, int>("FUP", Checkbox_Logo8_FUP, 4));
-            Coll_Checked_Logo8.Add(new Tuple<string, CheckBox, int>("KOP", Checkbox_Logo8_KOP, 4));
+
 
             Coll_Checked_TiaPortal.Add(new Tuple<string, CheckBox, int>("FUP", Checkbox_TiaPortal_FUP, 4));
             Coll_Checked_TiaPortal.Add(new Tuple<string, CheckBox, int>("KOP", Checkbox_TiaPortal_KOP, 4));
@@ -110,10 +172,8 @@ namespace SPS_Starter
 
 
 
-            Coll_Tuple_Logo8.Add(new Tuple<string, List<Tuple<string, string, string>>, StackPanel>("PLC", TupleList_Logo8_PLC, StackPanel_Logo8_PLC));
-            Coll_Tuple_Logo8.Add(new Tuple<string, List<Tuple<string, string, string>>, StackPanel>("BUG", TupleList_Logo8_BUG, StackPanel_Logo8_PLC_Bugs));
 
-         
+
 
         }
 

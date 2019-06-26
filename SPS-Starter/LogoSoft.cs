@@ -102,10 +102,10 @@ namespace SPS_Starter
             byte[] dataLeereHtmlSeite = Encoding.UTF8.GetBytes(LeereHtmlSeite);
             MemoryStream stmLeereHtmlSeite = new MemoryStream(dataLeereHtmlSeite, 0, dataLeereHtmlSeite.Length);
 
-            foreach (var LogoTuple in Coll_Html_Logo8)
+            foreach (var EigenSchaften in Eigenschaften_Logo8)
             {
-                if (Projekt_Logo8_Name.Contains(LogoTuple.Item1)) LogoTuple.Item2.NavigateToStream(stmHtmlSeite);
-                else LogoTuple.Item2.NavigateToStream(stmLeereHtmlSeite);
+                if (Projekt_Logo8_Name.Contains(EigenSchaften.getKurzbezeichnung())) EigenSchaften.getBrowserBezeichnung().NavigateToStream(stmHtmlSeite);
+                else EigenSchaften.getBrowserBezeichnung().NavigateToStream(stmLeereHtmlSeite);
             }
 
 
