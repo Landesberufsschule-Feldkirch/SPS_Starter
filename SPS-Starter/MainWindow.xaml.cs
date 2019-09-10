@@ -12,10 +12,10 @@ namespace SPS_Starter
 {
     public class AlleEigenschaften
     {
-        private string Kurzbezeichnung;
-        private WebBrowser BrowserBezeichnung;
-        private List<Tuple<string, string, string>> TupleListBezeichnung;
-        private StackPanel StackPanelBezeichnung;
+        public string Kurzbezeichnung { get; set; }
+        public WebBrowser BrowserBezeichnung { get; set; }
+        public List<Tuple<string, string, string>> TupleListBezeichnung { get; set; }
+        public StackPanel StackPanelBezeichnung { get; set; }
 
         public AlleEigenschaften(string Kurzbezeichnung, WebBrowser BrowserBezeichnung, List<Tuple<string, string, string>> TupleListBezeichnung, StackPanel StackPanelBezeichnung)
         {
@@ -25,15 +25,14 @@ namespace SPS_Starter
             this.StackPanelBezeichnung = StackPanelBezeichnung;
         }
 
-        public string getKurzbezeichnung() { return this.Kurzbezeichnung; }
-        public WebBrowser getBrowserBezeichnung() { return this.BrowserBezeichnung; }
+
     }
 
     public class AlleSprachen
     {
-        private string Kurzbezeichnung;
-        private int Laenge;
-        private CheckBox CheckBoxBezeichnung;
+        public string Kurzbezeichnung { get; set; }
+        public int Laenge { get; set; }
+        public CheckBox CheckBoxBezeichnung { get; set; }
 
         public AlleSprachen(string Kurzbezeichnung, int Laenge, CheckBox CheckBoxBezeichnung)
         {

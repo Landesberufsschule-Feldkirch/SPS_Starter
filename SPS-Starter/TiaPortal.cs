@@ -19,6 +19,7 @@ namespace SPS_Starter
             StackPanel_TiaPortal_PLC_DT.Children.Clear();
             StackPanel_TiaPortal_PLC_FIO.Children.Clear();
             StackPanel_TiaPortal_PLC_HMI.Children.Clear();
+            StackPanel_TiaPortal_PLC_Snap7.Children.Clear();
 
             //
             Button_TiaPortal_Liste.Add(Button_Starten_TiaPortal_PLC);
@@ -26,6 +27,7 @@ namespace SPS_Starter
             Button_TiaPortal_Liste.Add(Button_Starten_TiaPortal_PLC_DT);
             Button_TiaPortal_Liste.Add(Button_Starten_TiaPortal_PLC_FIO);
             Button_TiaPortal_Liste.Add(Button_Starten_TiaPortal_PLC_HMI);
+            Button_TiaPortal_Liste.Add(Button_Starten_TiaPortal_PLC_Snap7);
 
             // Name Komplett, kurz, Sprache, Anfang
             List<Tuple<string, string, string>> TupleList_TiaPortal_PLC = new List<Tuple<string, string, string>>();
@@ -33,6 +35,7 @@ namespace SPS_Starter
             List<Tuple<string, string, string>> TupleList_TiaPortal_PLC_HMI = new List<Tuple<string, string, string>>();
             List<Tuple<string, string, string>> TupleList_TiaPortal_PLC_DT = new List<Tuple<string, string, string>>();
             List<Tuple<string, string, string>> TupleList_TiaPortal_PLC_BUG = new List<Tuple<string, string, string>>();
+            List<Tuple<string, string, string>> TupleList_TiaPortal_PLC_Snap7 = new List<Tuple<string, string, string>>();
 
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_TiaPortal_Quelle);
 
@@ -79,9 +82,18 @@ namespace SPS_Starter
                                 }
                                 else
                                 {
-                                    // nur PLC und sonst nichts
-                                    Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
-                                    TupleList_TiaPortal_PLC.Add(TplEintrag);
+                                    if (d.Name.Contains("Snap7"))
+                                    {
+                                        Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
+                                        TupleList_TiaPortal_PLC_Snap7.Add(TplEintrag);
+                                    }
+                                    else
+                                    {
+                                        // nur PLC und sonst nichts
+                                        Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
+                                        TupleList_TiaPortal_PLC.Add(TplEintrag);
+                                    }
+
                                 }
                             }
                         }
@@ -101,12 +113,14 @@ namespace SPS_Starter
             TupleList_TiaPortal_PLC_HMI.Sort();
             TupleList_TiaPortal_PLC_DT.Sort();
             TupleList_TiaPortal_PLC_BUG.Sort();
+            TupleList_TiaPortal_PLC_Snap7.Sort();
 
             TiaPortal_TabMitInhaltFuellen(TupleList_TiaPortal_PLC, StackPanel_TiaPortal_PLC);
             TiaPortal_TabMitInhaltFuellen(TupleList_TiaPortal_PLC_FIO, StackPanel_TiaPortal_PLC_FIO);
             TiaPortal_TabMitInhaltFuellen(TupleList_TiaPortal_PLC_HMI, StackPanel_TiaPortal_PLC_HMI);
             TiaPortal_TabMitInhaltFuellen(TupleList_TiaPortal_PLC_DT, StackPanel_TiaPortal_PLC_DT);
             TiaPortal_TabMitInhaltFuellen(TupleList_TiaPortal_PLC_BUG, StackPanel_TiaPortal_PLC_Bugs);
+            TiaPortal_TabMitInhaltFuellen(TupleList_TiaPortal_PLC_Snap7, StackPanel_TiaPortal_PLC_Snap7);
 
             Anzeige_TiaPortal_Aktualisieren = true;
         }

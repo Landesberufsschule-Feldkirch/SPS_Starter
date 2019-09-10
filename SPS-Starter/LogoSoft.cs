@@ -104,8 +104,8 @@ namespace SPS_Starter
 
             foreach (var EigenSchaften in Eigenschaften_Logo8)
             {
-                if (Projekt_Logo8_Name.Contains(EigenSchaften.getKurzbezeichnung())) EigenSchaften.getBrowserBezeichnung().NavigateToStream(stmHtmlSeite);
-                else EigenSchaften.getBrowserBezeichnung().NavigateToStream(stmLeereHtmlSeite);
+                if (Projekt_Logo8_Name.Contains(EigenSchaften.Kurzbezeichnung)) EigenSchaften.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                else EigenSchaften.BrowserBezeichnung.NavigateToStream(stmLeereHtmlSeite);
             }
 
 
