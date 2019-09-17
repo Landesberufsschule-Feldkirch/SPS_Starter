@@ -209,7 +209,7 @@ namespace SPS_Starter
 
             }
 
-            if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
+            //if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
         }
         
     }

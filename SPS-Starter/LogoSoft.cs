@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Text;
+using System.Linq;
 
 namespace SPS_Starter
 {
@@ -12,14 +13,16 @@ namespace SPS_Starter
     {
         public void Projekte_Logo8_Lesen()
         {
-            // Zuerst die Listen löschen
-            foreach (var LogoTuple in Coll_Tuple_Logo8)
+            foreach (var Eigenschaften in Eigenschaften_Logo8)
             {
-                LogoTuple.Item3.Children.Clear();
+                Eigenschaften.ProjekteBezeichnung.Clear();// Zuerst die Listen löschen
+                Eigenschaften.StackPanelBezeichnung.Children.Clear(); // Anzeige löschen
             }
 
-            Button_Logo8_Liste.Add(Button_Starten_Logo8_PLC);
-            Button_Logo8_Liste.Add(Button_Starten_Logo8_PLC_Bugs);
+            foreach (var Eigenschaften in Eigenschaften_Logo8)
+            {
+                Button_Logo8_Liste.Add(Eigenschaften.ButtonBezeichnung);
+            }
             
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner_Logo8_Quelle);
 
@@ -28,38 +31,33 @@ namespace SPS_Starter
                 string OrdnerName = d.Name;
                 string ProgrammierSprache = "";
                 int StartBezeichnung = 0;
-                bool Anzeigen = false;
 
-                foreach (var LogoTuple in Coll_Checked_Logo8)
+                foreach (var Programmiersprachen in AlleProgrammierSprachen_Logo8)
                 {
-                    if (OrdnerName.Contains(LogoTuple.Item1))
+                    if (OrdnerName.Contains(Programmiersprachen.Kurzbezeichnung))
                     {
-                        if (LogoTuple.Item2.IsChecked.Value) Anzeigen = true;
-                        ProgrammierSprache = LogoTuple.Item1;
-                        StartBezeichnung = LogoTuple.Item3 + OrdnerName.IndexOf(LogoTuple.Item1);
-                    }
-                }
-
-                if (Anzeigen)
-                {
-                    foreach (var LogoTuple in Coll_Tuple_Logo8)
-                    {
-                        if (d.Name.Contains(LogoTuple.Item1))
+                        if (Programmiersprachen.CheckBoxBezeichnung.IsChecked.Value)
                         {
-                            // nur PLC und sonst nichts
-                            Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
-                            LogoTuple.Item2.Add(TplEintrag);
+                            ProgrammierSprache = Programmiersprachen.Kurzbezeichnung;
+                            StartBezeichnung = Programmiersprachen.Laenge + OrdnerName.IndexOf(Programmiersprachen.Kurzbezeichnung);
+
+                            foreach (var Eigenschaften in Eigenschaften_Logo8)
+                            {
+                                if (d.Name.Contains(Eigenschaften.Kurzbezeichnung))
+                                {
+                                    Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(OrdnerName.Substring(StartBezeichnung), ProgrammierSprache, OrdnerName);
+                                    Eigenschaften.ProjekteBezeichnung.Add(TplEintrag);
+                                }
+                            }
                         }
                     }
                 }
+            } 
 
-
-            } // Ende foreach
-
-            foreach (var LogoTuple in Coll_Tuple_Logo8)
+            foreach (var Eigenschaften in Eigenschaften_Logo8)
             {
-                LogoTuple.Item2.Sort();
-                Logo8_TabMitInhaltFuellen(LogoTuple.Item2, LogoTuple.Item3);
+                Eigenschaften.ProjekteBezeichnung.Sort();
+                Logo8_TabMitInhaltFuellen(Eigenschaften.ProjekteBezeichnung, Eigenschaften.StackPanelBezeichnung);
             }
 
             Anzeige_Logo8_Aktualisieren = true;
@@ -67,7 +65,9 @@ namespace SPS_Starter
 
         private void Logo8_TabMitInhaltFuellen(List<Tuple<string, string, string>> Projekte, System.Windows.Controls.StackPanel StackPanel)
         {
-            foreach (Tuple<string, string, string> Projekt in Projekte)
+            List<Tuple<string, string, string>> EindeutigeListe = Projekte.Distinct().ToList();
+
+            foreach (Tuple<string, string, string> Projekt in EindeutigeListe)
             {
                 RadioButton rdo = new RadioButton
                 {
@@ -107,9 +107,6 @@ namespace SPS_Starter
                 if (Projekt_Logo8_Name.Contains(EigenSchaften.Kurzbezeichnung)) EigenSchaften.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
                 else EigenSchaften.BrowserBezeichnung.NavigateToStream(stmLeereHtmlSeite);
             }
-
-
         }
-
     }
 }
