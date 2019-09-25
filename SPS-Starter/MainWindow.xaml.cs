@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -13,14 +11,16 @@ namespace SPS_Starter
     public class AlleEigenschaften
     {
         public string Kurzbezeichnung { get; set; }
+        public string GruppenName { get; set; }
         public WebBrowser BrowserBezeichnung { get; set; }
         public StackPanel StackPanelBezeichnung { get; set; }
         public Button ButtonBezeichnung { get; set; }
         public List<Tuple<string, string, string>> ProjekteBezeichnung { get; set; }
 
-        public AlleEigenschaften(string Kurzbezeichnung, WebBrowser BrowserBezeichnung, StackPanel StackPanelBezeichnung, Button ButtonBezeichnung)
+        public AlleEigenschaften(string Kurzbezeichnung, string GruppenName, WebBrowser BrowserBezeichnung, StackPanel StackPanelBezeichnung, Button ButtonBezeichnung)
         {
             this.Kurzbezeichnung = Kurzbezeichnung;
+            this.GruppenName = GruppenName;
             this.BrowserBezeichnung = BrowserBezeichnung;
             this.StackPanelBezeichnung = StackPanelBezeichnung;
             this.ButtonBezeichnung = ButtonBezeichnung;
@@ -66,28 +66,8 @@ namespace SPS_Starter
         ObservableCollection<AlleEigenschaften> Eigenschaften_TwinCAT = new ObservableCollection<AlleEigenschaften>();
 
         ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen_Logo8 = new ObservableCollection<AlleProgrammierSprachen>();
-        ObservableCollection<AlleProgrammierSprachen> Sprachen_TiaPortal = new ObservableCollection<AlleProgrammierSprachen>();
-        ObservableCollection<AlleProgrammierSprachen> Sprachen_TwinCAT = new ObservableCollection<AlleProgrammierSprachen>();
-
-
-
-
-
-
-
-        ObservableCollection<Tuple<string, WebBrowser>> Coll_Html_Logo8 = new ObservableCollection<Tuple<string, WebBrowser>>();
-        ObservableCollection<Tuple<string, WebBrowser>> Coll_Html_TiaPortal = new ObservableCollection<Tuple<string, WebBrowser>>();
-        ObservableCollection<Tuple<string, WebBrowser>> Coll_Html_TwinCAT = new ObservableCollection<Tuple<string, WebBrowser>>();
-
-        ObservableCollection<Tuple<string, CheckBox, int>> Coll_Checked_Logo8 = new ObservableCollection<Tuple<string, CheckBox, int>>();
-        ObservableCollection<Tuple<string, CheckBox, int>> Coll_Checked_TiaPortal = new ObservableCollection<Tuple<string, CheckBox, int>>();
-        ObservableCollection<Tuple<string, CheckBox, int>> Coll_Checked_TwinCAT = new ObservableCollection<Tuple<string, CheckBox, int>>();
-
-        ObservableCollection<Tuple<string, List<Tuple<string, string, string>>, StackPanel>> Coll_Tuple_Logo8 = new ObservableCollection<Tuple<string, List<Tuple<string, string, string>>, StackPanel>>();
-        ObservableCollection<Tuple<string, List<Tuple<string, string, string>>, StackPanel>> Coll_Tuple_TiaPortal = new ObservableCollection<Tuple<string, List<Tuple<string, string, string>>, StackPanel>>();
-        ObservableCollection<Tuple<string, List<Tuple<string, string, string>>, StackPanel>> Coll_Tuple_TwinCAT = new ObservableCollection<Tuple<string, List<Tuple<string, string, string>>, StackPanel>>();
-
-
+        ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen_TiaPortal = new ObservableCollection<AlleProgrammierSprachen>();
+        ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen_TwinCAT = new ObservableCollection<AlleProgrammierSprachen>();
 
         string LeereHtmlSeite = "<!doctype html>   </html >";
         string HtmlSeite = "";
@@ -116,42 +96,8 @@ namespace SPS_Starter
         {
             InitializeComponent();
             EinstellungenLesen("Einstellungen.xml");
+            InstanzenFuellen();
             ProjekteLesen();
-
-            // es muss zuerst InitializeComponent() laufen --> sonst sind die Referenzen leer 
-
-            Eigenschaften_Logo8.Add(new AlleEigenschaften("PLC", Web_Logo8_PLC, StackPanel_Logo8_PLC, Button_Starten_Logo8_PLC));
-            Eigenschaften_Logo8.Add(new AlleEigenschaften("BUG", Web_Logo8_PLC_Bugs, StackPanel_Logo8_PLC_Bugs, Button_Starten_Logo8_PLC_Bugs));
-            
-            AlleProgrammierSprachen_Logo8.Add(new AlleProgrammierSprachen("FUP", 4, Checkbox_Logo8_FUP));
-            AlleProgrammierSprachen_Logo8.Add(new AlleProgrammierSprachen("KOP", 4, Checkbox_Logo8_KOP));
-
-
-            List<Tuple<string, string, string>> LogoTuple = new List<Tuple<string, string, string>>();
-
-            Coll_Html_TiaPortal.Add(new Tuple<string, WebBrowser>("DT", Web_TiaPortal_PLC_DT));
-            Coll_Html_TiaPortal.Add(new Tuple<string, WebBrowser>("HMI", Web_TiaPortal_PLC_HMI));
-            Coll_Html_TiaPortal.Add(new Tuple<string, WebBrowser>("FIO", Web_TiaPortal_PLC_FIO));
-            Coll_Html_TiaPortal.Add(new Tuple<string, WebBrowser>("PLC", Web_TiaPortal_PLC));
-            Coll_Html_TiaPortal.Add(new Tuple<string, WebBrowser>("BUG", Web_TiaPortal_PLC_Bugs));
-
-            Coll_Html_TwinCAT.Add(new Tuple<string, WebBrowser>("DT", Web_TwinCAT_PLC_DT));
-            Coll_Html_TwinCAT.Add(new Tuple<string, WebBrowser>("VISU", Web_TwinCAT_PLC_VISU));
-            Coll_Html_TwinCAT.Add(new Tuple<string, WebBrowser>("NC", Web_TwinCAT_PLC_NC));
-            Coll_Html_TwinCAT.Add(new Tuple<string, WebBrowser>("BUG", Web_TwinCAT_PLC_Bugs));
-            Coll_Html_TwinCAT.Add(new Tuple<string, WebBrowser>("PLC", Web_TwinCAT_PLC));
-
-
-            Coll_Checked_TiaPortal.Add(new Tuple<string, CheckBox, int>("FUP", Checkbox_TiaPortal_FUP, 4));
-            Coll_Checked_TiaPortal.Add(new Tuple<string, CheckBox, int>("KOP", Checkbox_TiaPortal_KOP, 4));
-            Coll_Checked_TiaPortal.Add(new Tuple<string, CheckBox, int>("SCL", Checkbox_TiaPortal_SCL, 4));
-
-            Coll_Checked_TwinCAT.Add(new Tuple<string, CheckBox, int>("AS", Checkbox_TwinCAT_AS, 3));
-            Coll_Checked_TwinCAT.Add(new Tuple<string, CheckBox, int>("AWL", Checkbox_TwinCAT_AWL, 4));
-            Coll_Checked_TwinCAT.Add(new Tuple<string, CheckBox, int>("CFC", Checkbox_TwinCAT_CFC, 4));
-            Coll_Checked_TwinCAT.Add(new Tuple<string, CheckBox, int>("FUP", Checkbox_TwinCAT_FUP, 4));
-            Coll_Checked_TwinCAT.Add(new Tuple<string, CheckBox, int>("KOP", Checkbox_TwinCAT_KOP, 4));
-            Coll_Checked_TwinCAT.Add(new Tuple<string, CheckBox, int>("ST", Checkbox_TwinCAT_ST, 3));
         }
 
         public void ProjekteLesen()
@@ -177,5 +123,39 @@ namespace SPS_Starter
             }
         }
 
+        public void InstanzenFuellen()
+        {
+            Eigenschaften_Logo8.Add(new AlleEigenschaften("PLC", "Logo8!", Web_Logo8_PLC, StackPanel_Logo8_PLC, Button_Starten_Logo8_PLC));
+            Eigenschaften_Logo8.Add(new AlleEigenschaften("BUG", "Logo8!", Web_Logo8_PLC_Bugs, StackPanel_Logo8_PLC_Bugs, Button_Starten_Logo8_PLC_Bugs));
+
+            Eigenschaften_TiaPortal.Add(new AlleEigenschaften("PLC", "TIA_PORTAL_V14_SP1", Web_TiaPortal_PLC, StackPanel_TiaPortal_PLC, Button_Starten_TiaPortal_PLC));
+            Eigenschaften_TiaPortal.Add(new AlleEigenschaften("PLC_DT", "TIA_PORTAL_V14_SP1", Web_TwinCAT_PLC_DT, StackPanel_TiaPortal_PLC_DT, Button_Starten_TiaPortal_PLC_DT));
+            Eigenschaften_TiaPortal.Add(new AlleEigenschaften("PLC_HMI", "TIA_PORTAL_V14_SP1", Web_TiaPortal_PLC_HMI, StackPanel_TiaPortal_PLC_HMI, Button_Starten_TiaPortal_PLC_HMI));
+            Eigenschaften_TiaPortal.Add(new AlleEigenschaften("PLC_FIO", "TIA_PORTAL_V14_SP1", Web_TiaPortal_PLC_FIO, StackPanel_TiaPortal_PLC_FIO, Button_Starten_TiaPortal_PLC_FIO));
+            Eigenschaften_TiaPortal.Add(new AlleEigenschaften("PLC_BUG", "TIA_PORTAL_V14_SP1", Web_TiaPortal_PLC_Bugs, StackPanel_TiaPortal_PLC_Bugs, Button_Starten_TiaPortal_PLC_Bugs));
+            Eigenschaften_TiaPortal.Add(new AlleEigenschaften("PLC_Snap7", "TIA_PORTAL_V14_SP1", Web_TiaPortal_PLC_Snap7, StackPanel_TiaPortal_PLC_Snap7, Button_Starten_TiaPortal_PLC_Snap7));
+
+            Eigenschaften_TwinCAT.Add(new AlleEigenschaften("PLC", "TwinCAT", Web_TwinCAT_PLC, StackPanel_TwinCAT_PLC, Button_Starten_TwinCAT_PLC));
+            Eigenschaften_TwinCAT.Add(new AlleEigenschaften("PLC_DT", "TwinCAT", Web_TwinCAT_PLC_DT, StackPanel_TwinCAT_PLC_DT, Button_Starten_TwinCAT_PLC_DT));
+            Eigenschaften_TwinCAT.Add(new AlleEigenschaften("PLC_VISU", "TwinCAT", Web_TwinCAT_PLC_VISU, StackPanel_TwinCAT_PLC_VISU, Button_Starten_TwinCAT_PLC_VISU));
+            Eigenschaften_TwinCAT.Add(new AlleEigenschaften("PLC_NC", "TwinCAT", Web_TwinCAT_PLC_NC, StackPanel_TwinCAT_PLC_NC, Button_Starten_TwinCAT_PLC_NC));
+            Eigenschaften_TwinCAT.Add(new AlleEigenschaften("PLC_BUG", "TwinCAT", Web_TwinCAT_PLC_Bugs, StackPanel_TwinCAT_PLC_Bugs, Button_Starten_TwinCAT_PLC_Bugs));
+
+
+
+            AlleProgrammierSprachen_Logo8.Add(new AlleProgrammierSprachen("FUP", 4, Checkbox_Logo8_FUP));
+            AlleProgrammierSprachen_Logo8.Add(new AlleProgrammierSprachen("KOP", 4, Checkbox_Logo8_KOP));
+
+            AlleProgrammierSprachen_TiaPortal.Add(new AlleProgrammierSprachen("FUP", 4, Checkbox_TiaPortal_FUP));
+            AlleProgrammierSprachen_TiaPortal.Add(new AlleProgrammierSprachen("KOP", 4, Checkbox_TiaPortal_KOP));
+            AlleProgrammierSprachen_TiaPortal.Add(new AlleProgrammierSprachen("SCL", 4, Checkbox_TiaPortal_SCL));
+
+            AlleProgrammierSprachen_TwinCAT.Add(new AlleProgrammierSprachen("AS", 3, Checkbox_TwinCAT_AS));
+            AlleProgrammierSprachen_TwinCAT.Add(new AlleProgrammierSprachen("AWL", 4, Checkbox_TwinCAT_AWL));
+            AlleProgrammierSprachen_TwinCAT.Add(new AlleProgrammierSprachen("CFC", 4, Checkbox_TwinCAT_CFC));
+            AlleProgrammierSprachen_TwinCAT.Add(new AlleProgrammierSprachen("FUP", 4, Checkbox_TwinCAT_FUP));
+            AlleProgrammierSprachen_TwinCAT.Add(new AlleProgrammierSprachen("KOP", 4, Checkbox_TwinCAT_KOP));
+            AlleProgrammierSprachen_TwinCAT.Add(new AlleProgrammierSprachen("ST", 3, Checkbox_TwinCAT_ST));
+        }
     }
 }

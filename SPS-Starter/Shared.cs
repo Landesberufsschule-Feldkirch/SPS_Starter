@@ -5,6 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 
 namespace SPS_Starter
 {
@@ -156,13 +159,11 @@ namespace SPS_Starter
 
                 default:
                     break;
-
             }
         }
 
         private void Checkbox_Checked(object sender, RoutedEventArgs e)
         {
-
             CheckBox cb = sender as CheckBox;
 
             switch (cb.Name)
@@ -208,9 +209,119 @@ namespace SPS_Starter
                     break;
 
             }
-
-            //if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
         }
-        
+
+        public void ProjektbezeichnungenStackpanelLeerenAktualisieren(ObservableCollection<AlleEigenschaften> AlleEigenschaften, List<Button> ButtonListe)
+        {
+            foreach (var Eigenschaften in AlleEigenschaften)
+            {
+                Eigenschaften.ProjekteBezeichnung.Clear();// Zuerst die Listen löschen
+                Eigenschaften.StackPanelBezeichnung.Children.Clear(); // Anzeige löschen
+            }
+
+            foreach (var Eigenschaften in AlleEigenschaften)
+            {
+                ButtonListe.Add(Eigenschaften.ButtonBezeichnung);
+            }
+        }
+
+        public void ProgrammiersprachenListeAktualisieren(string Ordner, ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        {
+            string ProgrammierSprache = "";
+            int StartBezeichnung = 0;
+
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(Ordner);
+
+            foreach (System.IO.DirectoryInfo d in ParentDirectory.GetDirectories())
+            {
+
+                foreach (var Programmiersprachen in AlleProgrammierSprachen)
+                {
+                    if (d.Name.Contains(Programmiersprachen.Kurzbezeichnung))
+                    {
+                        if (Programmiersprachen.CheckBoxBezeichnung.IsChecked.Value)
+                        {
+                            ProgrammierSprache = Programmiersprachen.Kurzbezeichnung;
+                            StartBezeichnung = Programmiersprachen.Laenge + d.Name.IndexOf(Programmiersprachen.Kurzbezeichnung);
+
+                            foreach (var Eigenschaften in AlleEigenschaften)
+                            {
+                                if (d.Name.Contains(Eigenschaften.Kurzbezeichnung))
+                                {
+                                    Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(d.Name.Substring(StartBezeichnung), ProgrammierSprache, d.Name);
+                                    Eigenschaften.ProjekteBezeichnung.Add(TplEintrag);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public void AnzeigeAktualisieren(ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        {
+            foreach (var Eigenschaften in AlleEigenschaften)
+            {
+                Eigenschaften.ProjekteBezeichnung.Sort();
+
+                List<Tuple<string, string, string>> EindeutigeListe = Eigenschaften.ProjekteBezeichnung.Distinct().ToList();
+
+                foreach (Tuple<string, string, string> Projekt in EindeutigeListe)
+                {
+                    RadioButton rdo = new RadioButton
+                    {
+                        GroupName = Eigenschaften.GruppenName,
+                        Name = Projekt.Item3,
+                        FontSize = 14,
+                        Content = Projekt.Item1 + " (" + Projekt.Item2 + ")",
+                        VerticalAlignment = VerticalAlignment.Top
+                    };
+
+                    if (Eigenschaften.GruppenName == "Logo8!")
+                    {
+                        rdo.Checked += new RoutedEventHandler(Logo8_radioButton_Checked);
+                    }
+
+                    if (Eigenschaften.GruppenName == "TwinCAT")
+                    {
+                        rdo.Checked += new RoutedEventHandler(TwinCAT_radioButton_Checked);
+                    }
+
+                    if (Eigenschaften.GruppenName == "TIA_PORTAL_V14_SP1")
+                    {
+                        rdo.Checked += new RoutedEventHandler(TiaPortal_radioButton_Checked);
+                    }
+
+                    Eigenschaften.StackPanelBezeichnung.Children.Add(rdo);
+                }
+
+            }
+        }
+
+        public void WebBrowserFuellen(string Beschriftung, string ProjektOrdner, string ProjektName, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        {
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner);
+
+            DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Green, Beschriftung);
+
+            string DateiName = $@"{ParentDirectory.FullName}\{ProjektName}\index.html";
+
+            if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
+            else HtmlSeite = "<!doctype html>   </html >";
+
+            byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(HtmlSeite);
+            MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+
+            byte[] dataLeereHtmlSeite = Encoding.UTF8.GetBytes(LeereHtmlSeite);
+            MemoryStream stmLeereHtmlSeite = new MemoryStream(dataLeereHtmlSeite, 0, dataLeereHtmlSeite.Length);
+
+            foreach (var EigenSchaften in AlleEigenschaften)
+            {
+                if (ProjektName.Contains(EigenSchaften.Kurzbezeichnung)) EigenSchaften.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                else EigenSchaften.BrowserBezeichnung.NavigateToStream(stmLeereHtmlSeite);
+            }
+        }
+
     }
 }
