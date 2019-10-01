@@ -17,7 +17,7 @@ namespace SPS_Starter
         private void TiaPortal_radioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            WebBrowserFuellen("TiaPortal Projekt starten", ProjektOrdner_TiaPortal_Quelle, rb.Name, Eigenschaften_TiaPortal);
+            WebBrowserFuellen(ProjektOrdner_TiaPortal_Quelle, rb.Name, Eigenschaften_TiaPortal);
         }
     }
 

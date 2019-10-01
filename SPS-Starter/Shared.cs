@@ -67,15 +67,15 @@ namespace SPS_Starter
                     ProjektOrdnerQuelle = ProjektOrdner_Logo8_Quelle;
                     ProjektOrdnerZiel = Projekt_Logo8_Ziel;
                     Button_Liste = Button_Logo8_Liste;
-                    ProjektName = Projekt_Logo8_Name;
-                    ProjektOeffnenMit = "Projekt mit Logo8! öffnen";
+                    ProjektName = Projekt_Name;
+                    ProjektOeffnenMit = "Projekt mit Logo8 öffnen";
                     break;
 
                 case "TiaPortal Projekt starten":
                     ProjektOrdnerQuelle = ProjektOrdner_TiaPortal_Quelle;
                     ProjektOrdnerZiel = Projekt_TiaPortal_Ziel;
                     Button_Liste = Button_TiaPortal_Liste;
-                    ProjektName = Projekt_TiaPortal_Name;
+                    ProjektName = Projekt_Name;
                     ProjektOeffnenMit = "Projekt mit TiaPortal öffnen";
                     break;
 
@@ -83,7 +83,7 @@ namespace SPS_Starter
                     ProjektOrdnerQuelle = ProjektOrdner_TwinCAT_Quelle;
                     ProjektOrdnerZiel = Projekt_TwinCAT_Ziel;
                     Button_Liste = Button_TwinCAT_Liste;
-                    ProjektName = Projekt_TwinCAT_Name;
+                    ProjektName = Projekt_Name;
                     ProjektOeffnenMit = "Projekt mit TwinCAT öffnen";
                     break;
 
@@ -143,9 +143,14 @@ namespace SPS_Starter
         {
             TabControl tabControl = sender as TabControl; // e.Source could have been used instead of sender as well
             TabItem item = tabControl.SelectedValue as TabItem;
+
+            //Button_Starten_Logo8_PLC.Content = "Logo8 Projekt Starten";
+            //Button_Starten_TiaPortal_PLC.Content = "TiaPortal Projekt Starten";
+            //Button_Starten_TwinCAT_PLC.Content = "TwinCAT Projekt Starten";
+
             switch (item.Header.ToString())
             {
-                case "Logo8!":
+                case "Logo8":
                     if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
                     break;
 
@@ -228,6 +233,7 @@ namespace SPS_Starter
         public void ProgrammiersprachenListeAktualisieren(string Ordner, ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
         {
             string ProgrammierSprache = "";
+            string ProjektTeilBezeichnung = "";
             int StartBezeichnung = 0;
 
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(Ordner);
@@ -246,7 +252,8 @@ namespace SPS_Starter
 
                             foreach (var Eigenschaften in AlleEigenschaften)
                             {
-                                if (d.Name.Contains(Eigenschaften.Kurzbezeichnung))
+                                ProjektTeilBezeichnung = Eigenschaften.Kurzbezeichnung + "_" + Programmiersprachen.Kurzbezeichnung;
+                                if (d.Name.Contains(ProjektTeilBezeichnung))
                                 {
                                     Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(d.Name.Substring(StartBezeichnung), ProgrammierSprache, d.Name);
                                     Eigenschaften.ProjekteBezeichnung.Add(TplEintrag);
@@ -278,7 +285,7 @@ namespace SPS_Starter
                         VerticalAlignment = VerticalAlignment.Top
                     };
 
-                    if (Eigenschaften.GruppenName == "Logo8!")
+                    if (Eigenschaften.GruppenName == "Logo8")
                     {
                         rdo.Checked += new RoutedEventHandler(Logo8_radioButton_Checked);
                     }
@@ -299,17 +306,25 @@ namespace SPS_Starter
             }
         }
 
-        public void WebBrowserFuellen(string Beschriftung, string ProjektOrdner, string ProjektName, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        public void WebBrowserFuellen(string ProjektOrdner, string ProjektName, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
         {
+
+            Projekt_Name = ProjektName;// in eine globale Variable übergeben
+
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner);
 
-            DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Green, Beschriftung);
+            DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Green, AlleEigenschaften[0].KnopfBeschriftung);
 
             string DateiName = $@"{ParentDirectory.FullName}\{ProjektName}\index.html";
 
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
-            else HtmlSeite = "<!doctype html>   </html >";
+            else HtmlSeite = "<!doctype html> Datei fehlt!  </html >";
 
+            WebBrowserInhaltAnzeigen(ProjektName, AlleEigenschaften, HtmlSeite);
+        }
+
+        public void WebBrowserInhaltAnzeigen(string ProjektName, ObservableCollection<AlleEigenschaften> AlleEigenschaften, string HtmlSeite)
+        {
             byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(HtmlSeite);
             MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
@@ -318,10 +333,19 @@ namespace SPS_Starter
 
             foreach (var EigenSchaften in AlleEigenschaften)
             {
-                if (ProjektName.Contains(EigenSchaften.Kurzbezeichnung)) EigenSchaften.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
-                else EigenSchaften.BrowserBezeichnung.NavigateToStream(stmLeereHtmlSeite);
-            }
-        }
 
+                DummyString = EigenSchaften.BrowserBezeichnung.Name;
+
+                if (ProjektName.Contains(EigenSchaften.Kurzbezeichnung))
+                {
+                    EigenSchaften.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                }
+                else
+                {
+                    EigenSchaften.BrowserBezeichnung.NavigateToStream(stmLeereHtmlSeite);
+                }
+            }
+
+        }
     }
 }

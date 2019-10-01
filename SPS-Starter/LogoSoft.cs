@@ -17,7 +17,7 @@ namespace SPS_Starter
         private void Logo8_radioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            WebBrowserFuellen("Logo Projekt starten", ProjektOrdner_Logo8_Quelle, rb.Name, Eigenschaften_Logo8);
+            WebBrowserFuellen(ProjektOrdner_Logo8_Quelle, rb.Name, Eigenschaften_Logo8);
         }
     }
 }

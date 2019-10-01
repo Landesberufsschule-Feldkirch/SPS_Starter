@@ -22,7 +22,7 @@
 
         <TabControl Grid.Column="1"  Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
 
-            <TabItem Header="Logo8!">
+            <TabItem Header="Logo8">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"></ColumnDefinition>

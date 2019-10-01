@@ -17,7 +17,7 @@ namespace SPS_Starter
             private void TwinCAT_radioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            WebBrowserFuellen("TwinCAT Projekt starten", ProjektOrdner_TwinCAT_Quelle, rb.Name, Eigenschaften_TwinCAT);
+            WebBrowserFuellen(ProjektOrdner_TwinCAT_Quelle, rb.Name, Eigenschaften_TwinCAT);
         }
 
     }
