@@ -1,5 +1,8 @@
 <SPS-Starter>
-	<Logo> 		s:\Linder Kurt\Logo8\Projekte					</Logo> 
-	<TiaPortal>	s:\Linder Kurt\TIA Portal V14 SP1\Projekte		</TiaPortal>
-	<TwinCAT> 	s:\Linder Kurt\TwinCAT_V3\Projekte				</TwinCAT> 
+	<Source_Logo>			s:\Linder Kurt\Logo8\Projekte				</Source_Logo> 
+	<Source_TiaPortal>		s:\Linder Kurt\TIA Portal V14 SP1\Projekte	</Source_TiaPortal>
+	<Source_TwinCAT>		s:\Linder Kurt\TwinCAT_V3\Projekte			</Source_TwinCAT> 
+	<Destination_Logo> 		h:\Logo8V81\								</Destination_Logo> 
+	<Destination_TiaPortal>	h:\TiaPortal_V14\							</Destination_TiaPortal>
+	<Destination_TwinCAT> 	h:\TwinCAT_V3\								</Destination_TwinCAT> 
 </SPS-Starter>

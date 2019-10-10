@@ -53,9 +53,8 @@ namespace SPS_Starter
 
         private void ProjektStarten(object sender, RoutedEventArgs e)
         {
+            var Eigenschaften = gEigenschaften_Logo8;
             string ProjektOeffnenMit = "";
-            string ProjektOrdnerQuelle = "";
-            string ProjektOrdnerZiel = "";
             string ProjektName = "";
             List<Button> Button_Liste = new List<Button>();
 
@@ -64,26 +63,23 @@ namespace SPS_Starter
             switch (StartKnopf?.Content.ToString())
             {
                 case "Logo Projekt starten":
-                    ProjektOrdnerQuelle = ProjektOrdner_Logo8_Quelle;
-                    ProjektOrdnerZiel = Projekt_Logo8_Ziel;
-                    Button_Liste = Button_Logo8_Liste;
-                    ProjektName = Projekt_Name;
+                    Eigenschaften = gEigenschaften_Logo8;
+                    Button_Liste = gButton_Logo8;
+                    ProjektName = gProjekt_Name;
                     ProjektOeffnenMit = "Projekt mit Logo8 öffnen";
                     break;
 
                 case "TiaPortal Projekt starten":
-                    ProjektOrdnerQuelle = ProjektOrdner_TiaPortal_Quelle;
-                    ProjektOrdnerZiel = Projekt_TiaPortal_Ziel;
-                    Button_Liste = Button_TiaPortal_Liste;
-                    ProjektName = Projekt_Name;
+                    Eigenschaften = gEigenschaften_TiaPortal;
+                    Button_Liste = gButton_TiaPortal;
+                    ProjektName = gProjekt_Name;
                     ProjektOeffnenMit = "Projekt mit TiaPortal öffnen";
                     break;
 
                 case "TwinCAT Projekt starten":
-                    ProjektOrdnerQuelle = ProjektOrdner_TwinCAT_Quelle;
-                    ProjektOrdnerZiel = Projekt_TwinCAT_Ziel;
-                    Button_Liste = Button_TwinCAT_Liste;
-                    ProjektName = Projekt_Name;
+                    Eigenschaften = gEigenschaften_TwinCAT;
+                    Button_Liste = gButton_TwinCAT;
+                    ProjektName = gProjekt_Name;
                     ProjektOeffnenMit = "Projekt mit TwinCAT öffnen";
                     break;
 
@@ -92,13 +88,13 @@ namespace SPS_Starter
                     break;
             }
 
-            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdnerQuelle);
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(Eigenschaften[0].OrdnerQuelle);
             string sourceDirectory = $@"{ParentDirectory.FullName}\{ProjektName}";
 
             try
             {
-                DarstellungAendernListe(Button_Liste, true, Colors.Yellow, "Ordner " + ProjektOrdnerZiel + " löschen");
-                if (System.IO.Directory.Exists(ProjektOrdnerZiel)) System.IO.Directory.Delete(ProjektOrdnerZiel, true);
+                DarstellungAendernListe(Button_Liste, true, Colors.Yellow, "Ordner " + Eigenschaften[0].OrdnerZiel + " löschen");
+                if (System.IO.Directory.Exists(Eigenschaften[0].OrdnerZiel)) System.IO.Directory.Delete(Eigenschaften[0].OrdnerZiel, true);
             }
             catch (Exception exp)
             {
@@ -107,8 +103,8 @@ namespace SPS_Starter
 
             try
             {
-                DarstellungAendernListe(Button_Liste, true, Colors.Yellow, "Ordner " + ProjektOrdnerZiel + " erstellen");
-                System.IO.Directory.CreateDirectory(ProjektOrdnerZiel);
+                DarstellungAendernListe(Button_Liste, true, Colors.Yellow, "Ordner " + Eigenschaften[0].OrdnerZiel + " erstellen");
+                System.IO.Directory.CreateDirectory(Eigenschaften[0].OrdnerZiel);
             }
             catch (Exception exp)
             {
@@ -118,7 +114,7 @@ namespace SPS_Starter
             try
             {
                 DarstellungAendernListe(Button_Liste, true, Colors.Yellow, "Alle Dateien kopieren");
-                Copy(sourceDirectory, ProjektOrdnerZiel);
+                Copy(sourceDirectory, Eigenschaften[0].OrdnerZiel);
             }
             catch (Exception exp)
             {
@@ -129,14 +125,15 @@ namespace SPS_Starter
             {
                 DarstellungAendernListe(Button_Liste, true, Colors.LawnGreen, ProjektOeffnenMit);
                 Process proc = new Process();
-                proc.StartInfo.FileName = ProjektOrdnerZiel + "\\start.cmd";
-                proc.StartInfo.WorkingDirectory = ProjektOrdnerZiel;
+                proc.StartInfo.FileName = Eigenschaften[0].OrdnerZiel + "\\start.cmd";
+                proc.StartInfo.WorkingDirectory = Eigenschaften[0].OrdnerZiel;
                 proc.Start();
             }
             catch (Exception exp)
             {
                 Console.WriteLine($"{exp} Exception 5 caught.");
             }
+
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -151,15 +148,15 @@ namespace SPS_Starter
             switch (item.Header.ToString())
             {
                 case "Logo8":
-                    if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
+                    if (gAnzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
                     break;
 
                 case "TiaPortal":
-                    if (Anzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();
+                    if (gAnzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();
                     break;
 
                 case "TwinCAT":
-                    if (Anzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
+                    if (gAnzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
                     break;
 
                 default:
@@ -174,40 +171,40 @@ namespace SPS_Starter
             switch (cb.Name)
             {
                 case "Checkbox_Logo8_FUP":
-                    if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
+                    if (gAnzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
                     break;
                 case "Checkbox_Logo8_KOP":
-                    if (Anzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
+                    if (gAnzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
                     break;
 
                 case "Checkbox_TiaPortal_FUP":
-                    if (Anzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();
+                    if (gAnzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();
                     break;
                 case "Checkbox_TiaPortal_KOP":
-                    if (Anzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();
+                    if (gAnzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();
                     break;
                 case "Checkbox_TiaPortal_SCL":
-                    if (Anzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();
+                    if (gAnzeige_TiaPortal_Aktualisieren) Projekte_TiaPortal_Lesen();
                     break;
 
 
                 case "Checkbox_TwinCAT_AS":
-                    if (Anzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
+                    if (gAnzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
                     break;
                 case "Checkbox_TwinCAT_AWL":
-                    if (Anzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
+                    if (gAnzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
                     break;
                 case "Checkbox_TwinCAT_CFC":
-                    if (Anzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
+                    if (gAnzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
                     break;
                 case "Checkbox_TwinCAT_FUP":
-                    if (Anzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
+                    if (gAnzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
                     break;
                 case "Checkbox_TwinCAT_KOP":
-                    if (Anzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
+                    if (gAnzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
                     break;
                 case "Checkbox_TwinCAT_ST":
-                    if (Anzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
+                    if (gAnzeige_TwinCAT_Aktualisieren) Projekte_TwinCAT_Lesen();
                     break;
 
                 default:
@@ -230,13 +227,13 @@ namespace SPS_Starter
             }
         }
 
-        public void ProgrammiersprachenListeAktualisieren(string Ordner, ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        public void ProgrammiersprachenListeAktualisieren(ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
         {
             string ProgrammierSprache = "";
             string ProjektTeilBezeichnung = "";
             int StartBezeichnung = 0;
 
-            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(Ordner);
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(AlleEigenschaften[0].OrdnerQuelle);
 
             foreach (System.IO.DirectoryInfo d in ParentDirectory.GetDirectories())
             {
@@ -268,20 +265,32 @@ namespace SPS_Starter
 
         public void AnzeigeAktualisieren(ObservableCollection<AlleEigenschaften> AlleEigenschaften)
         {
+            string KurzbezeichnungSprache;
+
             foreach (var Eigenschaften in AlleEigenschaften)
             {
-                Eigenschaften.ProjekteBezeichnung.Sort();
+                //Eigenschaften.ProjekteBezeichnung.Sort();
 
                 List<Tuple<string, string, string>> EindeutigeListe = Eigenschaften.ProjekteBezeichnung.Distinct().ToList();
 
                 foreach (Tuple<string, string, string> Projekt in EindeutigeListe)
                 {
+
+                    if (Projekt.Item2 == "CPP")
+                    {
+                        KurzbezeichnungSprache = "C++";
+                    }
+                    else
+                    {
+                        KurzbezeichnungSprache = Projekt.Item2;
+                    }
+
                     RadioButton rdo = new RadioButton
                     {
                         GroupName = Eigenschaften.GruppenName,
                         Name = Projekt.Item3,
                         FontSize = 14,
-                        Content = Projekt.Item1 + " (" + Projekt.Item2 + ")",
+                        Content = Projekt.Item1 + " (" + KurzbezeichnungSprache + ")",
                         VerticalAlignment = VerticalAlignment.Top
                     };
 
@@ -306,37 +315,44 @@ namespace SPS_Starter
             }
         }
 
-        public void WebBrowserFuellen(string ProjektOrdner, string ProjektName, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        public void WebBrowserFuellen(ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
         {
+            string HtmlSeite;
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(AlleEigenschaften[0].OrdnerQuelle);
 
-            Projekt_Name = ProjektName;// in eine globale Variable übergeben
+            DarstellungAendernListe(gButton_TiaPortal, true, Colors.Green, AlleEigenschaften[0].KnopfBeschriftung);
 
-            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ProjektOrdner);
-
-            DarstellungAendernListe(Button_TiaPortal_Liste, true, Colors.Green, AlleEigenschaften[0].KnopfBeschriftung);
-
-            string DateiName = $@"{ParentDirectory.FullName}\{ProjektName}\index.html";
+            string DateiName = $@"{ParentDirectory.FullName}\{gProjekt_Name}\index.html";
 
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
-            else HtmlSeite = "<!doctype html> Datei fehlt!  </html >";
+            else HtmlSeite = gHtmlSeiteDateiFehlt;
 
-            WebBrowserInhaltAnzeigen(ProjektName, AlleEigenschaften, HtmlSeite);
+            WebBrowserInhaltAnzeigen(AlleProgrammierSprachen, AlleEigenschaften, HtmlSeite);
         }
 
-        public void WebBrowserInhaltAnzeigen(string ProjektName, ObservableCollection<AlleEigenschaften> AlleEigenschaften, string HtmlSeite)
+        public void WebBrowserInhaltAnzeigen(ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften, string HtmlSeite)
         {
+
+            string ProgrammierSprache = "";
+
+            foreach (var Programmiersprachen in AlleProgrammierSprachen)
+            {
+                if (gProjekt_Name.Contains(Programmiersprachen.Kurzbezeichnung))
+                {
+                    ProgrammierSprache = Programmiersprachen.Kurzbezeichnung;
+                }
+            }
+
+
             byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(HtmlSeite);
             MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
-            byte[] dataLeereHtmlSeite = Encoding.UTF8.GetBytes(LeereHtmlSeite);
+            byte[] dataLeereHtmlSeite = Encoding.UTF8.GetBytes(gHtmlSeiteLeer);
             MemoryStream stmLeereHtmlSeite = new MemoryStream(dataLeereHtmlSeite, 0, dataLeereHtmlSeite.Length);
 
             foreach (var EigenSchaften in AlleEigenschaften)
             {
-
-                DummyString = EigenSchaften.BrowserBezeichnung.Name;
-
-                if (ProjektName.Contains(EigenSchaften.Kurzbezeichnung))
+                if (gProjekt_Name.Contains(EigenSchaften.Kurzbezeichnung + "_" + ProgrammierSprache))
                 {
                     EigenSchaften.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
                 }

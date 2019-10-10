@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPS_Starter"
         mc:Ignorable="d"
-        Title="SPS Projekte starten" Height="900" Width="1200">
+        Title="SPS Projekte starten" Height="1000" Width="1400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"></ColumnDefinition>
@@ -45,7 +45,7 @@
                             <Grid x:Name="Tab_Logo8_PLC" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -63,12 +63,12 @@
                                 <WebBrowser x:Name="Web_Logo8_PLC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
-
+                        
                         <TabItem Header="Bugs" FontSize="14">
                             <Grid x:Name="Tab_Logo8_PLC_Bugs" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -116,7 +116,7 @@
                             <Grid x:Name="Tab_TiaPortal_PLC" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -138,7 +138,7 @@
                             <Grid x:Name="Tab_TiaPortal_PLC_HMI" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -233,7 +233,7 @@
                             <Grid x:Name="Tab_TiaPortal_PLC_Bugs" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -264,6 +264,7 @@
                         <ColumnDefinition Width="60"></ColumnDefinition>
                         <ColumnDefinition Width="60"></ColumnDefinition>
                         <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="10"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
@@ -277,16 +278,17 @@
                     <CheckBox x:Name="Checkbox_TwinCAT_AS" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
                     <CheckBox x:Name="Checkbox_TwinCAT_AWL" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
                     <CheckBox x:Name="Checkbox_TwinCAT_CFC" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_FUP" Content="FUP" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_KOP" Content="KOP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_ST" Content="ST" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_CPP" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_FUP" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_KOP" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="Checkbox_TwinCAT_ST" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
 
-                    <TabControl x:Name="Tab_WinCAT" Grid.Column="1" Grid.ColumnSpan="6"  Grid.Row="2">
+                    <TabControl x:Name="Tab_WinCAT" Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14">
                             <Grid x:Name="Tab_TwinCAT_PLC" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -309,7 +311,7 @@
                             <Grid x:Name="Tab_TwinCAT_PLC_VISU" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -332,7 +334,7 @@
                             <Grid x:Name="Tab_TwinCAT_PLC_NC" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -355,7 +357,7 @@
                             <Grid x:Name="Tab_TwinCAT_PLC_DT" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -378,7 +380,7 @@
                             <Grid x:Name="Tab_TwinCAT_PLC_Bugs" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>

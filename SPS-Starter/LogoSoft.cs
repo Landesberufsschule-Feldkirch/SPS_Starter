@@ -7,17 +7,18 @@ namespace SPS_Starter
     {
         public void Projekte_Logo8_Lesen()
         {
-            ProjektbezeichnungenStackpanelLeerenAktualisieren(Eigenschaften_Logo8, Button_Logo8_Liste);
-            ProgrammiersprachenListeAktualisieren(ProjektOrdner_Logo8_Quelle, AlleProgrammierSprachen_Logo8, Eigenschaften_Logo8);
-            AnzeigeAktualisieren(Eigenschaften_Logo8);           
+            ProjektbezeichnungenStackpanelLeerenAktualisieren(gEigenschaften_Logo8, gButton_Logo8);
+            ProgrammiersprachenListeAktualisieren(gAlleProgrammierSprachen_Logo8, gEigenschaften_Logo8);
+            AnzeigeAktualisieren(gEigenschaften_Logo8);           
 
-            Anzeige_Logo8_Aktualisieren = true;
+            gAnzeige_Logo8_Aktualisieren = true;
         }               
 
         private void Logo8_radioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            WebBrowserFuellen(ProjektOrdner_Logo8_Quelle, rb.Name, Eigenschaften_Logo8);
+            gProjekt_Name = rb.Name;
+            WebBrowserFuellen(gAlleProgrammierSprachen_Logo8, gEigenschaften_Logo8);
         }
     }
 }
