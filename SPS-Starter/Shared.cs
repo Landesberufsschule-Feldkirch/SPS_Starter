@@ -315,12 +315,12 @@ namespace SPS_Starter
             }
         }
 
-        public void WebBrowserFuellen(ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        public void WebBrowserFuellen(ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, List<Button> KnopfListe, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
         {
             string HtmlSeite;
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(AlleEigenschaften[0].OrdnerQuelle);
 
-            DarstellungAendernListe(gButton_TiaPortal, true, Colors.Green, AlleEigenschaften[0].KnopfBeschriftung);
+            DarstellungAendernListe(KnopfListe, true, Colors.Green, AlleEigenschaften[0].KnopfBeschriftung);
 
             string DateiName = $@"{ParentDirectory.FullName}\{gProjekt_Name}\index.html";
 

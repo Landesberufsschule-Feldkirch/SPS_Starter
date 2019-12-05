@@ -38,9 +38,6 @@
   <PropertyGroup>
     <ApplicationIcon>sps.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>SPS_Starter.App</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -104,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\sps.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="sps.ico" />

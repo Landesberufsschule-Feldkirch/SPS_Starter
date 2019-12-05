@@ -18,7 +18,7 @@ namespace SPS_Starter
         {
             RadioButton rb = sender as RadioButton;
             gProjekt_Name = rb.Name;
-            WebBrowserFuellen(gAlleProgrammierSprachen_Logo8, gEigenschaften_Logo8);
+            WebBrowserFuellen(gAlleProgrammierSprachen_Logo8, gButton_Logo8, gEigenschaften_Logo8);
         }
     }
 }

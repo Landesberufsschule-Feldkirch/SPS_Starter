@@ -18,7 +18,7 @@ namespace SPS_Starter
         {
             RadioButton rb = sender as RadioButton;
             gProjekt_Name = rb.Name;
-            WebBrowserFuellen(gAlleProgrammierSprachen_TiaPortal, gEigenschaften_TiaPortal);
+            WebBrowserFuellen(gAlleProgrammierSprachen_TiaPortal, gButton_TiaPortal, gEigenschaften_TiaPortal);
         }
     }
 }
