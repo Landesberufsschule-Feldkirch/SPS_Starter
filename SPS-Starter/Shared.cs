@@ -13,21 +13,21 @@ namespace SPS_Starter
 {
     public partial class MainWindow
     {
-        private void DarstellungAendernListe(List<Button> KnopfListe, bool Enable, Color Farbe, string Text)
+        private void DarstellungAendernListe(List<Button> btnListe, bool enable, Color color, string text)
         {
-            foreach (Button Knopf in KnopfListe)
+            foreach (Button Knopf in btnListe)
             {
-                Knopf.IsEnabled = Enable;
-                Knopf.Background = new SolidColorBrush(Farbe);
-                Knopf.Content = Text;
+                Knopf.IsEnabled = enable;
+                Knopf.Background = new SolidColorBrush(color);
+                Knopf.Content = text;
                 Knopf.Refresh();
             }
         }
 
-        public static void Copy(string sourceDirectory, string targetDirectory)
+        public static void Copy(string sourceDir, string targetDir)
         {
-            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
-            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+            DirectoryInfo diSource = new DirectoryInfo(sourceDir);
+            DirectoryInfo diTarget = new DirectoryInfo(targetDir);
 
             CopyAll(diSource, diTarget);
         }
@@ -213,32 +213,32 @@ namespace SPS_Starter
             }
         }
 
-        public void ProjektbezeichnungenStackpanelLeerenAktualisieren(ObservableCollection<AlleEigenschaften> AlleEigenschaften, List<Button> ButtonListe)
+        public void ProjektbezeichnungenStackpanelLeerenAktualisieren(ObservableCollection<AlleEigenschaften> alleEigenschaften, List<Button> btnListe)
         {
-            foreach (var Eigenschaften in AlleEigenschaften)
+            foreach (var Eigenschaften in alleEigenschaften)
             {
                 Eigenschaften.ProjekteBezeichnung.Clear();// Zuerst die Listen löschen
                 Eigenschaften.StackPanelBezeichnung.Children.Clear(); // Anzeige löschen
             }
 
-            foreach (var Eigenschaften in AlleEigenschaften)
+            foreach (var Eigenschaften in alleEigenschaften)
             {
-                ButtonListe.Add(Eigenschaften.ButtonBezeichnung);
+                btnListe.Add(Eigenschaften.ButtonBezeichnung);
             }
         }
 
-        public void ProgrammiersprachenListeAktualisieren(ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        public void ProgrammiersprachenListeAktualisieren(ObservableCollection<AlleProgrammierSprachen> alleProgrammierSprachen, ObservableCollection<AlleEigenschaften> alleEigenschaften)
         {
             string ProgrammierSprache = "";
             string ProjektTeilBezeichnung = "";
             int StartBezeichnung = 0;
 
-            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(AlleEigenschaften[0].OrdnerQuelle);
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(alleEigenschaften[0].OrdnerQuelle);
 
             foreach (System.IO.DirectoryInfo d in ParentDirectory.GetDirectories())
             {
 
-                foreach (var Programmiersprachen in AlleProgrammierSprachen)
+                foreach (var Programmiersprachen in alleProgrammierSprachen)
                 {
                     if (d.Name.Contains(Programmiersprachen.Kurzbezeichnung))
                     {
@@ -247,7 +247,7 @@ namespace SPS_Starter
                             ProgrammierSprache = Programmiersprachen.Kurzbezeichnung;
                             StartBezeichnung = Programmiersprachen.Laenge + d.Name.IndexOf(Programmiersprachen.Kurzbezeichnung);
 
-                            foreach (var Eigenschaften in AlleEigenschaften)
+                            foreach (var Eigenschaften in alleEigenschaften)
                             {
                                 ProjektTeilBezeichnung = Eigenschaften.Kurzbezeichnung + "_" + Programmiersprachen.Kurzbezeichnung;
                                 if (d.Name.Contains(ProjektTeilBezeichnung))
@@ -263,11 +263,11 @@ namespace SPS_Starter
 
         }
 
-        public void AnzeigeAktualisieren(ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        public void AnzeigeAktualisieren(ObservableCollection<AlleEigenschaften> alleEigenschaften)
         {
             string KurzbezeichnungSprache;
 
-            foreach (var Eigenschaften in AlleEigenschaften)
+            foreach (var Eigenschaften in alleEigenschaften)
             {
                 //Eigenschaften.ProjekteBezeichnung.Sort();
 
@@ -315,27 +315,27 @@ namespace SPS_Starter
             }
         }
 
-        public void WebBrowserFuellen(ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, List<Button> KnopfListe, ObservableCollection<AlleEigenschaften> AlleEigenschaften)
+        public void WebBrowserFuellen(ObservableCollection<AlleProgrammierSprachen> alleProgrammierSprachen, List<Button> btnListe, ObservableCollection<AlleEigenschaften> alleEigenschaften)
         {
             string HtmlSeite;
-            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(AlleEigenschaften[0].OrdnerQuelle);
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(alleEigenschaften[0].OrdnerQuelle);
 
-            DarstellungAendernListe(KnopfListe, true, Colors.Green, AlleEigenschaften[0].KnopfBeschriftung);
+            DarstellungAendernListe(btnListe, true, Colors.Green, alleEigenschaften[0].KnopfBeschriftung);
 
             string DateiName = $@"{ParentDirectory.FullName}\{gProjekt_Name}\index.html";
 
             if (File.Exists(DateiName)) HtmlSeite = System.IO.File.ReadAllText(DateiName);
             else HtmlSeite = gHtmlSeiteDateiFehlt;
 
-            WebBrowserInhaltAnzeigen(AlleProgrammierSprachen, AlleEigenschaften, HtmlSeite);
+            WebBrowserInhaltAnzeigen(alleProgrammierSprachen, alleEigenschaften, HtmlSeite);
         }
 
-        public void WebBrowserInhaltAnzeigen(ObservableCollection<AlleProgrammierSprachen> AlleProgrammierSprachen, ObservableCollection<AlleEigenschaften> AlleEigenschaften, string HtmlSeite)
+        public void WebBrowserInhaltAnzeigen(ObservableCollection<AlleProgrammierSprachen> alleProgrammierSprachen, ObservableCollection<AlleEigenschaften> alleEigenschaften, string htmlSeite)
         {
 
             string ProgrammierSprache = "";
 
-            foreach (var Programmiersprachen in AlleProgrammierSprachen)
+            foreach (var Programmiersprachen in alleProgrammierSprachen)
             {
                 if (gProjekt_Name.Contains(Programmiersprachen.Kurzbezeichnung))
                 {
@@ -344,13 +344,13 @@ namespace SPS_Starter
             }
 
 
-            byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(HtmlSeite);
+            byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
             MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
             byte[] dataLeereHtmlSeite = Encoding.UTF8.GetBytes(gHtmlSeiteLeer);
             MemoryStream stmLeereHtmlSeite = new MemoryStream(dataLeereHtmlSeite, 0, dataLeereHtmlSeite.Length);
 
-            foreach (var EigenSchaften in AlleEigenschaften)
+            foreach (var EigenSchaften in alleEigenschaften)
             {
                 if (gProjekt_Name.Contains(EigenSchaften.Kurzbezeichnung + "_" + ProgrammierSprache))
                 {

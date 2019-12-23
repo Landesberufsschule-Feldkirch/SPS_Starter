@@ -19,17 +19,17 @@ namespace SPS_Starter
         public List<Tuple<string, string, string>> ProjekteBezeichnung { get; set; }
         public string OrdnerQuelle { get; set; }
         public string OrdnerZiel { get; set; }
-        public AlleEigenschaften(string Kurzbezeichnung, string GruppenName, string KnopfBeschriftung, WebBrowser BrowserBezeichnung, StackPanel StackPanelBezeichnung, Button ButtonBezeichnung, string OrdnerQuelle, string OrdnerZiel)
+        public AlleEigenschaften(string kurzbezeichnung, string gruppenName, string btnBeschriftung, WebBrowser browserBezeichnung, StackPanel stackPanelBezeichnung, Button buttonBezeichnung, string ordnerQuelle, string ordnerZiel)
         {
-            this.Kurzbezeichnung = Kurzbezeichnung;
-            this.GruppenName = GruppenName;
-            this.KnopfBeschriftung = KnopfBeschriftung;
-            this.BrowserBezeichnung = BrowserBezeichnung;
-            this.StackPanelBezeichnung = StackPanelBezeichnung;
-            this.ButtonBezeichnung = ButtonBezeichnung;
+            this.Kurzbezeichnung = kurzbezeichnung;
+            this.GruppenName = gruppenName;
+            this.KnopfBeschriftung = btnBeschriftung;
+            this.BrowserBezeichnung = browserBezeichnung;
+            this.StackPanelBezeichnung = stackPanelBezeichnung;
+            this.ButtonBezeichnung = buttonBezeichnung;
             this.ProjekteBezeichnung = new List<Tuple<string, string, string>>();
-            this.OrdnerQuelle = OrdnerQuelle;
-            this.OrdnerZiel = OrdnerZiel;
+            this.OrdnerQuelle = ordnerQuelle;
+            this.OrdnerZiel = ordnerZiel;
         }
     }
     public class AlleProgrammierSprachen
@@ -38,11 +38,11 @@ namespace SPS_Starter
         public int Laenge { get; set; }
         public CheckBox CheckBoxBezeichnung { get; set; }
 
-        public AlleProgrammierSprachen(string Kurzbezeichnung, int Laenge, CheckBox CheckBoxBezeichnung)
+        public AlleProgrammierSprachen(string kurzbezeichnung, int laenge, CheckBox checkBoxBezeichnung)
         {
-            this.Kurzbezeichnung = Kurzbezeichnung;
-            this.Laenge = Laenge;
-            this.CheckBoxBezeichnung = CheckBoxBezeichnung;
+            this.Kurzbezeichnung = kurzbezeichnung;
+            this.Laenge = laenge;
+            this.CheckBoxBezeichnung = checkBoxBezeichnung;
         }
     }
     public static class ExtensionMethods
