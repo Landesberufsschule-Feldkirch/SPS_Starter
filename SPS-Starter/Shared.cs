@@ -13,21 +13,21 @@ namespace SPS_Starter
 {
     public partial class MainWindow
     {
-        private void DarstellungAendernListe(List<Button> btnListe, bool enable, Color color, string text)
+        private void DarstellungAendernListe(List<Button> btnListe, bool enable, Color Farbe, string text)
         {
             foreach (Button Knopf in btnListe)
             {
                 Knopf.IsEnabled = enable;
-                Knopf.Background = new SolidColorBrush(color);
+                Knopf.Background = new SolidColorBrush(Farbe);
                 Knopf.Content = text;
                 Knopf.Refresh();
             }
         }
 
-        public static void Copy(string sourceDir, string targetDir)
+        public static void Copy(string sourceDirectory, string targetDirectory)
         {
-            DirectoryInfo diSource = new DirectoryInfo(sourceDir);
-            DirectoryInfo diTarget = new DirectoryInfo(targetDir);
+            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
 
             CopyAll(diSource, diTarget);
         }
@@ -53,7 +53,7 @@ namespace SPS_Starter
 
         private void ProjektStarten(object sender, RoutedEventArgs e)
         {
-            var Eigenschaften = gEigenschaften_Logo8;
+            var Eigenschaften = gEigenschaften_TiaPortal;
             string ProjektOeffnenMit = "";
             string ProjektName = "";
             List<Button> Button_Liste = new List<Button>();
@@ -63,8 +63,8 @@ namespace SPS_Starter
             switch (StartKnopf?.Content.ToString())
             {
                 case "Logo Projekt starten":
-                    Eigenschaften = gEigenschaften_Logo8;
-                    Button_Liste = gButton_Logo8;
+                    //Eigenschaften = gEigenschaften_Logo8;
+                    //Button_Liste = gButton_Logo8;
                     ProjektName = gProjekt_Name;
                     ProjektOeffnenMit = "Projekt mit Logo8 öffnen";
                     break;
@@ -148,7 +148,7 @@ namespace SPS_Starter
             switch (item.Header.ToString())
             {
                 case "Logo8":
-                    if (gAnzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
+                    if (gLogo8.AnzeigeAktualisieren) gLogo8.ProjekteLesen();
                     break;
 
                 case "TiaPortal":
@@ -171,10 +171,10 @@ namespace SPS_Starter
             switch (cb.Name)
             {
                 case "Checkbox_Logo8_FUP":
-                    if (gAnzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
+                    if (gLogo8 != null) if (gLogo8.AnzeigeAktualisieren) gLogo8.ProjekteLesen();
                     break;
                 case "Checkbox_Logo8_KOP":
-                    if (gAnzeige_Logo8_Aktualisieren) Projekte_Logo8_Lesen();
+                    if (gLogo8 != null) if (gLogo8.AnzeigeAktualisieren) gLogo8.ProjekteLesen();
                     break;
 
                 case "Checkbox_TiaPortal_FUP":
@@ -218,7 +218,7 @@ namespace SPS_Starter
             foreach (var Eigenschaften in alleEigenschaften)
             {
                 Eigenschaften.ProjekteBezeichnung.Clear();// Zuerst die Listen löschen
-                Eigenschaften.StackPanelBezeichnung.Children.Clear(); // Anzeige löschen
+                Eigenschaften.StackPanelBezeichnung?.Children?.Clear(); // Anzeige löschen
             }
 
             foreach (var Eigenschaften in alleEigenschaften)
@@ -260,7 +260,6 @@ namespace SPS_Starter
                     }
                 }
             }
-
         }
 
         public void AnzeigeAktualisieren(ObservableCollection<AlleEigenschaften> alleEigenschaften)
@@ -296,7 +295,7 @@ namespace SPS_Starter
 
                     if (Eigenschaften.GruppenName == "Logo8")
                     {
-                        rdo.Checked += new RoutedEventHandler(Logo8_radioButton_Checked);
+                        rdo.Checked += new RoutedEventHandler(gLogo8.radioButton_Checked);
                     }
 
                     if (Eigenschaften.GruppenName == "TwinCAT")
@@ -363,5 +362,6 @@ namespace SPS_Starter
             }
 
         }
+
     }
 }

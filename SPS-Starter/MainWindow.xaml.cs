@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -8,43 +9,6 @@ using System.Xml.Linq;
 
 namespace SPS_Starter
 {
-    public class AlleEigenschaften
-    {
-        public string Kurzbezeichnung { get; set; }
-        public string GruppenName { get; set; }
-        public string KnopfBeschriftung { get; set; }
-        public WebBrowser BrowserBezeichnung { get; set; }
-        public StackPanel StackPanelBezeichnung { get; set; }
-        public Button ButtonBezeichnung { get; set; }
-        public List<Tuple<string, string, string>> ProjekteBezeichnung { get; set; }
-        public string OrdnerQuelle { get; set; }
-        public string OrdnerZiel { get; set; }
-        public AlleEigenschaften(string kurzbezeichnung, string gruppenName, string btnBeschriftung, WebBrowser browserBezeichnung, StackPanel stackPanelBezeichnung, Button buttonBezeichnung, string ordnerQuelle, string ordnerZiel)
-        {
-            this.Kurzbezeichnung = kurzbezeichnung;
-            this.GruppenName = gruppenName;
-            this.KnopfBeschriftung = btnBeschriftung;
-            this.BrowserBezeichnung = browserBezeichnung;
-            this.StackPanelBezeichnung = stackPanelBezeichnung;
-            this.ButtonBezeichnung = buttonBezeichnung;
-            this.ProjekteBezeichnung = new List<Tuple<string, string, string>>();
-            this.OrdnerQuelle = ordnerQuelle;
-            this.OrdnerZiel = ordnerZiel;
-        }
-    }
-    public class AlleProgrammierSprachen
-    {
-        public string Kurzbezeichnung { get; set; }
-        public int Laenge { get; set; }
-        public CheckBox CheckBoxBezeichnung { get; set; }
-
-        public AlleProgrammierSprachen(string kurzbezeichnung, int laenge, CheckBox checkBoxBezeichnung)
-        {
-            this.Kurzbezeichnung = kurzbezeichnung;
-            this.Laenge = laenge;
-            this.CheckBoxBezeichnung = checkBoxBezeichnung;
-        }
-    }
     public static class ExtensionMethods
     {
         private static Action EmptyDelegate = delegate () { };
@@ -64,37 +28,53 @@ namespace SPS_Starter
 
     public partial class MainWindow : Window
     {
-        ObservableCollection<AlleEigenschaften> gEigenschaften_Logo8 = new ObservableCollection<AlleEigenschaften>();
+        List<AlleEigenschaften> gEigenschaften_Logo8 = new List<AlleEigenschaften>();
         ObservableCollection<AlleEigenschaften> gEigenschaften_TiaPortal = new ObservableCollection<AlleEigenschaften>();
         ObservableCollection<AlleEigenschaften> gEigenschaften_TwinCAT = new ObservableCollection<AlleEigenschaften>();
 
-        ObservableCollection<AlleProgrammierSprachen> gAlleProgrammierSprachen_Logo8 = new ObservableCollection<AlleProgrammierSprachen>();
+        List<AlleProgrammierSprachen> gAlleProgrammierSprachen_Logo8 = new List<AlleProgrammierSprachen>();
         ObservableCollection<AlleProgrammierSprachen> gAlleProgrammierSprachen_TiaPortal = new ObservableCollection<AlleProgrammierSprachen>();
         ObservableCollection<AlleProgrammierSprachen> gAlleProgrammierSprachen_TwinCAT = new ObservableCollection<AlleProgrammierSprachen>();
 
-        string gHtmlSeiteLeer = "<!doctype html> Leere Seite?  </html >";
-        string gHtmlSeiteDateiFehlt = "<!doctype html> Datei fehlt!  </html >";
+        public string gHtmlSeiteLeer = "<!doctype html> Leere Seite?  </html >";
+        public string gHtmlSeiteDateiFehlt = "<!doctype html> Datei fehlt!  </html >";
 
-        bool gAnzeige_Logo8_Aktualisieren = false;
+        //bool gAnzeige_Logo8_Aktualisieren = false;
         bool gAnzeige_TiaPortal_Aktualisieren = false;
         bool gAnzeige_TwinCAT_Aktualisieren = false;
 
-        string gProjekt_Name = "";
+        public string gProjekt_Name { get; set; }
 
-        List<Button> gButton_Logo8 = new List<Button>();
+        //List<Button> gButton_Logo8 = new List<Button>();
         List<Button> gButton_TiaPortal = new List<Button>();
         List<Button> gButton_TwinCAT = new List<Button>();
 
+        EinstellungenOrdnerLesen einstellungenOrdner;
+
+        public LogoSoft gLogo8;
+
         public MainWindow()
         {
+            JsonLesen();
             InitializeComponent();
+
             InstanzenFuellen();
+
+            gLogo8 = new LogoSoft(this, gEigenschaften_Logo8, gAlleProgrammierSprachen_Logo8, einstellungenOrdner.Logo, "Logo Projekt starten");
+
+
+            gLogo8.ProjekteLesen();
             ProjekteLesen();
+        }
+
+        public void JsonLesen()
+        {
+            einstellungenOrdner = EinstellungenOrdnerLesen.FromJson(File.ReadAllText(@"Einstellungen.json"));
         }
 
         public void ProjekteLesen()
         {
-            Projekte_Logo8_Lesen();
+            //  gLogo8.ProjekteLesen();
             Projekte_TiaPortal_Lesen();
             Projekte_TwinCAT_Lesen();
         }

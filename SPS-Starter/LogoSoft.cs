@@ -1,24 +1,52 @@
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace SPS_Starter
 {
-    public partial class MainWindow
+    public class LogoSoft : SharedDisplay
     {
-        public void Projekte_Logo8_Lesen()
+        public bool AnzeigeAktualisieren { get; set; }
+
+        public List<Button> ButtonListe = new List<Button>(); // { get; set; }
+
+
+        readonly MainWindow MainWindow;
+        readonly List<AlleEigenschaften> AlleEigenschaften;
+        readonly List<AlleProgrammierSprachen> AlleProgrammierSprachen = new List<AlleProgrammierSprachen>();
+        readonly Logo Logo;
+        readonly string ButtonBeschriftung;
+
+        public string OrdnerQuelle { get; set; }
+        public string OrdnerZiel { get; set; }
+
+        public LogoSoft(MainWindow mainWindow, List<AlleEigenschaften> alleEigenschaften, List<AlleProgrammierSprachen> alleProgrammierSprachen, Logo logo, string btnBeschriftung)
         {
-            ProjektbezeichnungenStackpanelLeerenAktualisieren(gEigenschaften_Logo8, gButton_Logo8);
-            ProgrammiersprachenListeAktualisieren(gAlleProgrammierSprachen_Logo8, gEigenschaften_Logo8);
-            AnzeigeAktualisieren(gEigenschaften_Logo8);           
+            this.MainWindow = mainWindow;
+            AlleEigenschaften = alleEigenschaften;
+            AlleProgrammierSprachen = alleProgrammierSprachen;
+            Logo = logo;
+            ButtonBeschriftung = btnBeschriftung;
+            AnzeigeAktualisieren = true;
 
-            gAnzeige_Logo8_Aktualisieren = true;
-        }               
+            OrdnerQuelle = Logo.Source;
+            OrdnerZiel = Logo.Destination;
+        }
 
-        private void Logo8_radioButton_Checked(object sender, RoutedEventArgs e)
+        public void ProjekteLesen()
+        {
+            StackpanelAktualisieren(AlleEigenschaften, ButtonListe);
+            ProgrammiersprachenAktualisieren(AlleProgrammierSprachen, AlleEigenschaften, Logo.Source);
+            AnzeigenAktualisieren(this.MainWindow, AlleEigenschaften);
+
+            AnzeigeAktualisieren = true;
+        }
+
+        public void radioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            gProjekt_Name = rb.Name;
-            WebBrowserFuellen(gAlleProgrammierSprachen_Logo8, gButton_Logo8, gEigenschaften_Logo8);
+            this.MainWindow.gProjekt_Name = rb.Name;
+            HtmlFeldFuellen(this.MainWindow, AlleProgrammierSprachen, AlleEigenschaften, ButtonListe, Logo.Source, ButtonBeschriftung);
         }
     }
 }

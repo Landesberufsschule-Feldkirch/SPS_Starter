@@ -18,7 +18,7 @@
             <RowDefinition Height="10"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Content="V0.1 " Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" />
+        <Label Content="V1.1 " Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" />
 
         <TabControl Grid.Column="1"  Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
 
@@ -59,7 +59,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_Logo8_PLC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_Logo8_PLC" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProjektStarten" ></Button>
+                                <Button x:Name="Button_Starten_Logo8_PLC" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
                                 <WebBrowser x:Name="Web_Logo8_PLC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -82,7 +82,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanel_Logo8_PLC_Bugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_Logo8_PLC_Bugs" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProjektStarten"></Button>
+                                <Button x:Name="Button_Starten_Logo8_PLC_Bugs" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten"></Button>
                                 <WebBrowser x:Name="Web_Logo8_PLC_Bugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>

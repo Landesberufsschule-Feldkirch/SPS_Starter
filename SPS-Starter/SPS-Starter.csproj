@@ -39,6 +39,9 @@
     <ApplicationIcon>sps.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -59,7 +62,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AlleEigenschaften.cs" />
+    <Compile Include="AlleProgrammiersprachen.cs" />
+    <Compile Include="EinstellungenOrdner.cs" />
     <Compile Include="Shared.cs" />
+    <Compile Include="SharedDisplay.cs" />
+    <Compile Include="SharedStarten.cs" />
     <Compile Include="TiaPortal.cs" />
     <Compile Include="TwinCAT.cs" />
     <Page Include="MainWindow.xaml">
@@ -94,6 +102,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Einstellungen.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
