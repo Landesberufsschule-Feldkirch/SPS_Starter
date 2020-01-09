@@ -1,18 +1,14 @@
-﻿using System.Windows.Controls;
-using System.Windows.Media;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
-using System;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SPS_Starter
 {
     public partial class MainWindow
     {
-
         private void ProStarten(object sender, RoutedEventArgs e)
         {
             string OrdnerQuelle = "-";
@@ -32,21 +28,22 @@ namespace SPS_Starter
                     ProjektName = gProjekt_Name;
                     ProjektOeffnenMit = "Projekt mit Logo8 öffnen";
                     break;
-/*
+
                 case "TiaPortal Projekt starten":
-                    Eigenschaften = gEigenschaften_TiaPortal;
-                    Button_Liste = gButton_TiaPortal;
+                    OrdnerQuelle = gTiaPortal.OrdnerQuelle;
+                    OrdnerZiel = gTiaPortal.OrdnerZiel;
+                    Button_Liste = gTiaPortal.ButtonListe;
                     ProjektName = gProjekt_Name;
                     ProjektOeffnenMit = "Projekt mit TiaPortal öffnen";
                     break;
 
                 case "TwinCAT Projekt starten":
-                    Eigenschaften = gEigenschaften_TwinCAT;
-                    Button_Liste = gButton_TwinCAT;
+                    OrdnerQuelle = gTwinCat.OrdnerQuelle;
+                    OrdnerZiel = gTwinCat.OrdnerZiel;
+                    Button_Liste = gTwinCat.ButtonListe;
                     ProjektName = gProjekt_Name;
                     ProjektOeffnenMit = "Projekt mit TwinCAT öffnen";
-                    break;
-                    */
+                    break;                   
 
                 default:
                     MessageBox.Show("Unbekannter Knopf: " + StartKnopf.Content);
@@ -98,10 +95,6 @@ namespace SPS_Starter
             {
                 Console.WriteLine($"{exp} Exception 5 caught.");
             }
-
         }
-
-
-
     }
 }

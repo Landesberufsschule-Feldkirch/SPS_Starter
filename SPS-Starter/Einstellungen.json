@@ -1,16 +1,13 @@
 ﻿{
 	"Logo": {
-		"SteuerungsType": "Logo8",
 		"Source": "s:\\Linder Kurt\\Logo8\\Projekte",
 		"Destination": "h:\\Logo8V81"
 	},
 	"TIAPortal": {
-		"SteuerungsType": "TIA Portal",
 		"Source": "s:\\Linder Kurt\\TIA Portal V14 SP1\\Projekte",
 		"Destination": "h:\\TiaPortal_V14"
 	},
 	"TwinCAT": {
-		"SteuerungsType": "TwinCAT",
 		"Source": "s:\\Linder Kurt\\TwinCAT_V3\\Projekte",
 		"Destination": "h:\\TwinCAT_V3"
 	}

@@ -7,46 +7,45 @@ namespace SPS_Starter
     public class LogoSoft : SharedDisplay
     {
         public bool AnzeigeAktualisieren { get; set; }
-
-        public List<Button> ButtonListe = new List<Button>(); // { get; set; }
-
-
-        readonly MainWindow MainWindow;
-        readonly List<AlleEigenschaften> AlleEigenschaften;
-        readonly List<AlleProgrammierSprachen> AlleProgrammierSprachen = new List<AlleProgrammierSprachen>();
-        readonly Logo Logo;
-        readonly string ButtonBeschriftung;
-
         public string OrdnerQuelle { get; set; }
         public string OrdnerZiel { get; set; }
 
-        public LogoSoft(MainWindow mainWindow, List<AlleEigenschaften> alleEigenschaften, List<AlleProgrammierSprachen> alleProgrammierSprachen, Logo logo, string btnBeschriftung)
-        {
-            this.MainWindow = mainWindow;
-            AlleEigenschaften = alleEigenschaften;
-            AlleProgrammierSprachen = alleProgrammierSprachen;
-            Logo = logo;
-            ButtonBeschriftung = btnBeschriftung;
-            AnzeigeAktualisieren = true;
+        public List<Button> ButtonListe = new List<Button>();
+        readonly MainWindow mW;
+        readonly List<AlleEigenschaften> AlleEigenschaften = new List<AlleEigenschaften>();
+        readonly List<AlleProgrammierSprachen> AlleProgrammierSprachen = new List<AlleProgrammierSprachen>();
+        readonly Logo Logo;
+        string ButtonBeschriftung = "Logo Projekt starten";
 
+        public LogoSoft(MainWindow mainWindow, Logo logo)
+        {
+            mW = mainWindow;
+            Logo = logo;
+            AnzeigeAktualisieren = true;
             OrdnerQuelle = Logo.Source;
             OrdnerZiel = Logo.Destination;
+
+            AlleEigenschaften.Add(new AlleEigenschaften("PLC", "Logo8", mW.Web_Logo8_PLC, mW.StackPanel_Logo8_PLC, mW.Button_Starten_Logo8_PLC));
+            AlleEigenschaften.Add(new AlleEigenschaften("BUG", "Logo8", mW.Web_Logo8_PLC_Bugs, mW.StackPanel_Logo8_PLC_Bugs, mW.Button_Starten_Logo8_PLC_Bugs));
+
+            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("FUP", 4, mW.Checkbox_Logo8_FUP));
+            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("KOP", 4, mW.Checkbox_Logo8_KOP));
         }
 
         public void ProjekteLesen()
         {
             StackpanelAktualisieren(AlleEigenschaften, ButtonListe);
             ProgrammiersprachenAktualisieren(AlleProgrammierSprachen, AlleEigenschaften, Logo.Source);
-            AnzeigenAktualisieren(this.MainWindow, AlleEigenschaften);
+            AnzeigenAktualisieren(this.mW, AlleEigenschaften);
 
             AnzeigeAktualisieren = true;
         }
 
-        public void radioButton_Checked(object sender, RoutedEventArgs e)
+        public void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            this.MainWindow.gProjekt_Name = rb.Name;
-            HtmlFeldFuellen(this.MainWindow, AlleProgrammierSprachen, AlleEigenschaften, ButtonListe, Logo.Source, ButtonBeschriftung);
+            mW.gProjekt_Name = rb.Name;
+            HtmlFeldFuellen(mW, AlleProgrammierSprachen, AlleEigenschaften, ButtonListe, Logo.Source, ButtonBeschriftung);
         }
     }
 }

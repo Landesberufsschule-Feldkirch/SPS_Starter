@@ -23,10 +23,6 @@ namespace SPS_Starter
 
         public void ProgrammiersprachenAktualisieren(List<AlleProgrammierSprachen> alleProgrammierSprachen, List<AlleEigenschaften> alleEigenschaften, string ordnerQuelle)
         {
-            string ProgrammierSprache = "";
-            string ProjektTeilBezeichnung = "";
-            int StartBezeichnung = 0;
-
             System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(ordnerQuelle);
 
             foreach (System.IO.DirectoryInfo d in ParentDirectory.GetDirectories())
@@ -38,12 +34,11 @@ namespace SPS_Starter
                     {
                         if (Programmiersprachen.CheckBoxBezeichnung.IsChecked.Value)
                         {
-                            ProgrammierSprache = Programmiersprachen.Kurzbezeichnung;
-                            StartBezeichnung = Programmiersprachen.Laenge + d.Name.IndexOf(Programmiersprachen.Kurzbezeichnung);
-
+                            string ProgrammierSprache = Programmiersprachen.Kurzbezeichnung;
+                            int StartBezeichnung = Programmiersprachen.Laenge + d.Name.IndexOf(Programmiersprachen.Kurzbezeichnung);
                             foreach (var Eigenschaften in alleEigenschaften)
                             {
-                                ProjektTeilBezeichnung = Eigenschaften.Kurzbezeichnung + "_" + Programmiersprachen.Kurzbezeichnung;
+                                string ProjektTeilBezeichnung = Eigenschaften.Kurzbezeichnung + "_" + Programmiersprachen.Kurzbezeichnung;
                                 if (d.Name.Contains(ProjektTeilBezeichnung))
                                 {
                                     Tuple<string, string, string> TplEintrag = new Tuple<string, string, string>(d.Name.Substring(StartBezeichnung), ProgrammierSprache, d.Name);
@@ -62,21 +57,12 @@ namespace SPS_Starter
 
             foreach (var Eigenschaften in alleEigenschaften)
             {
-                //Eigenschaften.ProjekteBezeichnung.Sort();
-
                 List<Tuple<string, string, string>> EindeutigeListe = Eigenschaften.ProjekteBezeichnung.Distinct().ToList();
 
                 foreach (Tuple<string, string, string> Projekt in EindeutigeListe)
                 {
-
-                    if (Projekt.Item2 == "CPP")
-                    {
-                        KurzbezeichnungSprache = "C++";
-                    }
-                    else
-                    {
-                        KurzbezeichnungSprache = Projekt.Item2;
-                    }
+                    if (Projekt.Item2 == "CPP") KurzbezeichnungSprache = "C++";
+                    else KurzbezeichnungSprache = Projekt.Item2;
 
                     RadioButton rdo = new RadioButton
                     {
@@ -87,24 +73,12 @@ namespace SPS_Starter
                         VerticalAlignment = VerticalAlignment.Top
                     };
 
-                    if (Eigenschaften.GruppenName == "Logo8")
-                    {
-                        rdo.Checked += new RoutedEventHandler(mainWindow.gLogo8.radioButton_Checked);
-                    }
-
-                    if (Eigenschaften.GruppenName == "TwinCAT")
-                    {
-                        //rdo.Checked += new RoutedEventHandler(TwinCAT_radioButton_Checked);
-                    }
-
-                    if (Eigenschaften.GruppenName == "TIA_PORTAL_V14_SP1")
-                    {
-                        //rdo.Checked += new RoutedEventHandler(TiaPortal_radioButton_Checked);
-                    }
+                    if (Eigenschaften.GruppenName == "Logo8") rdo.Checked += new RoutedEventHandler(mainWindow.gLogo8.RadioButton_Checked);
+                    if (Eigenschaften.GruppenName == "TwinCAT") rdo.Checked += new RoutedEventHandler(mainWindow.gTwinCat.RadioButton_Checked);
+                    if (Eigenschaften.GruppenName == "TIA_PORTAL_V14_SP1") rdo.Checked += new RoutedEventHandler(mainWindow.gTiaPortal.RadioButton_Checked);
 
                     Eigenschaften.StackPanelBezeichnung.Children.Add(rdo);
                 }
-
             }
         }
 
@@ -141,12 +115,8 @@ namespace SPS_Starter
 
             foreach (var Programmiersprachen in alleProgrammierSprachen)
             {
-                if (mainWindow.gProjekt_Name.Contains(Programmiersprachen.Kurzbezeichnung))
-                {
-                    ProgrammierSprache = Programmiersprachen.Kurzbezeichnung;
-                }
+                if (mainWindow.gProjekt_Name.Contains(Programmiersprachen.Kurzbezeichnung)) ProgrammierSprache = Programmiersprachen.Kurzbezeichnung;
             }
-
 
             byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
             MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
@@ -156,18 +126,9 @@ namespace SPS_Starter
 
             foreach (var EigenSchaften in alleEigenschaften)
             {
-                if (mainWindow.gProjekt_Name.Contains(EigenSchaften.Kurzbezeichnung + "_" + ProgrammierSprache))
-                {
-                    EigenSchaften.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
-                }
-                else
-                {
-                    EigenSchaften.BrowserBezeichnung.NavigateToStream(stmLeereHtmlSeite);
-                }
+                if (mainWindow.gProjekt_Name.Contains(EigenSchaften.Kurzbezeichnung + "_" + ProgrammierSprache)) EigenSchaften.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                else EigenSchaften.BrowserBezeichnung.NavigateToStream(stmLeereHtmlSeite);
             }
-
         }
-
-
     }
 }

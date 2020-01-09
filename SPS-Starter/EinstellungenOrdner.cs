@@ -20,9 +20,6 @@
 
     public partial class Logo
     {
-        [JsonProperty("SteuerungsType")]
-        public string SteuerungsType { get; set; }
-
         [JsonProperty("Source")]
         public string Source { get; set; }
 
