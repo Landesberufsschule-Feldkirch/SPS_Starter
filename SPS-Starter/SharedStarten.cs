@@ -43,7 +43,7 @@ namespace SPS_Starter
                     Button_Liste = gTwinCat.ButtonListe;
                     ProjektName = gProjekt_Name;
                     ProjektOeffnenMit = "Projekt mit TwinCAT öffnen";
-                    break;                   
+                    break;
 
                 default:
                     MessageBox.Show("Unbekannter Knopf: " + StartKnopf.Content);

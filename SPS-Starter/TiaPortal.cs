@@ -15,7 +15,7 @@ namespace SPS_Starter
         readonly List<AlleEigenschaften> AlleEigenschaften = new List<AlleEigenschaften>();
         readonly List<AlleProgrammierSprachen> AlleProgrammierSprachen = new List<AlleProgrammierSprachen>();
         readonly Logo Logo;
-        string ButtonBeschriftung = "TiaPortal Projekt starten";
+        readonly string ButtonBeschriftung = "TiaPortal Projekt starten";
 
         public TiaPortal(MainWindow mainWindow, Logo logo)
         {

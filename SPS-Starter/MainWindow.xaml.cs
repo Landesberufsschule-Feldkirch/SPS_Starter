@@ -31,7 +31,7 @@ namespace SPS_Starter
 
         public LogoSoft gLogo8;
         public TiaPortal gTiaPortal;
-        public TwinCAT gTwinCat;
+        public TwinCat gTwinCat;
 
         public MainWindow()
         {
@@ -41,7 +41,7 @@ namespace SPS_Starter
 
             gLogo8 = new LogoSoft(this, einstellungenOrdner.Logo);
             gTiaPortal = new TiaPortal(this, einstellungenOrdner.TiaPortal);
-            gTwinCat = new TwinCAT(this, einstellungenOrdner.TwinCat);
+            gTwinCat = new TwinCat(this, einstellungenOrdner.TwinCat);
 
             gLogo8.ProjekteLesen();
             gTiaPortal.ProjekteLesen();

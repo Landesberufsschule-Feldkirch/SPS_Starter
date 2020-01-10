@@ -15,7 +15,7 @@ namespace SPS_Starter
         readonly List<AlleEigenschaften> AlleEigenschaften = new List<AlleEigenschaften>();
         readonly List<AlleProgrammierSprachen> AlleProgrammierSprachen = new List<AlleProgrammierSprachen>();
         readonly Logo Logo;
-        string ButtonBeschriftung = "Logo Projekt starten";
+        readonly string ButtonBeschriftung = "Logo Projekt starten";
 
         public LogoSoft(MainWindow mainWindow, Logo logo)
         {
