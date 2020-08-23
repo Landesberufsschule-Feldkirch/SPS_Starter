@@ -25,11 +25,11 @@ namespace SPS_Starter
             OrdnerQuelle = Logo.Source;
             OrdnerZiel = Logo.Destination;
 
-            AlleEigenschaften.Add(new AlleEigenschaften("PLC", "Logo8", mW.Web_Logo8_PLC, mW.StackPanel_Logo8_PLC, mW.Button_Starten_Logo8_PLC));
-            AlleEigenschaften.Add(new AlleEigenschaften("BUG", "Logo8", mW.Web_Logo8_PLC_Bugs, mW.StackPanel_Logo8_PLC_Bugs, mW.Button_Starten_Logo8_PLC_Bugs));
+            AlleEigenschaften.Add(new AlleEigenschaften("PLC", "Logo", mW.WebLogoPlc, mW.StackPanelLogoPlc, mW.ButtonStartenLogoPlc));
+            AlleEigenschaften.Add(new AlleEigenschaften("BUG", "Logo", mW.WebLogoPlcBugs, mW.StackPanelLogoPlcBugs, mW.ButtonStartenLogoPlcBugs));
 
-            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("FUP", 4, mW.Checkbox_Logo8_FUP));
-            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("KOP", 4, mW.Checkbox_Logo8_KOP));
+            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("FUP", 4, mW.CheckboxLogoFup));
+            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("KOP", 4, mW.CheckboxLogoKop));
         }
 
         public void ProjekteLesen()

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SPS_Starter"
         mc:Ignorable="d"
         Title="SPS Projekte starten" Height="1000" Width="1400">
     <Grid>
@@ -22,7 +21,7 @@
 
         <TabControl Grid.Column="1"  Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
 
-            <TabItem Header="Logo8">
+            <TabItem Header="LOGO!" ToolTip="Projekte für Siemens LOGO!">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"></ColumnDefinition>
@@ -37,12 +36,12 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="Checkbox_Logo8_FUP" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_Logo8_KOP" Content="KOP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxLogoFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxLogoKop" Content="KOP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
 
-                    <TabControl x:Name="Tab_Logo8" Grid.Column="1" Grid.ColumnSpan="2"  Grid.Row="2">
-                        <TabItem Header="PLC" FontSize="14">
-                            <Grid x:Name="Tab_Logo8_PLC" Background="#FFE5E5E5">
+                    <TabControl x:Name="TabLogo" Grid.Column="1" Grid.ColumnSpan="2"  Grid.Row="2">
+                        <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte">
+                            <Grid x:Name="TabLogo8Plc" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -58,14 +57,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_Logo8_PLC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_Logo8_PLC" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
-                                <WebBrowser x:Name="Web_Logo8_PLC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelLogoPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenLogoPlc" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <WebBrowser x:Name="WebLogoPlc" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
                         
-                        <TabItem Header="Bugs" FontSize="14">
-                            <Grid x:Name="Tab_Logo8_PLC_Bugs" Background="#FFE5E5E5">
+                        <TabItem Header="Bugs" FontSize="14" ToolTip="Fehlerhafte Projekte">
+                            <Grid x:Name="TabLogoPlcBugs" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -81,16 +80,16 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_Logo8_PLC_Bugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_Logo8_PLC_Bugs" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten"></Button>
-                                <WebBrowser x:Name="Web_Logo8_PLC_Bugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelLogoPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten"></Button>
+                                <WebBrowser x:Name="WebLogoPlcBugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>
 
-            <TabItem Header="TiaPortal">
+            <TabItem Header="TiaPortal"  ToolTip="Projekte für Siemens S7-1200">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"></ColumnDefinition>
@@ -107,13 +106,13 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="Checkbox_TiaPortal_FUP" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TiaPortal_KOP" Content="KOP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TiaPortal_SCL" Content="SCL" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
 
-                    <TabControl x:Name="Tab_TiaPortal" Grid.Column="1" Grid.ColumnSpan="4"  Grid.Row="2">
-                        <TabItem Header="PLC" FontSize="14">
-                            <Grid x:Name="Tab_TiaPortal_PLC" Background="#FFE5E5E5">
+                    <TabControl x:Name="TabTiaPortal" Grid.Column="1" Grid.ColumnSpan="4"  Grid.Row="2">
+                        <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die S7-1214 DC/DC/DC">
+                            <Grid x:Name="TabTiaPortalPlc" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -128,14 +127,14 @@
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <StackPanel x:Name="StackPanel_TiaPortal_PLC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
-                                <WebBrowser x:Name="Web_TiaPortal_PLC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTiaPortalPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTiaPortalPlc" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <WebBrowser x:Name="WebTiaPortalPlc" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="PLC + HMI" FontSize="14">
-                            <Grid x:Name="Tab_TiaPortal_PLC_HMI" Background="#FFE5E5E5">
+                        <TabItem Header="PLC + HMI" FontSize="14" ToolTip="Projekte für die S7-1214 DC/DC/DC und KTP700 Basic">
+                            <Grid x:Name="TabTiaPortalPlcHmi" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -151,14 +150,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TiaPortal_PLC_HMI" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_HMI" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
-                                <WebBrowser x:Name="Web_TiaPortal_PLC_HMI" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTiaPortalPlcHmi" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTiaPortalPlcHmi" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <WebBrowser x:Name="WebTiaPortalPlcHmi" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="PLC + Factory I/OI" FontSize="14">
-                            <Grid x:Name="Tab_TiaPortal_PLC_FIO" Background="#FFE5E5E5">
+                        <TabItem Header="PLC + Factory I/OI" FontSize="14" ToolTip="Projekte für die S7-1214 DC/DC/DC und die Factory I/O Simulationssoftware">
+                            <Grid x:Name="TabTiaPortalPlcFio" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="69"></ColumnDefinition>
@@ -175,14 +174,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TiaPortal_PLC_FIO" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_FIO" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1"  Click="ProStarten"></Button>
-                                <WebBrowser x:Name="Web_TiaPortal_PLC_FIO" Grid.Column="4" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTiaPortalPlcFio" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTiaPortalPlcFio" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1"  Click="ProStarten"></Button>
+                                <WebBrowser x:Name="WebTiaPortalPlcFio" Grid.Column="4" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="Digital Twin" FontSize="14">
-                            <Grid x:Name="Tab_TiaPortal_PLC_DT" Background="#FFE5E5E5">
+                        <TabItem Header="Digital Twin" FontSize="14" ToolTip="Projekte für die S7-1214 DC/DC/DC und eine zweite SPS als Regelstrecke (Digitaler Zwilling)">
+                            <Grid x:Name="TabTiaPortalPlcDt" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -199,14 +198,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TiaPortal_PLC_DT" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_DT" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Click="ProStarten" ></Button>
-                                <WebBrowser x:Name="Web_TiaPortal_PLC_DT" Grid.Column="4" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTiaPortalPlcDt" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTiaPortalPlcDt" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Click="ProStarten" ></Button>
+                                <WebBrowser x:Name="WebTiaPortalPlcDt" Grid.Column="4" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="Snap 7" FontSize="14">
-                            <Grid x:Name="Tab_TiaPortal_PLC_Snap7" Background="#FFE5E5E5">
+                        <TabItem Header="Snap 7" FontSize="14" ToolTip="Projekte für die S7-1214 DC/DC/DC und eine Simulation / Regelstrecke am PC">
+                            <Grid x:Name="TabTiaPortalPlcSnap7" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -223,14 +222,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TiaPortal_PLC_Snap7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_Snap7" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Click="ProStarten" ></Button>
-                                <WebBrowser x:Name="Web_TiaPortal_PLC_Snap7" Grid.Column="4" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTiaPortalPlcSnap7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTiaPortalPlcSnap7" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Click="ProStarten" ></Button>
+                                <WebBrowser x:Name="WebTiaPortalPlcSnap7" Grid.Column="4" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
-                        
-                        <TabItem Header="Bugs" FontSize="14">
-                            <Grid x:Name="Tab_TiaPortal_PLC_Bugs" Background="#FFE5E5E5">
+
+                        <TabItem Header="Bugs" FontSize="14" ToolTip="Fehlerhafte Projekte für die S7-1214 DC/DC/DC">
+                            <Grid x:Name="TabTiaPortalPlcBugs" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -246,16 +245,16 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TiaPortal_PLC_Bugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TiaPortal_PLC_Bugs" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
-                                <WebBrowser x:Name="Web_TiaPortal_PLC_Bugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTiaPortalPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTiaPortalPlcBugs" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <WebBrowser x:Name="WebTiaPortalPlcBugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>
 
-            <TabItem Header="TwinCAT">
+            <TabItem Header="TwinCAT" ToolTip="Projekte für Beckhoff">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"></ColumnDefinition>
@@ -275,17 +274,17 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="Checkbox_TwinCAT_AS" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_AWL" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_CFC" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_CPP" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_FUP" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_KOP" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="Checkbox_TwinCAT_ST" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTwinCatAs" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTwinCatAwl" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTwinCatCfc" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTwinCatCpp" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTwinCatFup" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTwinCatKop" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTwinCatSt" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
 
-                    <TabControl x:Name="Tab_WinCAT" Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="2">
-                        <TabItem Header="PLC" FontSize="14">
-                            <Grid x:Name="Tab_TwinCAT_PLC" Background="#FFE5E5E5">
+                    <TabControl x:Name="TabWinCat" Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="2">
+                        <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020">
+                            <Grid x:Name="TabTwinCatPlc" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -301,14 +300,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TwinCAT_PLC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
-                                <WebBrowser x:Name="Web_TwinCAT_PLC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTwinCatPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTwinCatPlc" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <WebBrowser x:Name="WebTwinCatPlc" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="PLC + Visu" FontSize="14">
-                            <Grid x:Name="Tab_TwinCAT_PLC_VISU" Background="#FFE5E5E5">
+                        <TabItem Header="PLC + Visu" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020 und eine Visualisierung am PC">
+                            <Grid x:Name="TabTwinCatPlcVisu" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -324,14 +323,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TwinCAT_PLC_VISU" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC_VISU" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
-                                <WebBrowser x:Name="Web_TwinCAT_PLC_VISU" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTwinCatPlcVisu" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTwinCatPlcVisu" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <WebBrowser x:Name="WebTwinCatPlcVisu" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="PLC + NC" FontSize="14">
-                            <Grid x:Name="Tab_TwinCAT_PLC_NC" Background="#FFE5E5E5">
+                        <TabItem Header="PLC + NC" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020 und NC Antriebe (Servomotor, Schrittmotor, DC-Motor)">
+                            <Grid x:Name="TabTwinCatPlcNc" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -347,14 +346,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TwinCAT_PLC_NC" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC_NC" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
-                                <WebBrowser x:Name="Web_TwinCAT_PLC_NC" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTwinCatPlcNc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTwinCatPlcNc" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <WebBrowser x:Name="WebTwinCatPlcNc" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="Digital Twin" FontSize="14">
-                            <Grid x:Name="Tab_TwinCAT_PLC_DT" Background="#FFE5E5E5">
+                        <TabItem Header="Digital Twin" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020 und eine zweite SPS (digitaler Zwilling)">
+                            <Grid x:Name="TabTwinCatPlcDt" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -370,14 +369,14 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TwinCAT_PLC_DT" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC_DT" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
-                                <WebBrowser x:Name="Web_TwinCAT_PLC_DT" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTwinCatPlcDt" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTwinCatPlcDt" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <WebBrowser x:Name="WebTwinCatPlcDt" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="Bugs" FontSize="14">
-                            <Grid x:Name="Tab_TwinCAT_PLC_Bugs" Background="#FFE5E5E5">
+                        <TabItem Header="AdsRemote" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020 und eine Simulation / Regelstrecke am PC">
+                            <Grid x:Name="TabTwinCatPlcAds" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"></ColumnDefinition>
                                     <ColumnDefinition Width="450"></ColumnDefinition>
@@ -393,9 +392,32 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel x:Name="StackPanel_TwinCAT_PLC_Bugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="Button_Starten_TwinCAT_PLC_Bugs" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
-                                <WebBrowser x:Name="Web_TwinCAT_PLC_Bugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                                <StackPanel x:Name="StackPanelTwinCatPlcAds" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTwinCatPlcAds" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <WebBrowser x:Name="WebTwinCatPlcAds" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem Header="Bugs" FontSize="14" ToolTip="Fehlerhafte Projekte für die CPU CX9020">
+                            <Grid x:Name="TabTwinCatPlcBugs" Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel x:Name="StackPanelTwinCatPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTwinCatPlcBugs" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <WebBrowser x:Name="WebTwinCatPlcBugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
                     </TabControl>

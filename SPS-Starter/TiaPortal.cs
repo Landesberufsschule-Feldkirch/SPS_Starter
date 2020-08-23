@@ -25,16 +25,16 @@ namespace SPS_Starter
             OrdnerQuelle = Logo.Source;
             OrdnerZiel = Logo.Destination;
 
-            AlleEigenschaften.Add(new AlleEigenschaften("PLC", "TIA_PORTAL_V14_SP1", mW.Web_TiaPortal_PLC, mW.StackPanel_TiaPortal_PLC, mW.Button_Starten_TiaPortal_PLC));
-            AlleEigenschaften.Add(new AlleEigenschaften("PLC_HMI", "TIA_PORTAL_V14_SP1", mW.Web_TiaPortal_PLC_HMI, mW.StackPanel_TiaPortal_PLC_HMI, mW.Button_Starten_TiaPortal_PLC_HMI));
-            AlleEigenschaften.Add(new AlleEigenschaften("PLC_FIO", "TIA_PORTAL_V14_SP1", mW.Web_TiaPortal_PLC_FIO, mW.StackPanel_TiaPortal_PLC_FIO, mW.Button_Starten_TiaPortal_PLC_FIO));
-            AlleEigenschaften.Add(new AlleEigenschaften("PLC_DT", "TIA_PORTAL_V14_SP1", mW.Web_TiaPortal_PLC_DT, mW.StackPanel_TiaPortal_PLC_DT, mW.Button_Starten_TiaPortal_PLC_DT));
-            AlleEigenschaften.Add(new AlleEigenschaften("PLC_Snap7", "TIA_PORTAL_V14_SP1", mW.Web_TiaPortal_PLC_Snap7, mW.StackPanel_TiaPortal_PLC_Snap7, mW.Button_Starten_TiaPortal_PLC_Snap7));
-            AlleEigenschaften.Add(new AlleEigenschaften("PLC_BUG", "TIA_PORTAL_V14_SP1", mW.Web_TiaPortal_PLC_Bugs, mW.StackPanel_TiaPortal_PLC_Bugs, mW.Button_Starten_TiaPortal_PLC_Bugs));
+            AlleEigenschaften.Add(new AlleEigenschaften("PLC", "TIA_PORTAL_V14_SP1", mW.WebTiaPortalPlc, mW.StackPanelTiaPortalPlc, mW.ButtonStartenTiaPortalPlc));
+            AlleEigenschaften.Add(new AlleEigenschaften("PLC_HMI", "TIA_PORTAL_V14_SP1", mW.WebTiaPortalPlcHmi, mW.StackPanelTiaPortalPlcHmi, mW.ButtonStartenTiaPortalPlcHmi));
+            AlleEigenschaften.Add(new AlleEigenschaften("PLC_FIO", "TIA_PORTAL_V14_SP1", mW.WebTiaPortalPlcFio, mW.StackPanelTiaPortalPlcFio, mW.ButtonStartenTiaPortalPlcFio));
+            AlleEigenschaften.Add(new AlleEigenschaften("PLC_DT", "TIA_PORTAL_V14_SP1", mW.WebTiaPortalPlcDt, mW.StackPanelTiaPortalPlcDt, mW.ButtonStartenTiaPortalPlcDt));
+            AlleEigenschaften.Add(new AlleEigenschaften("PLC_Snap7", "TIA_PORTAL_V14_SP1", mW.WebTiaPortalPlcSnap7, mW.StackPanelTiaPortalPlcSnap7, mW.ButtonStartenTiaPortalPlcSnap7));
+            AlleEigenschaften.Add(new AlleEigenschaften("PLC_BUG", "TIA_PORTAL_V14_SP1", mW.WebTiaPortalPlcBugs, mW.StackPanelTiaPortalPlcBugs, mW.ButtonStartenTiaPortalPlcBugs));
 
-            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("FUP", 4, mW.Checkbox_TiaPortal_FUP));
-            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("KOP", 4, mW.Checkbox_TiaPortal_KOP));
-            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("SCL", 4, mW.Checkbox_TiaPortal_SCL));
+            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("FUP", 4, mW.CheckboxTiaPortalFup));
+            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("KOP", 4, mW.CheckboxTiaPortalKop));
+            AlleProgrammierSprachen.Add(new AlleProgrammierSprachen("SCL", 4, mW.CheckboxTiaPortalScl));
         }
 
         public void ProjekteLesen()

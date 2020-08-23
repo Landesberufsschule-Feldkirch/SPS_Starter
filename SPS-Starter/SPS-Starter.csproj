@@ -69,7 +69,7 @@
     <Compile Include="SharedDisplay.cs" />
     <Compile Include="SharedStarten.cs" />
     <Compile Include="TiaPortal.cs" />
-    <Compile Include="TwinCat1.cs" />
+    <Compile Include="TwinCat.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
