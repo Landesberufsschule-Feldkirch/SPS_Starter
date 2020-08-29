@@ -107,7 +107,7 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
                     <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
                     <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
 

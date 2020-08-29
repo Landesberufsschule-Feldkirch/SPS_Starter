@@ -41,25 +41,20 @@ namespace SPS_Starter
                         AnzeigeUpdatenLogo();
                         break;
 
-                    case "Checkbox_TiaPortal_FUP":
-                        break;
-                    case "Checkbox_TiaPortal_KOP":
-                        break;
-                    case "Checkbox_TiaPortal_SCL":
+                    case "CheckboxTiaPortalFup":
+                    case "CheckboxTiaPortalKop": 
+                    case "CheckboxTiaPortalScl":
+                        AnzeigeUpdatenTiaPortal();
                         break;
 
 
-                    case "Checkbox_TwinCAT_AS":
-                        break;
-                    case "Checkbox_TwinCAT_AWL":
-                        break;
-                    case "Checkbox_TwinCAT_CFC":
-                        break;
-                    case "Checkbox_TwinCAT_FUP":
-                        break;
-                    case "Checkbox_TwinCAT_KOP":
-                        break;
-                    case "Checkbox_TwinCAT_ST":
+                    case "CheckboxTwinCatAs":
+                    case "CheckboxTwinCatAwl":
+                    case "CheckboxTwinCatCfc":
+                    case "CheckboxTwinCatFup":
+                    case "CheckboxTwinCatKop":
+                    case "CheckboxTwinCatSt":
+                        AnzeigeUpdatenTwinCat();
                         break;
                 }
         }
@@ -68,36 +63,51 @@ namespace SPS_Starter
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sender is TabControl tabControl)
+            if (sender is TabControl tabControl && tabControl.SelectedValue is TabItem item)
             {
-                if (tabControl.SelectedValue is TabItem item)
+                switch (item.Header.ToString())
                 {
-                    switch (item.Header.ToString())
-                    {
-                        case "Logo8":
-                            AnzeigeUpdatenLogo();
-                            break;
+                    case "Logo8":
+                        AnzeigeUpdatenLogo();
+                        break;
 
-                        case "TiaPortal":
-                            AnzeigeUpdatenTiaPortal();
-                            break;
+                    case "TiaPortal":
+                        AnzeigeUpdatenTiaPortal();
+                        break;
 
-                        case "TwinCAT":
-                            AnzeigeUpdatenTwinCat();
-                            break;
-                    }
+                    case "TwinCAT":
+                        AnzeigeUpdatenTwinCat();
+                        break;
                 }
             }
         }
 
         private void AnzeigeUpdatenTwinCat()
         {
-            //
+            var als = true;
+            var awl = true;
+            var cfc = true;
+            var fup = true;
+            var kop = true;
+            var st = true;
+
+            if (CheckboxTwinCatAs != null) als = (bool)CheckboxTwinCatAs.IsChecked;
+            if (CheckboxTwinCatAwl != null) awl = (bool)CheckboxTwinCatAwl.IsChecked;
+            if (CheckboxTwinCatCfc != null) cfc = (bool)CheckboxTwinCatCfc.IsChecked;
+            if (CheckboxTwinCatFup != null) fup = (bool)CheckboxTwinCatFup.IsChecked;
+            if (CheckboxTwinCatKop != null) kop = (bool)CheckboxTwinCatKop.IsChecked;
+            if (CheckboxTwinCatSt != null) st = (bool)CheckboxTwinCatSt.IsChecked;
         }
 
         private void AnzeigeUpdatenTiaPortal()
         {
-            //
+            var fup = true;
+            var kop = true;
+            var scl = true;
+
+            if (CheckboxTiaPortalFup != null) fup = (bool)CheckboxTiaPortalFup.IsChecked;
+            if (CheckboxTiaPortalKop != null) kop = (bool)CheckboxTiaPortalKop.IsChecked;
+            if (CheckboxTiaPortalScl != null) scl = (bool)CheckboxTiaPortalScl.IsChecked;
         }
 
         private void AnzeigeUpdatenLogo()
@@ -107,7 +117,6 @@ namespace SPS_Starter
 
             if (CheckboxLogoFup != null) fup = (bool)CheckboxLogoFup.IsChecked;
             if (CheckboxLogoKop != null) kop = (bool)CheckboxLogoKop.IsChecked;
-
         }
     }
 }
