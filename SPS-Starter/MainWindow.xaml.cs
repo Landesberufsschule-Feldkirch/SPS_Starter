@@ -1,51 +1,113 @@
-﻿using System;
-using System.IO;
-using System.Windows;
-using System.Windows.Threading;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace SPS_Starter
 {
-    public static class ExtensionMethods
+    public partial class MainWindow
     {
-        private static Action EmptyDelegate = delegate () { };
-
-        public static void Refresh(this UIElement uiElement)
-        {
-            try
-            {
-                uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine($"{exp} Exception 1 caught.");
-            }
-        }
-    }
-
-    public partial class MainWindow : Window
-    {
-        public string gHtmlSeiteLeer = "<!doctype html> Leere Seite?  </html >";
-        public string gHtmlSeiteDateiFehlt = "<!doctype html> Datei fehlt!  </html >";
-
-        public string gProjekt_Name { get; set; }
-
-        public LogoSoft gLogo8;
-        public TiaPortal gTiaPortal;
-        public TwinCat gTwinCat;
-
         public MainWindow()
         {
+            var viewModel = new ViewModel.ViewModel(this);
+
             InitializeComponent();
+            DataContext = viewModel;
 
-            var einstellungenOrdner = EinstellungenOrdnerLesen.FromJson(File.ReadAllText(@"Einstellungen.json"));
+            AnzeigeUpdatenLogo();
+            AnzeigeUpdatenTiaPortal();
+            AnzeigeUpdatenTwinCat();
+        }
 
-            gLogo8 = new LogoSoft(this, einstellungenOrdner.Logo);
-            gTiaPortal = new TiaPortal(this, einstellungenOrdner.TiaPortal);
-            gTwinCat = new TwinCat(this, einstellungenOrdner.TwinCat);
+        internal void ProjektStarten(object obj)
+        {
+            //
+        }
 
-            gLogo8.ProjekteLesen();
-            gTiaPortal.ProjekteLesen();
-            gTwinCat.ProjekteLesen();
+
+        public void TabControlSelectionChanged(object obj)
+        {
+            //
+        }
+
+
+        private void CheckboxChecked(object sender, RoutedEventArgs e)
+        {
+            var cb = sender as CheckBox;
+
+            if (cb != null)
+                switch (cb.Name)
+                {
+                    case "CheckboxLogoFup":
+                    case "CheckboxLogoKop":
+                        AnzeigeUpdatenLogo();
+                        break;
+
+                    case "Checkbox_TiaPortal_FUP":
+                        break;
+                    case "Checkbox_TiaPortal_KOP":
+                        break;
+                    case "Checkbox_TiaPortal_SCL":
+                        break;
+
+
+                    case "Checkbox_TwinCAT_AS":
+                        break;
+                    case "Checkbox_TwinCAT_AWL":
+                        break;
+                    case "Checkbox_TwinCAT_CFC":
+                        break;
+                    case "Checkbox_TwinCAT_FUP":
+                        break;
+                    case "Checkbox_TwinCAT_KOP":
+                        break;
+                    case "Checkbox_TwinCAT_ST":
+                        break;
+                }
+        }
+
+
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is TabControl tabControl)
+            {
+                if (tabControl.SelectedValue is TabItem item)
+                {
+                    switch (item.Header.ToString())
+                    {
+                        case "Logo8":
+                            AnzeigeUpdatenLogo();
+                            break;
+
+                        case "TiaPortal":
+                            AnzeigeUpdatenTiaPortal();
+                            break;
+
+                        case "TwinCAT":
+                            AnzeigeUpdatenTwinCat();
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void AnzeigeUpdatenTwinCat()
+        {
+            //
+        }
+
+        private void AnzeigeUpdatenTiaPortal()
+        {
+            //
+        }
+
+        private void AnzeigeUpdatenLogo()
+        {
+            var fup = true;
+            var kop = true;
+
+            if (CheckboxLogoFup != null) fup = (bool)CheckboxLogoFup.IsChecked;
+            if (CheckboxLogoKop != null) kop = (bool)CheckboxLogoKop.IsChecked;
+
         }
     }
 }

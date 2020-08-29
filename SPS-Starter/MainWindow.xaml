@@ -36,8 +36,8 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxLogoFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxLogoKop" Content="KOP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxLogoFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxLogoKop" Content="KOP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
 
                     <TabControl x:Name="TabLogo" Grid.Column="1" Grid.ColumnSpan="2"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte">
@@ -58,11 +58,11 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelLogoPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenLogoPlc" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <Button x:Name="ButtonStartenLogoPlc" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebLogoPlc" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
-                        
+
                         <TabItem Header="Bugs" FontSize="14" ToolTip="Fehlerhafte Projekte">
                             <Grid x:Name="TabLogoPlcBugs" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
@@ -81,7 +81,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelLogoPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten"></Button>
+                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="Logo Projekt starten" Grid.Column="3" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebLogoPlcBugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -93,7 +93,8 @@
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"></ColumnDefinition>
-                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="11"></ColumnDefinition>
+                        <ColumnDefinition Width="49"/>
                         <ColumnDefinition Width="60"></ColumnDefinition>
                         <ColumnDefinition Width="60"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -106,11 +107,11 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
 
-                    <TabControl x:Name="TabTiaPortal" Grid.Column="1" Grid.ColumnSpan="4"  Grid.Row="2">
+                    <TabControl x:Name="TabTiaPortal" Grid.Column="1" Grid.ColumnSpan="5"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die S7-1214 DC/DC/DC">
                             <Grid x:Name="TabTiaPortalPlc" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
@@ -128,7 +129,7 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <StackPanel x:Name="StackPanelTiaPortalPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTiaPortalPlc" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <Button x:Name="ButtonStartenTiaPortalPlc" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTiaPortalPlc" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -151,7 +152,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcHmi" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTiaPortalPlcHmi" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <Button x:Name="ButtonStartenTiaPortalPlcHmi" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTiaPortalPlcHmi" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -175,7 +176,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcFio" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTiaPortalPlcFio" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1"  Click="ProStarten"></Button>
+                                <Button x:Name="ButtonStartenTiaPortalPlcFio" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1"  Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTiaPortalPlcFio" Grid.Column="4" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -199,7 +200,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcDt" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTiaPortalPlcDt" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Click="ProStarten" ></Button>
+                                <Button x:Name="ButtonStartenTiaPortalPlcDt" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTiaPortalPlcDt" Grid.Column="4" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -223,7 +224,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcSnap7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTiaPortalPlcSnap7" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Click="ProStarten" ></Button>
+                                <Button x:Name="ButtonStartenTiaPortalPlcSnap7" Content="TiaPortal Projekt starten" Grid.Column="4" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTiaPortalPlcSnap7" Grid.Column="4" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -246,7 +247,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTiaPortalPlcBugs" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <Button x:Name="ButtonStartenTiaPortalPlcBugs" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTiaPortalPlcBugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -274,13 +275,13 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxTwinCatAs" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxTwinCatAwl" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxTwinCatCfc" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxTwinCatCpp" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxTwinCatFup" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxTwinCatKop" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
-                    <CheckBox x:Name="CheckboxTwinCatSt" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Unchecked="Checkbox_Checked" Checked="Checkbox_Checked"></CheckBox>
+                    <CheckBox x:Name="CheckboxTwinCatAs" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True"  Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTwinCatAwl" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTwinCatCfc" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTwinCatCpp" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTwinCatFup" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTwinCatKop" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTwinCatSt" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
 
                     <TabControl x:Name="TabWinCat" Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020">
@@ -301,7 +302,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTwinCatPlc" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <Button x:Name="ButtonStartenTwinCatPlc" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTwinCatPlc" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -324,7 +325,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcVisu" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTwinCatPlcVisu" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <Button x:Name="ButtonStartenTwinCatPlcVisu" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTwinCatPlcVisu" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -347,7 +348,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcNc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTwinCatPlcNc" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <Button x:Name="ButtonStartenTwinCatPlcNc" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTwinCatPlcNc" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -370,7 +371,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcDt" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTwinCatPlcDt" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <Button x:Name="ButtonStartenTwinCatPlcDt" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTwinCatPlcDt" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -393,7 +394,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcAds" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTwinCatPlcAds" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Click="ProStarten" ></Button>
+                                <Button x:Name="ButtonStartenTwinCatPlcAds" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTwinCatPlcAds" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
@@ -416,7 +417,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
-                                <Button x:Name="ButtonStartenTwinCatPlcBugs" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Click="ProStarten"></Button>
+                                <Button x:Name="ButtonStartenTwinCatPlcBugs" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTwinCatPlcBugs" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>

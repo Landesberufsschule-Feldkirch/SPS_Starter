@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPS-Starter", "SPS-Starter\SPS-Starter.csproj", "{9E3FBE10-E20A-4C7C-B597-62037B659888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPS_Starter", "SPS-Starter\SPS_Starter.csproj", "{9E3FBE10-E20A-4C7C-B597-62037B659888}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

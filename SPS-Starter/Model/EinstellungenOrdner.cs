@@ -1,11 +1,10 @@
-﻿namespace SPS_Starter
+﻿using System.Globalization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace SPS_Starter.Model
 {
     // https://app.quicktype.io/#l=cs&r=json2csharp
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using System.Globalization;
-
     public partial class EinstellungenOrdnerLesen
     {
         [JsonProperty("Logo")]
@@ -18,7 +17,7 @@
         public Logo TwinCat { get; set; }
     }
 
-    public partial class Logo
+    public class Logo
     {
         [JsonProperty("Source")]
         public string Source { get; set; }
@@ -29,12 +28,12 @@
 
     public partial class EinstellungenOrdnerLesen
     {
-        public static EinstellungenOrdnerLesen FromJson(string json) => JsonConvert.DeserializeObject<EinstellungenOrdnerLesen>(json, SPS_Starter.Converter.Settings);
+        public static EinstellungenOrdnerLesen FromJson(string json) => JsonConvert.DeserializeObject<EinstellungenOrdnerLesen>(json, Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this EinstellungenOrdnerLesen self) => JsonConvert.SerializeObject(self, SPS_Starter.Converter.Settings);
+        public static string ToJson(this EinstellungenOrdnerLesen self) => JsonConvert.SerializeObject(self, Converter.Settings);
     }
 
     internal static class Converter
