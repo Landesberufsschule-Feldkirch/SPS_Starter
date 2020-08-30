@@ -31,6 +31,7 @@ namespace SPS_Starter
 
         private void CheckboxChecked(object sender, RoutedEventArgs e)
         {
+            // todo switch enfernen
             var cb = sender as CheckBox;
 
             if (cb != null)
