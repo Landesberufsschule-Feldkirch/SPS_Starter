@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
 
 namespace SPS_Starter.Model
 {
     public class SpsStarter
     {
-
         public enum Steuerungen
         {
             Logo,
@@ -14,6 +12,31 @@ namespace SPS_Starter.Model
             TwinCat
         }
 
+        public enum Kategorien
+        {
+            AdsRemote,
+            Bug,
+            DigitalTwin,
+            FactoryIo,
+            Hmi,
+            Nc,
+            Plc,
+            Snap7,
+            SoftwareTests,
+            Visu
+        }
+
+        public enum Programmiersprachen
+        {
+            As,
+            Awl,
+            Cfc,
+            Cpp,
+            Fup,
+            Kop,
+            Scl,
+            Stl
+        }
 
         public List<ProjektEigenschaften> AlleProjektEigenschaften = new List<ProjektEigenschaften>();
 
