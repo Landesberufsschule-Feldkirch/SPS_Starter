@@ -13,7 +13,7 @@ namespace SPS_Starter.ViewModel
         public ViewModel(MainWindow mw)
         {
             _mainWindow = mw;
-            var spsStarter = new Model.SpsStarter();
+            var spsStarter = new Model.SpsStarter(mw);
             ViAnzeige = new VisuAnzeigen(_mainWindow, spsStarter);
         }
 
@@ -24,6 +24,11 @@ namespace SPS_Starter.ViewModel
         public ICommand TabControlSelectionChanged => _tabControlSelectionChanged ?? (_tabControlSelectionChanged = new RelayCommand(_mainWindow.TabControlSelectionChanged));
 
 
+        
+
+        private ICommand _btnHaken;
+        // ReSharper disable once UnusedMember.Global
+        public ICommand BtnHaken => _btnHaken ?? (_btnHaken = new RelayCommand(_mainWindow.ButtonGeaendert));
 
         private ICommand _btnProjektStarten;
         // ReSharper disable once UnusedMember.Global

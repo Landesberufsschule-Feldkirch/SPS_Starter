@@ -36,8 +36,8 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxLogoFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxLogoKop" Content="KOP" Grid.Column="1" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxLogoFup" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxLogoKop" Content="KOP" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
 
                     <TabControl x:Name="TabLogo" Grid.Column="1" Grid.ColumnSpan="2"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte">
@@ -107,9 +107,9 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="3" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="4" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
 
                     <TabControl x:Name="TabTiaPortal" Grid.Column="1" Grid.ColumnSpan="5"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die S7-1214 DC/DC/DC">
@@ -275,13 +275,13 @@
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxTwinCatAs" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True"  Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxTwinCatAwl" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxTwinCatCfc" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxTwinCatCpp" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxTwinCatFup" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxTwinCatKop" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
-                    <CheckBox x:Name="CheckboxTwinCatSt" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Unchecked="CheckboxChecked" Checked="CheckboxChecked"/>
+                    <CheckBox x:Name="CheckboxTwinCatAs" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True"  Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTwinCatAwl" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTwinCatCfc" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTwinCatCpp" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTwinCatFup" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTwinCatKop" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTwinCatSt" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
 
                     <TabControl x:Name="TabWinCat" Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020">

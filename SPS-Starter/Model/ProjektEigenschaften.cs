@@ -19,6 +19,7 @@ namespace SPS_Starter.Model
             Bezeichnung = BezeichnungBestimmen(quelle);
             Programmiersprache = ProgrammierspracheBestimmen(Steuerung, quelle);
             Kategorien = KategorieBestimmen(Steuerung, quelle);
+
         }
 
         private SpsStarter.Kategorien KategorieBestimmen(SpsStarter.Steuerungen steuerung, string quelle)
@@ -29,13 +30,14 @@ namespace SPS_Starter.Model
                     return quelle.Contains("BUG_") ? SpsStarter.Kategorien.Bug : SpsStarter.Kategorien.Plc;
 
                 case SpsStarter.Steuerungen.TiaPortal:
-                    if (quelle.Contains("FIO_")) return SpsStarter.Kategorien.FactoryIo;
+                    if (quelle.Contains("BUG_")) return SpsStarter.Kategorien.Bug;
                     if (quelle.Contains("DT_")) return SpsStarter.Kategorien.DigitalTwin;
+                    if (quelle.Contains("FIO_")) return SpsStarter.Kategorien.FactoryIo;
                     if (quelle.Contains("HMI_")) return SpsStarter.Kategorien.Hmi;
                     return quelle.Contains("Snap7_") ? SpsStarter.Kategorien.Snap7 : SpsStarter.Kategorien.Plc;
 
                 case SpsStarter.Steuerungen.TwinCat:
-
+                    if (quelle.Contains("BUG_")) return SpsStarter.Kategorien.Bug;
                     if (quelle.Contains("VISU_")) return SpsStarter.Kategorien.Visu;
                     if (quelle.Contains("ADS_")) return SpsStarter.Kategorien.AdsRemote;
                     if (quelle.Contains("DT_")) return SpsStarter.Kategorien.DigitalTwin;
