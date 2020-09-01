@@ -12,7 +12,7 @@ namespace SPS_Starter.Model
             TwinCat
         }
 
-        public enum Kategorien
+        public enum SpsKategorie
         {
             AdsRemote,
             Bug,
@@ -26,7 +26,7 @@ namespace SPS_Starter.Model
             Visu
         }
 
-        public enum Programmiersprachen
+        public enum SpsSprachen
         {
             As,
             Awl,
@@ -38,14 +38,14 @@ namespace SPS_Starter.Model
             Stl
         }
 
-   
+    
         private readonly MainWindow _mainWindow;
 
         public SpsStarter(MainWindow mw)
         {
             _mainWindow = mw;
            
-
+          
         }
     }
 }

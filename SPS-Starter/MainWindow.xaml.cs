@@ -9,11 +9,13 @@ namespace SPS_Starter
     public partial class MainWindow
     {
         public Model.AlleDaten AlleDaten { get; set; }
+        public  Model.AlleWerte AlleWerte { get; set; }
         public  string ProjektName { get; set; }
         public Model.SpsStarter.Steuerungen AktuelleSteuerung { get; set; }
         public MainWindow()
         {
             AktuelleSteuerung = Model.SpsStarter.Steuerungen.Logo;
+AlleWerte = new AlleWerte();
 
             var viewModel = new ViewModel.ViewModel(this);
 
@@ -21,7 +23,7 @@ namespace SPS_Starter
             DataContext = viewModel;
 
             AlleDaten = new AlleDaten(this);
-
+            
 
             AnzeigeUpdatenLogo();
             AnzeigeUpdatenTiaPortal();
@@ -120,13 +122,13 @@ namespace SPS_Starter
                             {
                                 switch (projektEigenschaften.Programmiersprache)
                                 {
-                                    case SpsStarter.Programmiersprachen.As when als:
-                                    case SpsStarter.Programmiersprachen.Awl when awl:
-                                    case SpsStarter.Programmiersprachen.Cfc when cfc:
-                                    case SpsStarter.Programmiersprachen.Cpp when cpp:
-                                    case SpsStarter.Programmiersprachen.Fup when fup:
-                                    case SpsStarter.Programmiersprachen.Kop when kop:
-                                    case SpsStarter.Programmiersprachen.Stl when st:
+                                    case SpsStarter.SpsSprachen.As when als:
+                                    case SpsStarter.SpsSprachen.Awl when awl:
+                                    case SpsStarter.SpsSprachen.Cfc when cfc:
+                                    case SpsStarter.SpsSprachen.Cpp when cpp:
+                                    case SpsStarter.SpsSprachen.Fup when fup:
+                                    case SpsStarter.SpsSprachen.Kop when kop:
+                                    case SpsStarter.SpsSprachen.Stl when st:
                                         EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
                                         break;
                                 }
@@ -162,9 +164,9 @@ namespace SPS_Starter
                             {
                                 switch (projektEigenschaften.Programmiersprache)
                                 {
-                                    case SpsStarter.Programmiersprachen.Fup when fup:
-                                    case SpsStarter.Programmiersprachen.Kop when kop:
-                                    case SpsStarter.Programmiersprachen.Scl when scl:
+                                    case SpsStarter.SpsSprachen.Fup when fup:
+                                    case SpsStarter.SpsSprachen.Kop when kop:
+                                    case SpsStarter.SpsSprachen.Scl when scl:
                                         EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
                                         break;
                                 }
@@ -185,11 +187,11 @@ namespace SPS_Starter
 
             if (AlleDaten.AlleTabEigenschaften != null)
             {
-
+                /*
                 var logo = AlleDaten.AlleProjektEigenschaften
                     .Where(x => x.Steuerung == SpsStarter.Steuerungen.Logo)
-                    .Where(y => (y.Programmiersprache == SpsStarter.Programmiersprachen.Fup &&fup) ||
-                                (y.Programmiersprache == SpsStarter.Programmiersprachen.Kop && kop))
+                    .Where(y => (y.Programmiersprache == SpsStarter.SpsSprachen.Fup &&fup) ||
+                                (y.Programmiersprache == SpsStarter.SpsSprachen.Kop && kop))
                     .ToList();
 
                 AlleDaten.AlleTabEigenschaften
@@ -201,6 +203,8 @@ namespace SPS_Starter
                         x.StackPanelBezeichnung?.Children?.Clear();
 
                     });
+                */
+
                 foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften)
                 {
                     if (tabEigenschaften.Steuerungen == SpsStarter.Steuerungen.Logo)
@@ -214,8 +218,8 @@ namespace SPS_Starter
                             {
                                 switch (projektEigenschaften.Programmiersprache)
                                 {
-                                    case SpsStarter.Programmiersprachen.Fup when fup:
-                                    case SpsStarter.Programmiersprachen.Kop when kop:
+                                    case SpsStarter.SpsSprachen.Fup when fup:
+                                    case SpsStarter.SpsSprachen.Kop when kop:
                                         EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
                                         break;
                                 }
@@ -229,7 +233,7 @@ namespace SPS_Starter
         private void EinzelnenTabFuellen(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
         {
 
-            if (tabEigenschaften.Kategorien == projektEigenschaften.Kategorien)
+            if (tabEigenschaften.SpsKategorie == projektEigenschaften.SpsKategorie)
             {
                 RadioButton rdo = new RadioButton
                 {
@@ -259,19 +263,19 @@ namespace SPS_Starter
             */
         }
 
-        private string ProgrammierspracheAnzeigen(Model.SpsStarter.Programmiersprachen programmiersprachen)
+        private string ProgrammierspracheAnzeigen(Model.SpsStarter.SpsSprachen spsSprachen)
         {
-            return programmiersprachen switch
+            return spsSprachen switch
             {
-                SpsStarter.Programmiersprachen.Fup => "FUP",
-                SpsStarter.Programmiersprachen.As => "AS",
-                SpsStarter.Programmiersprachen.Awl => "AWL",
-                SpsStarter.Programmiersprachen.Cfc => "CFC",
-                SpsStarter.Programmiersprachen.Cpp => "C++",
-                SpsStarter.Programmiersprachen.Kop => "KOP",
-                SpsStarter.Programmiersprachen.Scl => "SCL",
-                SpsStarter.Programmiersprachen.Stl => "ST",
-                _ => throw new ArgumentOutOfRangeException(nameof(programmiersprachen), programmiersprachen, null),
+                SpsStarter.SpsSprachen.Fup => "FUP",
+                SpsStarter.SpsSprachen.As => "AS",
+                SpsStarter.SpsSprachen.Awl => "AWL",
+                SpsStarter.SpsSprachen.Cfc => "CFC",
+                SpsStarter.SpsSprachen.Cpp => "C++",
+                SpsStarter.SpsSprachen.Kop => "KOP",
+                SpsStarter.SpsSprachen.Scl => "SCL",
+                SpsStarter.SpsSprachen.Stl => "ST",
+                _ => throw new ArgumentOutOfRangeException(nameof(spsSprachen), spsSprachen, null),
             };
         }
     }
