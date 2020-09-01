@@ -235,18 +235,23 @@ AlleWerte = new AlleWerte();
 
             if (tabEigenschaften.SpsKategorie == projektEigenschaften.SpsKategorie)
             {
-                RadioButton rdo = new RadioButton
+                var rdo = new RadioButton
                 {
                     GroupName = projektEigenschaften.Steuerung.ToString(),
                     Name = projektEigenschaften.Bezeichnung,
                     FontSize = 14,
-                    Content = projektEigenschaften.QuellOrdner + " (" + ProgrammierspracheAnzeigen(projektEigenschaften.Programmiersprache) + ")",
+                    Content = projektEigenschaften.Bezeichnung + " (" + ProgrammierspracheAnzeigen(projektEigenschaften.Programmiersprache) + ")",
                     VerticalAlignment = VerticalAlignment.Top
                 };
 
-                if (tabEigenschaften.Steuerungen == SpsStarter.Steuerungen.Logo) rdo.Checked += RadioButton_Checked;
-                if (tabEigenschaften.Steuerungen == SpsStarter.Steuerungen.TwinCat) rdo.Checked += RadioButton_Checked;
-                if (tabEigenschaften.Steuerungen == SpsStarter.Steuerungen.TiaPortal) rdo.Checked += RadioButton_Checked;
+                switch (tabEigenschaften.Steuerungen)
+                {
+                    case SpsStarter.Steuerungen.Logo:
+                    case SpsStarter.Steuerungen.TwinCat:
+                    case SpsStarter.Steuerungen.TiaPortal:
+                        rdo.Checked += RadioButton_Checked;
+                        break;
+                }
 
                 tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
             }
@@ -265,18 +270,11 @@ AlleWerte = new AlleWerte();
 
         private string ProgrammierspracheAnzeigen(Model.SpsStarter.SpsSprachen spsSprachen)
         {
-            return spsSprachen switch
+            foreach (var programmiersprachen in AlleWerte.AlleProgrammiersprachen.Where(programmiersprachen => programmiersprachen.Sprache == spsSprachen))
             {
-                SpsStarter.SpsSprachen.Fup => "FUP",
-                SpsStarter.SpsSprachen.As => "AS",
-                SpsStarter.SpsSprachen.Awl => "AWL",
-                SpsStarter.SpsSprachen.Cfc => "CFC",
-                SpsStarter.SpsSprachen.Cpp => "C++",
-                SpsStarter.SpsSprachen.Kop => "KOP",
-                SpsStarter.SpsSprachen.Scl => "SCL",
-                SpsStarter.SpsSprachen.Stl => "ST",
-                _ => throw new ArgumentOutOfRangeException(nameof(spsSprachen), spsSprachen, null),
-            };
+                return programmiersprachen.Anzeige;
+            }
+            return "unbekannte Programmiersprache";
         }
     }
 }
