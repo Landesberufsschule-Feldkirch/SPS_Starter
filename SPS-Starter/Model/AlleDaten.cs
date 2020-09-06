@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace SPS_Starter.Model
 {
@@ -40,15 +38,18 @@ namespace SPS_Starter.Model
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.FactoryIo, SpsStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcFio, _mainWindow.StackPanelTiaPortalPlcFio, _mainWindow.ButtonStartenTiaPortalPlcFio));
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.DigitalTwin, SpsStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcDt, _mainWindow.StackPanelTiaPortalPlcDt, _mainWindow.ButtonStartenTiaPortalPlcDt));
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.Snap7, SpsStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcSnap7, _mainWindow.StackPanelTiaPortalPlcSnap7, _mainWindow.ButtonStartenTiaPortalPlcSnap7));
+            AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.SoftwareTests, SpsStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.Bug, SpsStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
-
+            
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.Plc, SpsStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlc, _mainWindow.StackPanelTwinCatPlc, _mainWindow.ButtonStartenTwinCatPlc));
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.Visu, SpsStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcVisu, _mainWindow.StackPanelTwinCatPlcVisu, _mainWindow.ButtonStartenTwinCatPlcVisu));
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.Nc, SpsStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcNc, _mainWindow.StackPanelTwinCatPlcNc, _mainWindow.ButtonStartenTwinCatPlcNc));
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.DigitalTwin, SpsStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcDt, _mainWindow.StackPanelTwinCatPlcDt, _mainWindow.ButtonStartenTwinCatPlcDt));
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.AdsRemote, SpsStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcAds, _mainWindow.StackPanelTwinCatPlcAds, _mainWindow.ButtonStartenTwinCatPlcAds));
+            AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.SoftwareTests, SpsStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcTests, _mainWindow.StackPanelTwinCatPlcTests, _mainWindow.ButtonStartenTwinCatPlcTests));
             AlleTabEigenschaften.Add(new TabEigenschaften(SpsStarter.SpsKategorie.Bug, SpsStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcBugs, _mainWindow.StackPanelTwinCatPlcBugs, _mainWindow.ButtonStartenTwinCatPlcBugs));
-            }
+
+        }
         
         private void OrdnerEinlesen( MainWindow mw, string source, string destination, SpsStarter.Steuerungen steuerungen)
         {

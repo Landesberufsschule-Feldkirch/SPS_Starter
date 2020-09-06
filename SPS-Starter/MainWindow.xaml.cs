@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using SPS_Starter.Model;
@@ -9,13 +11,13 @@ namespace SPS_Starter
     public partial class MainWindow
     {
         public Model.AlleDaten AlleDaten { get; set; }
-        public  Model.AlleWerte AlleWerte { get; set; }
-        public  string ProjektName { get; set; }
+        public Model.AlleWerte AlleWerte { get; set; }
+        public string ProjektName { get; set; }
         public Model.SpsStarter.Steuerungen AktuelleSteuerung { get; set; }
         public MainWindow()
         {
             AktuelleSteuerung = Model.SpsStarter.Steuerungen.Logo;
-AlleWerte = new AlleWerte();
+            AlleWerte = new AlleWerte();
 
             var viewModel = new ViewModel.ViewModel(this);
 
@@ -23,7 +25,7 @@ AlleWerte = new AlleWerte();
             DataContext = viewModel;
 
             AlleDaten = new AlleDaten(this);
-            
+
 
             AnzeigeUpdatenLogo();
             AnzeigeUpdatenTiaPortal();
@@ -235,13 +237,16 @@ AlleWerte = new AlleWerte();
 
             if (tabEigenschaften.SpsKategorie == projektEigenschaften.SpsKategorie)
             {
+                projektEigenschaften.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
+
                 var rdo = new RadioButton
                 {
                     GroupName = projektEigenschaften.Steuerung.ToString(),
                     Name = projektEigenschaften.Bezeichnung,
                     FontSize = 14,
-                    Content = projektEigenschaften.Bezeichnung + " (" + ProgrammierspracheAnzeigen(projektEigenschaften.Programmiersprache) + ")",
-                    VerticalAlignment = VerticalAlignment.Top
+                    Content = projektEigenschaften.Bezeichnung + " (" + AlleWerte.AlleProgrammiersprachen[projektEigenschaften.Programmiersprache].Anzeige + ")",
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Tag = projektEigenschaften
                 };
 
                 switch (tabEigenschaften.Steuerungen)
@@ -260,21 +265,24 @@ AlleWerte = new AlleWerte();
 
         public void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            RadioButton rb = sender as RadioButton;
-            ProjektName = rb.Name;
-            /*
-            mW.gProjekt_Name = rb.Name;
-            HtmlFeldFuellen(mW, AlleProgrammierSprachen, AlleEigenschaften, ButtonListe, Logo.Source, ButtonBeschriftung);
-            */
-        }
 
-        private string ProgrammierspracheAnzeigen(Model.SpsStarter.SpsSprachen spsSprachen)
-        {
-            foreach (var programmiersprachen in AlleWerte.AlleProgrammiersprachen.Where(programmiersprachen => programmiersprachen.Sprache == spsSprachen))
+            if (sender is RadioButton rb && rb.Tag is ProjektEigenschaften projektEigenschaften)
             {
-                return programmiersprachen.Anzeige;
+
+                ProjektName = rb.Name;
+
+                var projekt = (Model.ProjektEigenschaften)rb.Tag;
+                System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(projekt.QuellOrdner);
+                string dateiName = $@"{parentDirectory.FullName}\index.html";
+
+                var htmlSeite = File.Exists(dateiName) ? System.IO.File.ReadAllText(dateiName) : "--??--";
+
+                byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
+                MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+
+                projekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
             }
-            return "unbekannte Programmiersprache";
         }
+        
     }
 }

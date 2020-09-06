@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SPS_Starter.Model
 {
@@ -9,13 +10,13 @@ namespace SPS_Starter.Model
         public static int LaufendeNummer { get; set; }
         public SpsStarter.Steuerungen Steuerung { get; set; }
         public string QuellOrdner { get; set; }
-        public  string ZielOrdner { get; set; }
+        public string ZielOrdner { get; set; }
         public string Bezeichnung { get; set; }
         public SpsStarter.SpsSprachen Programmiersprache { get; set; }
         public SpsStarter.SpsKategorie SpsKategorie { get; set; }
+        public WebBrowser BrowserBezeichnung { get; set; }
 
-
-
+    
         public ProjektEigenschaften(MainWindow mw, SpsStarter.Steuerungen steuerung, string quelle, string ziel)
         {
             LaufendeNummer++;
@@ -23,41 +24,42 @@ namespace SPS_Starter.Model
             QuellOrdner = quelle;
             ZielOrdner = ziel;
 
-            Programmiersprache = ProgrammierspracheBestimmen(mw, Steuerung, quelle);
-            SpsKategorie = KategorieBestimmen(mw, Steuerung, quelle);
-            Bezeichnung = BezeichnungBestimmen(mw, quelle, SpsKategorie);
+            Programmiersprache = ProgrammierspracheBestimmen(mw, quelle);
+            SpsKategorie = KategorieBestimmen(mw, quelle);
+            Bezeichnung = BezeichnungBestimmen(mw, quelle);
         }
 
-        private SpsStarter.SpsKategorie KategorieBestimmen(MainWindow mw, SpsStarter.Steuerungen steuerung, string quelle)
+        private SpsStarter.SpsKategorie KategorieBestimmen(MainWindow mw,  string quelle)
         {
-            foreach (var kategorien in mw.AlleWerte.AlleKategorien.Where(kategorien => quelle.Contains(kategorien.Prefix)))
+            foreach (var kategorie in mw.AlleWerte.AlleKategorien.Where(kategorie => quelle.Contains(kategorie.Value)))
             {
-                return kategorien.Kategorie;
+                return kategorie.Key;
             }
 
             MessageBox.Show("Bezeichnungsproblem: " + quelle);
             return SpsStarter.SpsKategorie.AdsRemote;
         }
 
-        private SpsStarter.SpsSprachen ProgrammierspracheBestimmen(MainWindow mw, SpsStarter.Steuerungen steuerung, string quelle)
+        private SpsStarter.SpsSprachen ProgrammierspracheBestimmen(MainWindow mw,  string quelle)
         {
-            foreach (var sprache in mw.AlleWerte.AlleProgrammiersprachen.Where(sprache => quelle.Contains(sprache.Prefix)))
-                return sprache.Sprache;
+            foreach (var sprache in mw.AlleWerte.AlleProgrammiersprachen.Where(sprache => quelle.Contains(sprache.Value.Prefix)))
+            {
+                return sprache.Key;
+            }
 
             MessageBox.Show("Bezeichnungsproblem: " + quelle);
             return SpsStarter.SpsSprachen.As;
         }
 
-        private string BezeichnungBestimmen(MainWindow mw, string quelle, SpsStarter.SpsKategorie kategorie)
+        private string BezeichnungBestimmen(MainWindow mw, string quelle)
         {
             var prefix = "_";
 
-            foreach (var kategorien in mw.AlleWerte.AlleKategorien.Where(kategorien => kategorien.Kategorie == kategorie))
+            foreach (var kategorie in mw.AlleWerte.AlleKategorien.Where(kategorie => quelle.Contains(kategorie.Value)))
             {
-                prefix = kategorien.Prefix;
+                prefix = kategorie.Value;
             }
-
-
+           
             var pos = quelle.IndexOf(prefix, StringComparison.Ordinal);
             var laenge = prefix.Length;
 

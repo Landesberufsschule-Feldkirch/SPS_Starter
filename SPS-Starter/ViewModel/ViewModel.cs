@@ -13,7 +13,7 @@ namespace SPS_Starter.ViewModel
         public ViewModel(MainWindow mw)
         {
             _mainWindow = mw;
-            var spsStarter = new Model.SpsStarter(mw);
+            var spsStarter = new Model.SpsStarter();
             ViAnzeige = new VisuAnzeigen(_mainWindow, spsStarter);
         }
 

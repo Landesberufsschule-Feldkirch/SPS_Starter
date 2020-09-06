@@ -229,6 +229,29 @@
                             </Grid>
                         </TabItem>
 
+                        <TabItem Header="AutoTest" FontSize="14" ToolTip="Automatische Testprojekte für die S7-1214 DC/DC/DC">
+                            <Grid x:Name="TabTiaPortalPlcTests" Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel x:Name="StackPanelTiaPortalPlcTests" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTiaPortalPlcTests" Content="TiaPortal Projekt starten" Grid.Column="3" Grid.Row="1"  Command="{Binding BtnProjektStarten}" />
+                                <WebBrowser x:Name="WebTiaPortalPlcTests" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                            </Grid>
+                        </TabItem>
+
                         <TabItem Header="Bugs" FontSize="14" ToolTip="Fehlerhafte Projekte für die S7-1214 DC/DC/DC">
                             <Grid x:Name="TabTiaPortalPlcBugs" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
@@ -396,6 +419,29 @@
                                 <StackPanel x:Name="StackPanelTwinCatPlcAds" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
                                 <Button x:Name="ButtonStartenTwinCatPlcAds" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1" Command="{Binding BtnProjektStarten}" />
                                 <WebBrowser x:Name="WebTwinCatPlcAds" Grid.Column="3" Grid.Row="3" ></WebBrowser>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem Header="AutoTests" FontSize="14" ToolTip="Automatische Testprojekte für die CPU CX9020">
+                            <Grid x:Name="TabTwinCatPlcTests" Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                    <ColumnDefinition Width="450"></ColumnDefinition>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel x:Name="StackPanelTwinCatPlcTests" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  ></StackPanel>
+                                <Button x:Name="ButtonStartenTwinCatPlcTests" Content="TwinCAT Projekt starten" Grid.Column="3" Grid.Row="1"  Command="{Binding BtnProjektStarten}" />
+                                <WebBrowser x:Name="WebTwinCatPlcTests" Grid.Column="3" Grid.Row="3" ></WebBrowser>
                             </Grid>
                         </TabItem>
 

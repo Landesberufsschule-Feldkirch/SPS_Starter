@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-
-namespace SPS_Starter.Model
+﻿namespace SPS_Starter.Model
 {
     public class SpsStarter
     {
@@ -36,16 +33,6 @@ namespace SPS_Starter.Model
             Kop,
             Scl,
             Stl
-        }
-
-    
-        private readonly MainWindow _mainWindow;
-
-        public SpsStarter(MainWindow mw)
-        {
-            _mainWindow = mw;
-           
-          
         }
     }
 }
