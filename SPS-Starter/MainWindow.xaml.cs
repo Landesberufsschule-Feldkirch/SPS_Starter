@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace SPS_Starter
     {
         public Model.AlleDaten AlleDaten { get; set; }
         public Model.AlleWerte AlleWerte { get; set; }
-        public string ProjektName { get; set; }
+        public Model.ProjektEigenschaften AktuellesProjekt { get; set; }
         public Model.SpsStarter.Steuerungen AktuelleSteuerung { get; set; }
         public MainWindow()
         {
@@ -34,7 +35,39 @@ namespace SPS_Starter
 
         internal void ProjektStarten(object obj)
         {
-            //
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(AktuellesProjekt.QuellOrdner);
+            string sourceDirectory = $@"{AktuellesProjekt.ZielOrdner}";
+
+
+            try
+            {
+                if (System.IO.Directory.Exists(AktuellesProjekt.ZielOrdner)) System.IO.Directory.Delete(AktuellesProjekt.ZielOrdner, true);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine($"{exp} Exception 2 caught.");
+            }
+            
+            try
+            {
+                Copy(AktuellesProjekt.QuellOrdner, AktuellesProjekt.ZielOrdner);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine($"{exp} Exception 4 caught.");
+            }
+
+            try
+            {
+                Process proc = new Process();
+                proc.StartInfo.FileName = AktuellesProjekt.ZielOrdner + "\\start.cmd";
+                proc.StartInfo.WorkingDirectory = AktuellesProjekt.ZielOrdner;
+                proc.Start();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine($"{exp} Exception 5 caught.");
+            }
         }
 
 
@@ -42,9 +75,38 @@ namespace SPS_Starter
 
         public void TabControlSelectionChanged(object obj)
         {
-            //
+           
+    //
+
         }
 
+
+        public static void Copy(string sourceDirectory, string targetDirectory)
+        {
+            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+
+            CopyAll(diSource, diTarget);
+        }
+
+        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        {
+            Directory.CreateDirectory(target.FullName);
+
+            // Copy each file into the new directory.
+            foreach (FileInfo fi in source.GetFiles())
+            {
+                Console.WriteLine($@"Copying {target.FullName}\{fi.Name}");
+                fi.CopyTo(System.IO.Path.Combine(target.FullName, fi.Name), true);
+            }
+
+            // Copy each subdirectory using recursion.
+            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            {
+                DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
+                CopyAll(diSourceSubDir, nextTargetSubDir);
+            }
+        }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -268,11 +330,8 @@ namespace SPS_Starter
 
             if (sender is RadioButton rb && rb.Tag is ProjektEigenschaften projektEigenschaften)
             {
-
-                ProjektName = rb.Name;
-
-                var projekt = (Model.ProjektEigenschaften)rb.Tag;
-                System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(projekt.QuellOrdner);
+                AktuellesProjekt = (Model.ProjektEigenschaften)rb.Tag;
+                System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(AktuellesProjekt.QuellOrdner);
                 string dateiName = $@"{parentDirectory.FullName}\index.html";
 
                 var htmlSeite = File.Exists(dateiName) ? System.IO.File.ReadAllText(dateiName) : "--??--";
@@ -280,9 +339,8 @@ namespace SPS_Starter
                 byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
                 MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
-                projekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
             }
         }
-        
     }
 }
