@@ -30,12 +30,7 @@ namespace SPS_Starter.Model
     {
         public static EinstellungenOrdnerLesen FromJson(string json) => JsonConvert.DeserializeObject<EinstellungenOrdnerLesen>(json, Converter.Settings);
     }
-
-    public static class Serialize
-    {
-        public static string ToJson(this EinstellungenOrdnerLesen self) => JsonConvert.SerializeObject(self, Converter.Settings);
-    }
-
+    
     internal static class Converter
     {
         public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings

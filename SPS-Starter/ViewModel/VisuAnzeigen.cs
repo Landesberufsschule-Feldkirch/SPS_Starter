@@ -5,14 +5,8 @@ namespace SPS_Starter.ViewModel
 {
     public class VisuAnzeigen : INotifyPropertyChanged
     {
-        private readonly Model.SpsStarter _spsStarter;
-        private readonly MainWindow _mainWindow;
-
-        public VisuAnzeigen(MainWindow mw, Model.SpsStarter ka)
+        public VisuAnzeigen()
         {
-            _mainWindow = mw;
-            _spsStarter = ka;
-
             System.Threading.Tasks.Task.Run(VisuAnzeigenTask);
         }
 

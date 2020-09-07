@@ -1,23 +1,22 @@
-﻿using System;
+﻿using SPS_Starter.Model;
+using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using SPS_Starter.Model;
 
 namespace SPS_Starter
 {
     public partial class MainWindow
     {
-        public Model.AlleDaten AlleDaten { get; set; }
-        public Model.AlleWerte AlleWerte { get; set; }
-        public Model.ProjektEigenschaften AktuellesProjekt { get; set; }
-        public Model.SpsStarter.Steuerungen AktuelleSteuerung { get; set; }
+        public AlleDaten AlleDaten { get; set; }
+        public AlleWerte AlleWerte { get; set; }
+        public ProjektEigenschaften AktuellesProjekt { get; set; }
+        public SpsStarter.Steuerungen AktuelleSteuerung { get; set; }
         public MainWindow()
         {
-            AktuelleSteuerung = Model.SpsStarter.Steuerungen.Logo;
+            AktuelleSteuerung = SpsStarter.Steuerungen.Logo;
             AlleWerte = new AlleWerte();
 
             var viewModel = new ViewModel.ViewModel(this);
@@ -35,13 +34,9 @@ namespace SPS_Starter
 
         internal void ProjektStarten(object obj)
         {
-            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(AktuellesProjekt.QuellOrdner);
-            string sourceDirectory = $@"{AktuellesProjekt.ZielOrdner}";
-
-
             try
             {
-                if (System.IO.Directory.Exists(AktuellesProjekt.ZielOrdner)) System.IO.Directory.Delete(AktuellesProjekt.ZielOrdner, true);
+                if (Directory.Exists(AktuellesProjekt.ZielOrdner)) Directory.Delete(AktuellesProjekt.ZielOrdner, true);
             }
             catch (Exception exp)
             {
@@ -59,9 +54,14 @@ namespace SPS_Starter
 
             try
             {
-                Process proc = new Process();
-                proc.StartInfo.FileName = AktuellesProjekt.ZielOrdner + "\\start.cmd";
-                proc.StartInfo.WorkingDirectory = AktuellesProjekt.ZielOrdner;
+                var proc = new Process
+                {
+                    StartInfo =
+                    {
+                        FileName = AktuellesProjekt.ZielOrdner + "\\start.cmd",
+                        WorkingDirectory = AktuellesProjekt.ZielOrdner
+                    }
+                };
                 proc.Start();
             }
             catch (Exception exp)
@@ -97,7 +97,7 @@ namespace SPS_Starter
             foreach (FileInfo fi in source.GetFiles())
             {
                 Console.WriteLine($@"Copying {target.FullName}\{fi.Name}");
-                fi.CopyTo(System.IO.Path.Combine(target.FullName, fi.Name), true);
+                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
             }
 
             // Copy each subdirectory using recursion.
@@ -115,17 +115,17 @@ namespace SPS_Starter
                 switch (item.Header.ToString())
                 {
                     case "Logo8":
-                        AktuelleSteuerung = Model.SpsStarter.Steuerungen.Logo;
+                        AktuelleSteuerung = SpsStarter.Steuerungen.Logo;
                         AnzeigeUpdatenLogo();
                         break;
 
                     case "TiaPortal":
-                        AktuelleSteuerung = Model.SpsStarter.Steuerungen.TiaPortal;
+                        AktuelleSteuerung = SpsStarter.Steuerungen.TiaPortal;
                         AnzeigeUpdatenTiaPortal();
                         break;
 
                     case "TwinCAT":
-                        AktuelleSteuerung = Model.SpsStarter.Steuerungen.TwinCat;
+                        AktuelleSteuerung = SpsStarter.Steuerungen.TwinCat;
                         AnzeigeUpdatenTwinCat();
                         break;
                 }
@@ -220,7 +220,7 @@ namespace SPS_Starter
                     if (tabEigenschaften.Steuerungen == SpsStarter.Steuerungen.TiaPortal)
                     {
                         tabEigenschaften.ProjekteBezeichnung.Clear();
-                        tabEigenschaften.StackPanelBezeichnung?.Children?.Clear();
+                        tabEigenschaften.StackPanelBezeichnung?.Children.Clear();
 
                         foreach (var projektEigenschaften in AlleDaten.AlleProjektEigenschaften)
                         {
@@ -274,7 +274,7 @@ namespace SPS_Starter
                     if (tabEigenschaften.Steuerungen == SpsStarter.Steuerungen.Logo)
                     {
                         tabEigenschaften.ProjekteBezeichnung.Clear();
-                        tabEigenschaften.StackPanelBezeichnung?.Children?.Clear();
+                        tabEigenschaften.StackPanelBezeichnung?.Children.Clear();
 
                         foreach (var projektEigenschaften in AlleDaten.AlleProjektEigenschaften)
                         {
@@ -330,14 +330,14 @@ namespace SPS_Starter
 
             if (sender is RadioButton rb && rb.Tag is ProjektEigenschaften projektEigenschaften)
             {
-                AktuellesProjekt = (Model.ProjektEigenschaften)rb.Tag;
-                System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(AktuellesProjekt.QuellOrdner);
-                string dateiName = $@"{parentDirectory.FullName}\index.html";
+                AktuellesProjekt = projektEigenschaften;
+                var parentDirectory = new DirectoryInfo(AktuellesProjekt.QuellOrdner);
+                var dateiName = $@"{parentDirectory.FullName}\index.html";
 
-                var htmlSeite = File.Exists(dateiName) ? System.IO.File.ReadAllText(dateiName) : "--??--";
+                var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
 
-                byte[] dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
-                MemoryStream stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+                var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
+                var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
                 AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
             }
