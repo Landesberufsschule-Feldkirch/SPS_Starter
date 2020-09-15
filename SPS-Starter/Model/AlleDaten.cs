@@ -17,7 +17,7 @@ namespace SPS_Starter.Model
         {
             _mainWindow = mw;
             
-            var einstellungen = EinstellungenOrdnerLesen.FromJson(File.ReadAllText(@"Model//Einstellungen.json"));
+            var einstellungen = EinstellungenOrdnerLesen.FromJson(File.ReadAllText(@"Einstellungen.json"));
 
           
             OrdnerEinlesen(_mainWindow, einstellungen.Logo.Source, einstellungen.Logo.Destination, SpsStarter.Steuerungen.Logo);

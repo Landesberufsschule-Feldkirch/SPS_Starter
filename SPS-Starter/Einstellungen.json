@@ -1,14 +1,14 @@
 ﻿{
   "Logo": {
-    "Source": "k:\\git\\zLogo8",
+    "Source": "k:\\git\\_Logo8",
     "Destination": "h:\\Logo8"
   },
   "TIAPortal": {
-    "Source": "k:\\git\\zTiaPortal14",
+    "Source": "k:\\git\\_TiaPortal14",
     "Destination": "h:\\TiaPortal14"
   },
   "TwinCAT": {
-    "Source": "k:\\git\\zTwinCat3",
+    "Source": "k:\\git\\_TwinCat3",
     "Destination": "h:\\TwinCat3"
   }
 }
