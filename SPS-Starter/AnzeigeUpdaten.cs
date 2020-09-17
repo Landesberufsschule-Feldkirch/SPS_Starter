@@ -1,6 +1,7 @@
 ﻿using System;
 using SPS_Starter.Model;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,31 +16,26 @@ namespace SPS_Starter
         {
             if (AlleDaten.AlleTabEigenschaften == null) return;
 
-            foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften)
+            foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften.Where(tabEigenschaften => tabEigenschaften.Steuerungen == aktuelleSteuerung))
             {
-                if (tabEigenschaften.Steuerungen != aktuelleSteuerung) continue;
-
                 tabEigenschaften.StackPanelBezeichnung?.Children.Clear();
 
-                foreach (var projektEigenschaften in AlleDaten.AlleProjektEigenschaften)
+                foreach (var projektEigenschaften in AlleDaten.AlleProjektEigenschaften.Where(projektEigenschaften => projektEigenschaften.Steuerung == aktuelleSteuerung))
                 {
-                    if (projektEigenschaften.Steuerung == aktuelleSteuerung)
+                    switch (aktuelleSteuerung)
                     {
-                        switch (aktuelleSteuerung)
+                        case SpsStarter.Steuerungen.Logo:
+                            AnzeigeUpdatenLogo(tabEigenschaften, projektEigenschaften);
+                            break;
+                        case SpsStarter.Steuerungen.TiaPortal:
+                            AnzeigeUpdatenTiaPortal(tabEigenschaften, projektEigenschaften);
+                            break;
+                        case SpsStarter.Steuerungen.TwinCat:
+                            AnzeigeUpdatenTwinCat(tabEigenschaften, projektEigenschaften);
+                            break;
+                        default:
                         {
-                            case SpsStarter.Steuerungen.Logo:
-                                AnzeigeUpdatenLogo(tabEigenschaften, projektEigenschaften);
-                                break;
-                            case SpsStarter.Steuerungen.TiaPortal:
-                                AnzeigeUpdatenTiaPortal(tabEigenschaften, projektEigenschaften);
-                                break;
-                            case SpsStarter.Steuerungen.TwinCat:
-                                AnzeigeUpdatenTwinCat(tabEigenschaften, projektEigenschaften);
-                                break;
-                            default:
-                            {
-                                throw new ArgumentOutOfRangeException(nameof(aktuelleSteuerung), aktuelleSteuerung, null);
-                            }
+                            throw new ArgumentOutOfRangeException(nameof(aktuelleSteuerung), aktuelleSteuerung, null);
                         }
                     }
                 }
