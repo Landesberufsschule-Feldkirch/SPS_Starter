@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Threading;
 
 namespace SPS_Starter.ViewModel
 {
@@ -7,25 +6,34 @@ namespace SPS_Starter.ViewModel
     {
         public VisuAnzeigen()
         {
-            System.Threading.Tasks.Task.Run(VisuAnzeigenTask);
+            StartButtonFarbe = "LightGray";
+            StartButtonInhalt = "Bitte ein Projekt auswählen";
         }
 
-        private void VisuAnzeigenTask()
+        private string _startButtonFarbe;
+        public string StartButtonFarbe
         {
-            while (true)
+            get => _startButtonFarbe;
+            set
             {
-                Thread.Sleep(10);
+                _startButtonFarbe = value;
+                OnPropertyChanged(nameof(StartButtonFarbe));
             }
-            // ReSharper disable once FunctionNeverReturns
         }
 
-
-        #region iNotifyPeropertyChanged Members
+        private string _startButtonInhalt;
+        public string StartButtonInhalt
+        {
+            get => _startButtonInhalt;
+            set
+            {
+                _startButtonInhalt = value;
+                OnPropertyChanged(nameof(StartButtonInhalt));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         // ReSharper disable once UnusedMember.Local
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        #endregion iNotifyPeropertyChanged Members
     }
 }

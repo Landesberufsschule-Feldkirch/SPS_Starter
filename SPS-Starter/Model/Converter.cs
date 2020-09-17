@@ -13,7 +13,7 @@ namespace SPS_Starter.Model
             Converters =
             {
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
-            },
+            }
         };
     }
 }

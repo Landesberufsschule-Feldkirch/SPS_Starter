@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace SPS_Starter.Model
 {
@@ -11,7 +9,6 @@ namespace SPS_Starter.Model
         public WebBrowser BrowserBezeichnung { get; set; }
         public StackPanel StackPanelBezeichnung { get; set; }
         public Button ButtonBezeichnung { get; set; }
-        public List<Tuple<string, string, string>> ProjekteBezeichnung { get; set; }
 
         public TabEigenschaften(SpsStarter.SpsKategorie spsKategorie, SpsStarter.Steuerungen steuerungen, WebBrowser browserBezeichnung, StackPanel stackPanelBezeichnung, Button buttonBezeichnung)
         {
@@ -20,8 +17,6 @@ namespace SPS_Starter.Model
             BrowserBezeichnung = browserBezeichnung;
             StackPanelBezeichnung = stackPanelBezeichnung;
             ButtonBezeichnung = buttonBezeichnung;
-            ProjekteBezeichnung = new List<Tuple<string, string, string>>();
         }
     }
-
 }

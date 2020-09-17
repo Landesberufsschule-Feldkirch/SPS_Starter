@@ -29,7 +29,7 @@ namespace SPS_Starter.Model
             Bezeichnung = BezeichnungBestimmen(mw, quelle);
         }
 
-        private SpsStarter.SpsKategorie KategorieBestimmen(MainWindow mw, string quelle)
+        private static SpsStarter.SpsKategorie KategorieBestimmen(MainWindow mw, string quelle)
         {
             foreach (var kategorie in mw.AlleWerte.AlleKategorien.Where(kategorie => quelle.Contains(kategorie.Value)))
             {
@@ -40,7 +40,7 @@ namespace SPS_Starter.Model
             return SpsStarter.SpsKategorie.AdsRemote;
         }
 
-        private SpsStarter.SpsSprachen ProgrammierspracheBestimmen(MainWindow mw, string quelle)
+        private static SpsStarter.SpsSprachen ProgrammierspracheBestimmen(MainWindow mw, string quelle)
         {
             foreach (var sprache in mw.AlleWerte.AlleProgrammiersprachen.Where(sprache => quelle.Contains(sprache.Value.Prefix)))
             {
@@ -51,7 +51,7 @@ namespace SPS_Starter.Model
             return SpsStarter.SpsSprachen.As;
         }
 
-        private string BezeichnungBestimmen(MainWindow mw, string quelle)
+        private static string BezeichnungBestimmen(MainWindow mw, string quelle)
         {
             var prefix = "_XX_YY_ZZ_";
 

@@ -9,8 +9,6 @@ namespace SPS_Starter.Model
         public List<TabEigenschaften> AlleTabEigenschaften { get; set; } = new List<TabEigenschaften>();
 
      
-
-
         private readonly MainWindow _mainWindow;
 
         public AlleDaten(MainWindow mw)
@@ -19,7 +17,6 @@ namespace SPS_Starter.Model
             
             var einstellungen = EinstellungenOrdnerLesen.FromJson(File.ReadAllText(@"Einstellungen.json"));
 
-          
             OrdnerEinlesen(_mainWindow, einstellungen.Logo.Source, einstellungen.Logo.Destination, SpsStarter.Steuerungen.Logo);
             OrdnerEinlesen(_mainWindow, einstellungen.TiaPortal.Source, einstellungen.TiaPortal.Destination, SpsStarter.Steuerungen.TiaPortal);
             OrdnerEinlesen(_mainWindow, einstellungen.TwinCat.Source, einstellungen.TwinCat.Destination, SpsStarter.Steuerungen.TwinCat);
