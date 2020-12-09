@@ -31,7 +31,7 @@ namespace SPS_Starter.Model
 
         private static SpsStarter.SpsKategorie KategorieBestimmen(MainWindow mw, string quelle)
         {
-            foreach (var kategorie in mw.AlleWerte.AlleKategorien.Where(kategorie => quelle.Contains(kategorie.Value)))
+            foreach (var kategorie in mw.AlleWerte.AlleKategorien.Where(kategorie => quelle.Contains(kategorie.Value.Prefix)))
             {
                 return kategorie.Key;
             }

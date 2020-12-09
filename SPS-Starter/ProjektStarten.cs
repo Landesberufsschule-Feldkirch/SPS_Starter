@@ -41,9 +41,7 @@ namespace SPS_Starter
             }
 
             _viewModel.ViAnzeige.StartButtonFarbe = "LightGray";
-
         }
-
 
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
@@ -58,11 +56,8 @@ namespace SPS_Starter
             Directory.CreateDirectory(target.FullName);
 
             // Copy each file into the new directory.
-            foreach (var fi in source.GetFiles())
-            {
-                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
-            }
-
+            foreach (var fi in source.GetFiles()) fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+            
             // Copy each subdirectory using recursion.
             foreach (var diSourceSubDir in source.GetDirectories())
             {

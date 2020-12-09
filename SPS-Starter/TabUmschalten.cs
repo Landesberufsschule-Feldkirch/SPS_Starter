@@ -27,10 +27,7 @@ namespace SPS_Starter
 
         private void HtmlFensterLoeschen()
         {
-            foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften)
-            {
-                tabEigenschaften.BrowserBezeichnung.Navigate((Uri)null);
-            }
+            foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften) tabEigenschaften.BrowserBezeichnung.Navigate((Uri)null);
         }
     }
 }

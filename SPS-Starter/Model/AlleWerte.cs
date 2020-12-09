@@ -5,7 +5,7 @@ namespace SPS_Starter.Model
     public class AlleWerte
     {
         public Dictionary<SpsStarter.SpsSprachen, (string Prefix, string Anzeige)> AlleProgrammiersprachen { get; set; } = new Dictionary<SpsStarter.SpsSprachen, (string Prefix, string Anzeige)>();
-        public Dictionary<SpsStarter.SpsKategorie, string> AlleKategorien { get; set; } = new Dictionary<SpsStarter.SpsKategorie, string>();
+        public Dictionary<SpsStarter.SpsKategorie, (string Prefix, string Anzeige)> AlleKategorien { get; set; } = new Dictionary<SpsStarter.SpsKategorie, (string Prefix, string Anzeige)>();
 
         public AlleWerte()
         {
@@ -15,16 +15,16 @@ namespace SPS_Starter.Model
 
         private void AlleKategorienEinlesen()
         {
-            AlleKategorien.Add(SpsStarter.SpsKategorie.AdsRemote, "ADS_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.Bug, "BUG_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.DigitalTwin, "DT_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.FactoryIo, "FIO_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.Hmi, "HMI_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.Nc, "NC_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.Visu, "VISU_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.Snap7, "SNAP7_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.SoftwareTests, "TEST_");
-            AlleKategorien.Add(SpsStarter.SpsKategorie.Plc, "PLC_");
+            AlleKategorien.Add(SpsStarter.SpsKategorie.AdsRemote, (Prefix: "ADS_", Anzeige: "ADS"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.Bug, (Prefix: "BUG_", Anzeige: "BUG"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.DigitalTwin, (Prefix: "DT_", Anzeige: "DT"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.FactoryIo, (Prefix: "FIO_", Anzeige: "FIO"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.Hmi, (Prefix: "HMI_", Anzeige: "HMI"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.Nc, (Prefix: "NC_", Anzeige: "NC"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.Visu, (Prefix: "VISU_", Anzeige: "VISU"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.Snap7, (Prefix: "SNAP7_", Anzeige: "SNAP7"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.SoftwareTests, (Prefix: "TEST_", Anzeige: "TEST"));
+            AlleKategorien.Add(SpsStarter.SpsKategorie.Plc, (Prefix: "PLC_", Anzeige: "PLC"));
         }
 
         private void AlleProgrammiersprachenEinlesen()

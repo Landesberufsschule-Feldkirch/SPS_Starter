@@ -1,17 +1,17 @@
 ﻿namespace SPS_Starter.Model
 {
-    public class SpsStarter
+    public static class SpsStarter
     {
         public enum Steuerungen
         {
-            Logo,
+            Logo = 0,
             TiaPortal,
             TwinCat
         }
 
         public enum SpsKategorie
         {
-            AdsRemote,
+            AdsRemote = 0,
             Bug,
             DigitalTwin,
             FactoryIo,
@@ -25,7 +25,7 @@
 
         public enum SpsSprachen
         {
-            As,
+            As = 0,
             Awl,
             Cfc,
             Cpp,
