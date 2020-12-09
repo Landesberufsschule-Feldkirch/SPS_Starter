@@ -5,9 +5,10 @@ namespace SPS_Starter.ViewModel
 {
     public class ViewModel
     {
+        public VisuAnzeigen ViAnzeige { get; set; }
+
         private readonly MainWindow _mainWindow;
 
-        public VisuAnzeigen ViAnzeige { get; set; }
         public ViewModel(MainWindow mw)
         {
             _mainWindow = mw;

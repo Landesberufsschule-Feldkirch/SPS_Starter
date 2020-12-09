@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Media;
 
 namespace SPS_Starter.ViewModel
 {
@@ -6,12 +7,12 @@ namespace SPS_Starter.ViewModel
     {
         public VisuAnzeigen()
         {
-            StartButtonFarbe = "LightGray";
+            StartButtonFarbe =  Brushes.LightGray;
             StartButtonInhalt = "Bitte ein Projekt auswählen";
         }
 
-        private string _startButtonFarbe;
-        public string StartButtonFarbe
+        private Brush _startButtonFarbe;
+        public Brush StartButtonFarbe
         {
             get => _startButtonFarbe;
             set

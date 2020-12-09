@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SPS_Starter
 {
@@ -172,7 +173,7 @@ namespace SPS_Starter
             if (!(sender is RadioButton rb) || !(rb.Tag is ProjektEigenschaften projektEigenschaften)) return;
 
             _viewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
-            _viewModel.ViAnzeige.StartButtonFarbe = "LawnGreen";
+            _viewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
 
             AktuellesProjekt = projektEigenschaften;
             var parentDirectory = new DirectoryInfo(AktuellesProjekt.QuellOrdner);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using System.Windows.Media;
 using SPS_Starter.Model;
 
 namespace SPS_Starter
@@ -11,7 +12,7 @@ namespace SPS_Starter
             if (!(sender is TabControl tabControl) || !(tabControl.SelectedValue is TabItem item)) return;
 
             _viewModel.ViAnzeige.StartButtonInhalt = "Bitte ein Projekt auswählen";
-            _viewModel.ViAnzeige.StartButtonFarbe = "LightGray";
+            _viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
 
             HtmlFensterLoeschen();
 

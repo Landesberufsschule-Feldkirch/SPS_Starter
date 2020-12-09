@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Windows.Media;
 
 namespace SPS_Starter
 {
@@ -9,7 +10,7 @@ namespace SPS_Starter
     {
         internal void ProjektStarten(object obj)
         {
-            _viewModel.ViAnzeige.StartButtonFarbe = "Yellow";
+            _viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
 
             try
             {
@@ -40,7 +41,7 @@ namespace SPS_Starter
                 MessageBox.Show(exp.ToString());
             }
 
-            _viewModel.ViAnzeige.StartButtonFarbe = "LightGray";
+            _viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
         }
 
         public static void Copy(string sourceDirectory, string targetDirectory)
